@@ -1,0 +1,31 @@
+<%= content_for :title do %>
+关于我们 - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+<%= content_for :meta_description do %>
+Vida 在西班牙语和葡萄牙语中是Life的意思，我们以此寓意为我们的产品命名。
+<%  end-%>
+
+<div id="about_page">
+  <div class="left_box">
+    <%= image_tag "about/left_title.png" %>
+    <p>Vida 在西班牙语和葡萄牙语中是Life的意思，我们以此寓意为我们的产品命名。在生活中我们每天都可能会遇到值得纪念，分享的瞬间. 比如:路边的一个喜欢的橱窗，朋友的聚会，公司年会，1个人或者几个人的旅行，甚至是万人参加的演出盛典。我们得到的启发是通过手机，可以更简单，更有趣地记录和分享这些生活中的精彩瞬间，分享你我的生活轨迹。</p>
+
+    <p>因此，我们有了Vida这个产品。我们现在才刚刚开始，如果您有兴趣，可以关注我们的官方微薄 <a href="http://weibo.com/vidafm">@Vida-唯达</a> 或者 通过右边的表单联系我们 :-)<p/>
+  </div>
+  <div class="right_box">
+    <% if notice.nil? then -%>
+      <h1>您的反馈</h1>
+      <%= form_for @feedback, :url => {:action => "create_feedback"} do |f| %>
+        <%= f.text_field :from %> <br />
+        <%= f.text_area :content %> <br />
+        <%= f.submit "发送"%>
+      <% end -%>
+    <% else -%>
+      <h1><%= notice %></h1>
+    <% end -%>
+  </div>
+</div>
+<script type="text/javascript">
+  $("html, body").css("height", "100%");
+  $("body").css("background-image", "url(/assets/about/bg.jpg)");
+</script>

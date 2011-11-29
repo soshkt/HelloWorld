@@ -1,0 +1,19 @@
+  <div id="launch_page">
+    <h1>这厮还没有生活轨迹</h1>
+    <div class="box" id="others">
+      <div>
+        <% @user['sns'].each do |s| %>
+          <%= link_to s['url'], :class => "btn", :id => "example" do %>
+            <%= image_tag "share/#{s['provider']}_w_30x30.png" %>
+            <span>看Ta<%= (s['provider'] == "weibo") ? "微博" : "豆瓣"  %></span> 
+          <% end -%>
+        <% end -%>
+        <span>or</span>
+        <%= link_to explore_moments_path(:moment_type => 'recent'), :class => "btn", :id => "recent" do %>
+          <%= image_tag "share/marker_w_30x30.png" %>
+          <span>查看附近的生活轨迹</span> 
+        <% end -%>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<div class="moment_info_box">
+  <div class="box_sec creator">
+    <%= p_avatar moment.person, true %>
+    <div class="label theme_color">创建者</div>
+    <div class="name theme_color"><%= hMomentCreator moment %></div>
+  </div>
+  <div class="box_sec venue_date">
+    <div class="venue">
+      <%= image_tag "moments/annotation_w.png", :class => "theme_bgcolor" %>
+      <div class="theme_color"><%= moment.styled_address %></div></div>
+      <div class="clearfix"></div>
+    <div class="date clearfix">
+      <%= image_tag "moments/clock_w.png", :class => "theme_bgcolor" %>
+      <div class="theme_color"><%= hDateRange moment %></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="box_sec"></div>
+</div>

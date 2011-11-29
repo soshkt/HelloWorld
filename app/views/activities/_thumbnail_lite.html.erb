@@ -1,0 +1,7 @@
+<!-- moment/show右边小缩略图用 -->
+<%= link_to "#id=" + activity["id"].to_s, :class => "img_box", :ref => activity['id'] do %>
+  <div class="mask"></div>
+  <%= image_tag "video_icon_119x119.png", :class => "video_mask" if activity["activity_type"] == 3 %>
+  <%= image_tag activity["photo"]["url_l"], :class => "thumbnail", :alt => activity['description'] %>
+  <%= image_tag activity['user']['avatar_file'], :class => "avatar", :alt => activity['user']['name'] %>
+<% end -%>

@@ -1,0 +1,11 @@
+<!-- moment/list的大小缩略图用 -->
+<%= link_to moment_path(activity["moment_id"]) + "#id=" + activity["id"].to_s, :target => "_blank" do %>
+  <div class="mask"></div>
+  <%= image_tag "video_icon_119x119.png", :class => "video_mask" if activity["activity_type"] == 3 %>
+  <%= image_tag activity["photo"]["url_l"], :class => "thumbnail", :alt => activity['description'] %>
+  <div class="info">
+  	<%= image_tag activity['user']['avatar_file'], :class => "avatar", :alt => activity['user']['name'] %>
+    <span class="caption"><%= trunc_str activity["description"], 10 %></span>
+    <span class="date"><%= time_ago_in_words Time.parse(activity['created_at']) %>之前</span>
+  </div>
+<% end -%>

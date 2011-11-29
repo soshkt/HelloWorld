@@ -1,0 +1,850 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>唯达 - 你我的生活轨迹</title>
+  <meta name="Description" content="VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。">
+
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+html, body {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+button,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 100%;
+  line-height: 1;
+  font-family: inherit;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol, ul {
+  list-style: none;
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+html {
+  overflow-y: scroll;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover, a:active {
+  outline: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio, canvas, video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+button, input {
+  line-height: normal;
+  *overflow: visible;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+html, body {
+  background-color: #ffffff;
+}
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+.container:before, .container:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline;
+}
+.container:after {
+  clear: both;
+}
+.container-fluid {
+  position: relative;
+  min-width: 940px;
+  padding-left: 20px;
+  padding-right: 20px;
+  zoom: 1;
+}
+.container-fluid:before, .container-fluid:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline;
+}
+.container-fluid:after {
+  clear: both;
+}
+.container-fluid > .sidebar {
+  float: left;
+  width: 220px;
+}
+.container-fluid > .content {
+  margin-left: 240px;
+}
+a {
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+  color: #333;
+}
+a:hover {
+  text-decoration: none;
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.row {
+  zoom: 1;
+  margin-left: -20px;
+}
+.row:before, .row:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline;
+}
+.row:after {
+  clear: both;
+}
+[class*="span"] {
+  display: inline;
+  float: left;
+  margin-left: 20px;
+}
+.span1 {
+  width: 40px;
+}
+.span2 {
+  width: 100px;
+}
+.span3 {
+  width: 160px;
+}
+.span4 {
+  width: 220px;
+}
+.span5 {
+  width: 280px;
+}
+.span6 {
+  width: 340px;
+}
+.span7 {
+  width: 400px;
+}
+.span8 {
+  width: 460px;
+}
+.span9 {
+  width: 520px;
+}
+.span10 {
+  width: 580px;
+}
+.span11 {
+  width: 640px;
+}
+.span12 {
+  width: 700px;
+}
+.span13 {
+  width: 760px;
+}
+.span14 {
+  width: 820px;
+}
+.span15 {
+  width: 880px;
+}
+.span16 {
+  width: 940px;
+}
+.span17 {
+  width: 1000px;
+}
+.span18 {
+  width: 1060px;
+}
+.span19 {
+  width: 1120px;
+}
+.span20 {
+  width: 1180px;
+}
+.span21 {
+  width: 1240px;
+}
+.span22 {
+  width: 1300px;
+}
+.span23 {
+  width: 1360px;
+}
+.span24 {
+  width: 1420px;
+}
+.offset1 {
+  margin-left: 80px;
+}
+.offset2 {
+  margin-left: 140px;
+}
+.offset3 {
+  margin-left: 200px;
+}
+.offset4 {
+  margin-left: 260px;
+}
+.offset5 {
+  margin-left: 320px;
+}
+.offset6 {
+  margin-left: 380px;
+}
+.offset7 {
+  margin-left: 440px;
+}
+.offset8 {
+  margin-left: 500px;
+}
+.offset9 {
+  margin-left: 560px;
+}
+.offset10 {
+  margin-left: 620px;
+}
+.offset11 {
+  margin-left: 680px;
+}
+.offset12 {
+  margin-left: 740px;
+}
+.span-one-third {
+  width: 300px;
+}
+.span-two-thirds {
+  width: 620px;
+}
+.offset-one-third {
+  margin-left: 340px;
+}
+.offset-two-thirds {
+  margin-left: 660px;
+}
+
+	/* line 5, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-inde: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* line 13, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#background img {
+  height: 100%;
+}
+
+/* line 17, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper {
+  background: url(/assets/mask_80.png);
+  height: 300px;
+  width: 100%;
+  padding-top: 50px;
+  z-index: 0;
+  position: relative;
+}
+/* line 24, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper #margin-wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
+/* line 29, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox {
+  width: 361px;
+  font-size: 12px;
+  color: white;
+  float: left;
+}
+/* line 34, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox p {
+  padding-left: 10px;
+  line-height: 14px;
+}
+/* line 38, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox .download {
+  margin-top: 34px;
+  color: #333;
+}
+/* line 41, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox .download .download-botton {
+  cursor: pointer;
+  display: block;
+  width: 100px;
+  height: 28px;
+  float: left;
+  margin-right: 1px;
+  padding: 11px 0 0 50px;
+}
+/* line 49, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox .download .download-botton#ios {
+  background: url(/assets/apple_30x30.png) white 8px 3px no-repeat scroll;
+}
+/* line 51, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox .download .download-botton#ios:hover {
+  background: url(/assets/apple_m_30x30.png) white 8px 3px no-repeat scroll;
+  color: #999;
+}
+/* line 56, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox .download .download-botton#android {
+  background: url(/assets/android_30x30.png) white 8px 3px no-repeat scroll;
+  width: 62px;
+}
+/* line 58, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .leftbox .download .download-botton#android:hover {
+  background: url(/assets/android_m_30x30.png) white 8px 3px no-repeat scroll;
+  color: #999;
+}
+/* line 68, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox {
+  float: left;
+  width: 437px;
+  height: 527px;
+  margin-top: -150px;
+  position: relative;
+}
+/* line 74, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .arrow-pane {
+  background: url(/assets/arrow_437x108.png) no-repeat scroll;
+  width: 437px;
+  height: 108px;
+  position: absolute;
+  top: 200px;
+  z-index: 1;
+}
+/* line 81, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .arrow-pane #arrow-left {
+  display: block;
+  width: 85px;
+  height: 85px;
+  left: 11px;
+  position: absolute;
+  top: 11px;
+}
+/* line 88, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .arrow-pane #arrow-left:hover {
+  background: url(/assets/arrow_l_85x85.png) no-repeat scroll;
+}
+/* line 92, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .arrow-pane #arrow-right {
+  display: block;
+  width: 85px;
+  height: 85px;
+  right: 11px;
+  position: absolute;
+  top: 11px;
+}
+/* line 99, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .arrow-pane #arrow-right:hover {
+  background: url(/assets/arrow_r_85x85.png) no-repeat scroll;
+}
+/* line 104, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .layout {
+  width: 285px;
+  height: 527px;
+  background: url(/assets/iphone_285x527.png) no-repeat;
+  position: absolute;
+  left: 76px;
+  z-index: 2;
+}
+/* line 111, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .layout .shine {
+  background: url(/assets/iphone_shine_129x385.png) no-repeat;
+  position: absolute;
+  top: 24px;
+  right: 15px;
+  width: 129px;
+  height: 385px;
+  z-index: 4;
+}
+/* line 120, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .layout .screenshots {
+  position: absolute;
+  top: 105px;
+  left: 39px;
+  z-index: 3;
+}
+/* line 125, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#index-wrapper .rightbox .layout .screenshots img {
+  width: 216.204px;
+}
+
+/* line 135, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper {
+  position: absolute;
+  width: 696px;
+  height: 264px;
+  background: url(/assets/mask_80.png);
+  padding: 18px;
+}
+/* line 141, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .leftbox {
+  width: 328px;
+  color: white;
+  float: left;
+}
+/* line 145, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .leftbox img {
+  margin-bottom: 10px;
+}
+/* line 148, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .leftbox p {
+  line-height: 18px;
+  font-size: 12px;
+}
+/* line 154, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .rightbox {
+  margin-top: 55px;
+  margin-left: 8px;
+  float: left;
+}
+/* line 158, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .rightbox #feedback_contact {
+  width: 328px;
+  padding: 14px;
+  line-height: 12px;
+  font-size: 12px;
+  border: 0;
+}
+/* line 165, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .rightbox #feedback_content {
+  margin-top: 10px;
+  width: 328px;
+  line-height: 12px;
+  height: 70px;
+  padding: 14px;
+  border: 0;
+}
+/* line 173, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
+#about-wrapper .rightbox input[type=submit] {
+  width: 87px;
+  height: 30px;
+  margin-top: 10px;
+  float: right;
+  margin-right: 4px;
+}
+/* line 3, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer {
+  position: fixed;
+  bottom: 0px;
+}
+/* line 7, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #timeline {
+  color: #B3B3B3;
+  font: bold 36px helvetica;
+  padding-left: 35px;
+}
+/* line 12, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #timeline .timeline-item {
+  cursor: pointer;
+}
+/* line 14, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #timeline .timeline-item.active {
+  color: #e81e43;
+}
+/* line 21, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav {
+  background-color: #e81e43;
+  border-bottom: 1px solid #c51a39;
+  border-top: 1px solid #fff;
+  font-size: 14px;
+  height: 18px;
+  padding: 11px 0;
+}
+/* line 29, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item {
+  line-height: 18px;
+  padding: 0 13px;
+  margin: 0;
+  color: white;
+  cursor: pointer;
+}
+/* line 35, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item .icon {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 10px;
+}
+/* line 42, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item #profile-avatar {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+}
+/* line 48, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item.first {
+  padding-left: 33px;
+}
+/* line 51, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item:not(.first) {
+  border-left: 1px solid #ec425e;
+}
+/* line 54, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item:not(.last) {
+  border-right: 1px solid #c51a39;
+}
+/* line 58, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-mine .icon {
+  background: url(/assets/smile_18x18.png) no-repeat scroll;
+}
+/* line 61, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-explore .icon {
+  background: url(/assets/world_18x18.png) no-repeat scroll;
+}
+/* line 64, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-profile .icon {
+  background: url(/assets/dialog_27x24.png) no-repeat scroll;
+  width: 27px;
+  height: 24px;
+  margin: -2px 5px 0 0;
+}
+/* line 70, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-message .icon {
+  background: url(/assets/message_22x18.png) no-repeat scroll;
+  width: 22px;
+}
+/* line 74, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-signout .icon {
+  background: url(/assets/logout_18x18.png) no-repeat scroll;
+}
+/* line 78, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-weibo .icon {
+  background: url(/assets/weibo_20x20.png) no-repeat;
+  width: 22px;
+  height: 22px;
+  margin-top: -2px;
+}
+/* line 84, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item#nav-douban .icon {
+  background: url(/assets/douban_20x20.png) no-repeat;
+  width: 22px;
+  height: 22px;
+  margin-top: -2px;
+}
+/* line 92, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-nav .nav-item:hover {
+  color: #333;
+}
+/* line 100, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+#footer #footer-copyright {
+  background-color: #e81e43;
+  border-top: 1px solid #ec425e;
+  color: white;
+  font-size: 11px;
+  padding-left: 13px;
+}
+
+/* line 109, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
+.pull-right {
+  float: right;
+}
+
+  </style>
+  
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try{ 
+var pageTracker = _gat._getTracker("UA-19458693-4");
+pageTracker._trackPageview();
+} catch(err) {} 
+</script>
+
+
+</head>
+<body>
+  <% cache "index_v2" do %>
+  <div class="container">
+    <div id="background">
+      <%= image_tag "p1_bg.jpg" %>
+    </div>
+    <div id="index-wrapper">
+      <div id="margin-wrapper">
+        <div class="leftbox">
+          <div class="tagline"><%= image_tag "tagline_275x75.png" %></div>
+          <div class="intro">
+            <p>Vida 在西班牙语中是“生活”的意思, 用照片和视频记录分享生活即景，形成生活轨迹</p>
+            <p>&nbsp;</p>
+            <p>- 实时照片和视频特效镜头，所见即所拍</p>
+            <p>- 独有群拍分享，自动汇聚精彩瞬间</p>
+            <p>- 离线批量上传，节省流量</p>
+          </div>
+
+          <div class="download">
+            <a href="http://goo.gl/OJhJU" id="ios" class="download-botton" onClick="javascript: pageTracker._trackPageview('clicktrack-home-iphone');">iPhone客户端</a>
+            <a id="android" class="download-botton">即将登场</a>
+          </div>
+        </div>
+        <div class="rightbox">
+          <div class="arrow-pane">
+            <a href="#left" id="arrow-left"></a>
+            <a href="#right" id="arrow-right"></a>
+          </div>
+          <div class="layout">
+            <div class="shine"></div>
+            <div class="screenshots">
+              <%= image_tag "screenshot1.jpg" %>
+              <%= image_tag "screenshot2.jpg" %>
+              <%= image_tag "screenshot3.jpg" %>
+              <%= image_tag "screenshot4.jpg" %>
+            </div>
+          </div>
+        </div>     
+      </div>
+    </div>
+  </div> 
+  <% end %>
+
+
+
+  <% cache (@current_user.nil? ? 'default-index-footer' : "#{@current_user['id']}-index-footer") do %>
+
+
+  <div id="footer" class="container">
+
+  <div class="row" id="footer-nav">
+  <%= link_to timeline_person_path(@current_user["id"]), :class => "span first nav-item", :id => "nav-mine" do %>
+    <div class="icon"></div>
+    我的生活轨迹
+  <% end if @current_user -%>
+  <%= link_to explore_moments_path, :class => "span last nav-item" + (" first" unless @current_user).to_s , :id => "nav-explore" do %>
+    <div class="icon"></div>
+    发现
+  <% end -%>
+
+
+  <div class="pull-right">
+    <% if @current_user -%>
+      <div class="span first nav-item" id="nav-profile">
+        <div class="icon">
+          <%= image_tag @current_user["avatar_file"], :id => "profile-avatar" %>
+        </div>
+        <%= @current_user["name"] %></div>
+      <%= link_to "/auth/logout", :class => "span last nav-item", :id => "nav-signout", :method => "delete" do %>
+        <div class="icon"></div>
+        登出
+      <% end -%>
+    <% else -%>
+      <%= link_to "/auth/tsina", :id => "nav-weibo", :class => "span nav-item first" do %>
+        <div class="icon"></div>
+        微博登入
+      <% end -%>
+      <%= link_to "/auth/douban", :id => "nav-douban", :class => "span nav-item last" do %>
+        <div class="icon"></div>
+        豆瓣登入
+      <% end -%>
+    <% end -%>
+  </div>
+</div>
+<div class="row" id="footer-copyright">
+  <div class="span">Copyright © 2011VIDA.fm</div>
+  <div class="pull-right">
+    <div class="span">沪ICP备10216111号-2</div>
+  </div>
+</div>
+</div>
+  <% end %>
+</body>
+
+<script type="text/javascript">
+(function() {
+  $(function() {
+    var setBackgroundImgSize, setWrapperPosition;
+    setWrapperPosition = function() {
+      var shouldBeMarginTop;
+      shouldBeMarginTop = ($(window).height() - 61 - 300) / 2;
+      return $("#index-wrapper").css({
+        marginTop: shouldBeMarginTop
+      });
+    };
+    setBackgroundImgSize = function() {
+      var current_height, current_width, ratio;
+      current_width = $(window).width();
+      current_height = $(window).height();
+      ratio = 1281 / 793.0;
+      if (current_width / ratio > current_height) {
+        return $("#background img").css({
+          width: "100%",
+          height: ""
+        });
+      } else {
+        return $("#background img").css({
+          witdh: "",
+          height: "100%"
+        });
+      }
+    };
+    setWrapperPosition();
+    setBackgroundImgSize();
+    $(window).resize(setBackgroundImgSize);
+    return $(".screenshots").cycle({
+      prev: '#arrow-left',
+      next: '#arrow-right'
+    });
+  });
+}).call(this);
+
+</script>
+
+</html>

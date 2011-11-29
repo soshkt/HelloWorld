@@ -1,0 +1,35 @@
+$img_size: 49px;
+
+.map_infobox {
+    position: relative;
+    width: 330px;
+    .tri {
+        position: absolute;
+        bottom: -64px;
+        left: 30px;
+    }
+    .rect_wrapper > img {
+        float: left;
+        height: $img_size;
+        width: $img_size;
+        background-color: black;
+        padding: 5px;
+    }
+
+    .right_box {
+        background-color: black;
+        color: white;
+        font-size: 12px;
+        height: 49px;
+        line-height: 15px;
+        padding: 5px;
+        float: left;
+        em {
+            font-weight: bold;
+            line-height: 19px;
+        }
+        img {
+            padding: 0 5px 0 k;
+        }
+    }
+}

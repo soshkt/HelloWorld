@@ -1,0 +1,46 @@
+#setting {
+    width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    font-size: 12px;
+
+    .user_profile {
+        line-height: 1.2em;
+        img {
+            float: left;
+            margin-right: 5px;
+        }
+        span {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
+    h1 {
+        font-size: 24px;
+        line-height: 1.4em;
+    }
+    p {
+        float: left;
+        span {
+            font-weight:bold;
+            font-size: 48px;
+            line-height: 1em;
+        }
+    }
+    a {
+        margin-top: 36px;
+        cursor: pointer;
+    }
+    table {
+        border-spacing: 2px;
+        border-collapse: collapse;
+        height: 600px;
+        width: 800px;
+
+        td {
+            width: 23px;
+            height: 23px;
+        }
+    }
+}

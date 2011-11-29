@@ -1,0 +1,324 @@
+// Place all the styles related to the misc controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 常量定义
+
+@import "misc/header";
+
+$red: #E5253D;
+$black: #2B2B2B;
+
+$content_wd: 800px;
+$content_wd_1023: 1023px;
+$content_height: 496px;
+
+$entrance_wd: 132px; 
+$thin_border: 1px solid white;
+$thin_border_gray: 1px solid dimgray;
+
+$left_box_wd: 551px;
+$right_box_wd: $content_wd - $left_box_wd;
+
+
+// 函数定义
+
+@mixin left_icon_button($left-padding, $other-padding : 15px) {
+  padding: $other-padding $other-padding $other-padding $left-padding;  
+}
+
+@mixin background_once($filename, $top: 0, $left: 0) {
+  background: {
+    image: image-url($filename);
+    position: $left $top;
+    repeat: no-repeat;
+  }
+}
+
+@mixin box($width: 0, $height: 0) {
+  width: $width;
+  height: $height;
+}
+
+
+@import "misc/profile_box";
+
+
+// 继承元素定义
+// WARNING:以__开头的类名，例如__button, __widget都是抽象类
+.__underl {
+    &:hover {
+      text-decoration: underline;
+    }
+}
+
+//-- 撞上去变黑的白按钮
+
+a.__button {
+  background-color: white;
+  display: block;
+  float: left;
+
+  &:hover {
+    background-color: $black;
+  }
+}
+
+
+// 样式表开始
+
+html, body {
+    background:white;
+}
+
+
+#misc_frontpage {
+
+  #content {
+    margin: 80px auto 0px;
+    width: $content_wd;
+    height: $content_height;
+
+    #demo_view {
+      float: left;
+
+      #arrow_l, #arrow_r {
+        height:41px;
+        margin: 227px 0px 228px 0px;
+        float: left;
+        cursor: pointer;
+      }
+      #client_view {
+        background: {
+          image: image-url("frontpage/iPhone4_bg.png");
+          repeat: no-repeat
+        }
+        width: 255px;
+        height: $content_height;
+        float: left;
+        margin: 0 20px;
+
+        #iphone_layout img {
+          width: 221px;
+          height: 331px;
+          margin: 77px 16px 88px 18px;
+        }
+
+        & > img {
+          position: relative;
+          top: 4px;
+          right: -124px;
+          float: left;
+          z-index: 999;
+        }
+      }
+    }
+
+    #demo_text {
+      float: left;
+      width: $content_wd - 351px - 40px;
+      color: white;
+      height: 356px;
+      margin: 35px 20px 83px;
+      #intro_text_1 {
+        line-height: 1.3em;
+        position: relative;
+
+        h2 {
+          line-height: 1.8em;
+          font-size: 18px;
+        }
+        iframe {
+          position: absolute;
+          margin-top: -5px;
+          margin-left: 5px;
+        }
+      }
+
+      #download {
+        float :left;
+
+        & > a {
+          width: 90px;
+          margin: 20px 1px 20px 0px;
+          text-align: right;
+
+          @include left_icon_button(60px);
+          @extend a.__button;
+
+          &#iphone_btn {
+            @include background_once("frontpage/apple_red.png", 10px, 15px);
+          }
+
+          &#android_btn {
+            @include background_once("frontpage/android_red.png", 10px, 15px);
+            padding: 4px 15px 4px 58px;
+            text-align: center;
+            height: 44px;
+          }
+        }
+      }
+
+      #intro_text_2 {
+        width: 331px;
+        clear: both;
+        margin: 20px 0;
+        line-height: 1.4em;
+      }
+
+      #demo_entry {
+        img {
+          margin-right: 1px;
+          float: left;
+        }
+
+        & > a {
+          @extend a.__button;
+          padding: 15px 33px; 
+          font-size: 18px;
+          height: 19px;
+          width: 214px;
+        }
+      }
+    }
+  }
+}
+
+#login_widget {
+  cursor: pointer;
+  position: fixed;
+  top: 280px;
+  right: 0px;
+  margin-right: -133px;
+
+  @include box($entrance_wd + 1px + 64px, 107px);
+
+  & > div {
+    float: left;
+  }
+
+  #ticket {
+    background-color: white;
+    padding: 20px;
+    @include box(24px, 67px);
+    font-size: 24px;
+    line-height: 1.5em;
+    color: $red;
+
+    cursor: pointer;
+  }
+
+  #entrance {
+    margin-left: 1px;
+    @include box($entrance_wd, 107px);
+    & > a {
+      @extend a.__button;
+      @include left_icon_button(60px, 20px);
+      line-height: 1em;
+
+      &#login_weibo {
+        margin-bottom: 1px;
+        @include background_once("frontpage/logo_sina.png", 0px, 7px);
+      }
+
+      &#login_douban {
+        @include background_once("frontpage/logo_douban.png", 0px, 7px);
+      }
+    }
+  }
+
+}
+
+#footer {
+  color: white;
+  width: $content_wd_1023;
+  margin: 20px auto 0;
+  clear: both;
+
+  & > * {
+    font-size: 12px;
+    color: dimgray;
+  }
+
+  span {
+    float: left;
+  }
+
+  a {
+    color: $red;
+    display: block;
+    line-height: 1em;
+    padding: 0 5px;
+    float: left;
+    margin: 5px 0;
+    @extend .__underl;
+
+    &.first_item {
+      border-right: $thin_border_gray;
+    }
+  }
+  
+  .f_l {
+    float: left
+  }
+
+  .f_r {
+    display: block;
+    float: right;
+  }
+}
+
+
+#about_page {
+  width: $content_wd;
+  margin: 0 auto;
+  clear: both;
+  padding-top: 120px;
+
+  .left_box {
+    width: $left_box_wd;
+    float: left;
+
+    p {
+      color: white;
+      padding-right: 100px;
+    }
+  }
+  .right_box {
+    width: $right_box_wd;
+    float: left;
+    h1 {
+      font-size: 18px;
+      color: white;
+      padding: 10px 0px;
+      line-height: 1.2em;
+    }
+    input[type="submit"] {
+      border: 0;
+      padding: 5px;
+      width: 100px;
+      color: white;
+      background-color: $red;
+    }
+
+    #feedback_from {
+      padding: 5px 5px 5px 40px;
+      font-size: 14px;
+      line-height: 1em;
+      @include background_once("about/mail.png", -2px, 8px);
+      width: $right_box_wd - 40px;
+    }
+    #feedback_content {
+      padding: 5px 5px 5px 42px;
+      font-size: 14px;
+      line-height: 1.2em;
+      @include background_once("about/message.png", 6px, 10px);
+      width: $right_box_wd - 40px;
+    }
+  }
+}
+
+.user_avatar {
+    position: relative;
+}
+

@@ -1,0 +1,182 @@
+#moment_show {
+  width: $content_wd;
+  margin: 0 auto;
+  clear: both;
+
+  .moment {
+    clear: both;
+    padding-top: 5px;
+
+    h1 {
+      color: $red;
+      font-size: 16px;
+    }
+
+    .photos {
+      margin-top: $general_padding;
+      clear: both;
+      width: $content_wd;
+
+      .left_box {
+        width: $l_img_wd;
+        float: left;
+        margin-bottom: 120px;
+        margin-right: $middle_margin;
+
+        & > img {
+          height: $l_img_wd;
+          width: $l_img_wd;
+          float: left;
+        }
+      }
+
+      .right_box {
+        width: 4 * ($m_wd + 1px);
+        height: $l_img_wd;
+        float: left;
+        position: relative;
+        color: $red;
+
+        .moment_info_box {
+          .box_sec {
+            width: 100%;
+            clear: both;
+          }
+          .creator {
+            float: left;
+            border-bottom:1px dashed #ccc;
+            padding-bottom: 10px;
+
+            img {
+              width: $portait_size;
+              height: $portait_size;
+              float: left;
+              padding: 5px;
+            }
+            .label {
+              float: left;
+              width: 470px - $portait_size;
+              font-weight: 800;
+              color: #999;
+              font-size: 12px;
+            }
+            .name {
+              float: left;
+              width: 470px - $portait_size;
+              font-weight: 800;
+              line-height: 1em;
+            }
+          }
+
+          .venue_date {
+            padding: 10px 2px;
+            border-bottom:1px dashed #ccc;
+            img {
+              background-color: $red;
+              float: left;
+            }
+            .venue {
+              margin-bottom: 5px;
+            }
+            .venue div, .date div {
+              padding: 2px 0px 1px 25px;
+              line-height: 18px;
+            }
+
+            .venue img {
+              margin-top: 2px;
+              height: 16px;
+            }
+
+            .date img {
+              margin-top: 1px;
+              margin-left: 2px;
+              height: 16px;
+            }
+
+          }
+        }
+
+        .photo_num {
+          padding-top: 20px;
+          color: #999;
+          font-weight: 800;
+          img {
+            padding: 2px 10px 0 0;
+          }
+          span {
+            font-size: 18px;
+          }
+        }
+
+
+        .img_box {
+          float: left;
+          width: $m_wd;
+          height: $m_wd;
+          margin-bottom: 1px;
+          margin-left: 1px;
+          position: relative;
+
+	  img.video_mask {
+	    position: absolute;
+  	    top: 0;
+ 	  }
+
+          img.thumbnail {
+            width: $m_wd;
+            height: $m_wd;
+          }
+
+          img.avatar {
+              border-top: 1px solid white;
+              border-right: 1px solid white;
+              height: 30px;
+              width: 30px;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+          }
+
+          .mask {
+            width: $m_wd;
+            height: $m_wd;
+            background: image-url("people/bit_mask.png");
+            border: none;
+
+            position: absolute;
+            top: 0;
+          }
+
+          &.selected {
+            .mask {
+              width: $m_wd - 2 * $m_border_weight;
+              height: $m_wd - 2 * $m_border_weight;
+              background: none;
+              border: $m_border_weight solid $red;
+            }
+            & > img.avatar {
+                display: none;
+            }
+          }
+
+        }
+
+
+
+
+        #pagination {
+          float: right;
+          clear: both;
+          #current_page {
+            color: #4D4D4D;
+          }
+          .pagination_arrow {
+            background-color: $red;
+          }
+        }
+
+      }
+    }
+  }
+}

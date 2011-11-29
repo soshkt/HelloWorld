@@ -1,0 +1,16 @@
+<!--
+  locals => 
+    photo  : the photo on the left
+    moment : moment info
+-->
+<div class="map_infobox">
+    <div class="rect_wrapper">
+      <%= image_tag hPhotoLink(photo) %>
+      <div class="right_box">
+        <em><%= moment.name * 2 %></em>  <br />
+        <%= image_tag "share/clock_10x10.png" %><%= moment.date %> <br />
+        <%= image_tag "share/marker_10x10.png" %><%= moment.address %>
+      </div>
+    </div>
+    <%= image_tag "share/tri_d_11x6.png", :class => "tri" %>
+</div>

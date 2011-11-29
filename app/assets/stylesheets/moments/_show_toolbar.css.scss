@@ -1,0 +1,197 @@
+$grey: #F2F2F2;
+$darkgrey: #B3B3B3;
+$avatar_size: 30px;
+
+.tools {
+  position: relative;
+  background-color: $grey;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  float: left;
+
+  #top_shadow {
+    background-image: url(/assets/share/mask_1x7.png);
+    background-repeat: repeat-x;
+    width: 100%;
+    height: 7px;
+    top: -1px;
+    position: absolute;
+  }
+
+  a {
+    float: left;
+
+    img {
+      height: $avatar_size;
+      width: $avatar_size;
+      float: left;
+      margin: 5px;
+    }
+  }
+
+  .info {
+    padding: 5px;
+    float: left;
+    width: 300px;
+
+    a.photo_creator {
+      float: none;
+      font-weight: 800;
+      line-height: 1.4em;
+      display: block;
+    }
+
+    .photo_caption {
+      width: 330px;
+      float: left;
+      line-height: 1.2em;
+      color: #666;
+    }
+  }
+
+  #like {
+    position: relative;
+    width: 52px;
+    color: $darkgrey;
+    float: right;
+    img {
+      height: 30px;
+      width: 42px;
+      background-color: $darkgrey;
+      margin: 5px 0;
+    }
+    .like_num {
+      line-height: 40px;
+      position: absolute;
+      right: 9px;
+    }
+
+    &.liked, &:hover {
+      color: $red;
+      img {
+        background-color: $red;
+      }
+    }
+  }
+
+  #remove {
+    float: right;
+    img {
+      height: 30px;
+      width: 42px;
+      background-color: $darkgrey;
+      margin: 5px 0;
+    }
+    &:hover {
+      color: $red;
+      img {
+        background-color: $red;
+      }
+    }
+  }
+
+  #share {
+    float: right;
+    position: relative;
+    height: 43px;
+    img {
+      height: 30px;
+      width: 42px;
+      background-color: $darkgrey;
+      margin: 5px 0;
+    }
+
+    #ckepop {
+      position: absolute;
+      display: none;
+      top: 43px;
+      #tri {
+        background-color: transparent;
+        position: absolute;
+        top: -6px;
+        left: 16px;
+        height: 6px;
+        width: 11px;
+        margin: 0;
+      }
+      a {
+        opacity: 1!important;
+        color: white;
+        width: 70px!important;
+        font-size: 12px;
+        padding: 5px;
+        text-align: right;
+        background-color: $red;
+        background-repeat: no-repeat;
+        background-position: 0;
+        &:hover {
+          background-color: $black;
+        }
+        &.jiathis_button_tsina {
+          background-image: url(/assets/share/weibo_white_26x23.png)!important;
+        }
+        &.jiathis_button_douban {
+          background-image: url(/assets/share/douban_white_26x23.png)!important;
+        }
+      }
+    }
+
+    &:hover {
+      color: $red;
+      img {
+        background-color: $red;
+      }
+      #ckepop {
+        display: block;
+      }
+    }
+  }
+
+}
+#likeship {
+  border-bottom: 1px dashed #ccc;
+  a {
+    height: 25px;
+    float: left;
+    img {
+      height: 20px;
+      width: 20px;
+      margin: 5px 3px 5px 0;
+    }
+  }
+
+  h3 {
+    line-height: 30px;
+    color: #666;
+  }
+}
+
+#comments {
+    .comment_item {
+        padding: 5px 0;
+        border-bottom: 1px dashed #ccc;
+        img {
+            height: 30px;
+            width: 30px;
+            padding: 5px 5px 5px 0;
+            float: left;
+        }
+        .commentor_name {
+            color: $red;
+            font-weight: 800;
+            line-height: 1em;
+            margin-top:5px;
+        }
+        .comment_content {
+            color: #666;
+        }
+    }
+
+    #new_comment {
+        margin: 20px 0;
+        input[type=textarea] {
+            width: 250px;
+        }
+    }
+}
+

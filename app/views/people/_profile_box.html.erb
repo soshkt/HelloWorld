@@ -1,0 +1,16 @@
+<div class="profile_box" id="user-info-popover">
+  <div class="profile">
+    <%= image_tag user['avatar_file']  %>
+    <div class="name"><%= trunc_str(user['name'], 5) %></div>
+    <%= link_to "Ta的生活轨迹", timeline_person_path(user['id']) %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="fo_btn">
+    <% user['sns'].each do |s|  -%>
+      <%= link_to s['url'], :class => "btn", :target => "_blank" do %> 
+        <%= image_tag "share/fo_#{s['provider']}_36x17.png"  %>
+        <div class="clearfix"></div>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>

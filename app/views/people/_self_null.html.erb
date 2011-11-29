@@ -1,0 +1,23 @@
+  <div id="launch_page">
+    <h1>还没有生活轨迹？ 就从今天开始创建！</h1>
+    <div class="box" id="download">
+      <h3>下载VIDA手机客户端</h3>
+      <a href="itms://itunes.apple.com/cn/app/id454984086" class="btn" id="iphone">iPhone下载</a>
+      <div class="clearfix"></div>
+    </div>
+    <div class="box" id="others">
+      <h3>看看别人的生活轨迹</h3>
+      <div>
+        <%= link_to timeline_person_url(@the_user['id']), :class => "btn", :id => "example" do %>
+          <%= image_tag @the_user['avatar_file'] %>
+          <span>小编乐乐的生活轨迹</span> 
+        <% end -%>
+        <span>or</span>
+        <%= link_to explore_moments_path(:moment_type => 'recent'), :class => "btn", :id => "recent" do %>
+          <%= image_tag "share/marker_w_30x30.png" %>
+          <span>查看最新的活动</span> 
+        <% end -%>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>

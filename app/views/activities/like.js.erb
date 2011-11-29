@@ -1,0 +1,7 @@
+// 修改activities中的元素
+activity = _.find(activities, function(activity) { return activity.id == <%= @activity["id"] %>; } );
+i = _.indexOf(activities, activity);
+activities[i] = <%= raw @activity.to_json  %>;
+
+// reload activity view
+setActivity(activity.id);

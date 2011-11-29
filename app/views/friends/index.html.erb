@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>实验室：好友</title>
+	<%= javascript_include_tag "labs", :cache => true %>
+	<%= stylesheet_link_tag "labs", :cache => true %>	
+</head>
+<body>
+
+	<h2>实验室：好友</h2>
+
+	<div id="search-form">
+		<%= form_tag({:action => "create"}, :remote => true) do %>
+			<%= text_field_tag :friend_id %>
+			<%= submit_tag "搜索", :disable_with => '搜索ing...' %>
+		<% end -%>
+	</div>
+	<div id="friends-array">
+		<%= render :partial => "friends/friend", :collection => @friends %>
+	</div>
+
+
+</body>
+</html>

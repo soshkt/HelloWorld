@@ -1,0 +1,75 @@
+// Place all the styles related to the moments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$red: #E5253D;
+$grey: #E6E6E6;
+$black: #2B2B2B;
+$thin_border: 1px solid white;
+$middle_margin: 20px;
+
+$portait_size: 30px;
+
+$l_img_wd: 511px;
+$m_wd: 119px;
+$content_wd: $l_img_wd + 4 * ($m_wd + 1px) + $middle_margin;
+$s_img_wd: 30px;
+$general_padding: 5px;
+
+$m_border_weight: 3px;
+
+@mixin background_once($filename, $top: 0, $left: 0) {
+  background: {
+    image: image-url($filename);
+    position: $left $top;
+    repeat: no-repeat;
+  }
+}
+
+@import "moments/show_toolbar";
+@import "moments/show";
+@import "moments/explore";
+@import "partial/moment_list";
+
+
+
+a.__red_btn {
+  background-color: $red;
+  color: white;
+  padding: 3px 5px 3px 25px;
+  line-height: 18px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+
+
+
+.modal#signup-modal {
+  background:image-url("login_box.png") no-repeat;
+  padding: 32px 10px 10px 10px;
+}
+.close-modal {
+  background: image-url("login_box_close_btn.png") no-repeat;
+  height: 42px;
+  width: 42px;
+  display: block;
+  position: absolute;
+  right: -13px;
+  top: -17px;
+  float: right;
+}
+
+.modal .signup-btn {
+  display: block;
+  height: 36px;
+  width: 182px;
+  &#weibo_login {
+    background: image-url("weibo_login.png") no-repeat;
+    
+  }
+  &#douban_login {
+    background: image-url("douban_login.png") no-repeat;
+    margin-top: 5px;
+  }
+}

@@ -1,0 +1,38 @@
+<% cache ( @current_user ? "#{@current_user['id']}-header" : "header") do %> 
+<div id="header_bar" class="">
+  <%= link_to '/', :id => "header_logo" do %>
+    <%= image_tag "header/logo.png" %>
+  <% end -%>
+
+  <% if @current_user %>
+    <%= link_to timeline_person_path(@current_user['id']), :id => "header_head" do %>
+      <%= image_tag @current_user['avatar_file'] %>
+    <%- end %>
+    <%= link_to(@current_user['name'], timeline_person_path(@current_user['id']), :id => "header_user") %>
+    <div class="menu" id="lifestream"><a  href="#">我的生活轨迹</a>
+      <div class="submenu">
+        <%= link_to '时间线', timeline_person_path(@current_user['id']) %>
+        <%= link_to '地理位置', mapview_person_path(@current_user['id']) %>
+      </div>
+    </div>
+  <% end -%>
+  <div class="menu" id="explore"><a  href="#">发现</a>
+    <div class="submenu ">
+      <%= link_to "最新", explore_moments_path(:moment_type => "recent") %>
+    </div>
+  </div>
+
+  <% if @current_user.nil? -%> 
+  <div class="menu" id="login"><a  href="#">登入</a>
+    <div class="submenu ">
+      <%= link_to "微博", "/auth/tsina" %>
+      <%= link_to "豆瓣", "/auth/douban" %>
+    </div>
+  </div>
+  <% else -%>
+    <%= link_to image_tag("header/setting_16x16.png"), setting_people_path, :id => "header_setting" %> 
+  <% end -%>
+  <%= link_to("退出", "/auth/logout", :id => "header_logout") if @current_user  %>
+  <%= link_to "iPhone下载", "http://goo.gl/QNqP3", :id => 'dl_ios', :class => "f_r", :onClick => "javascript: pageTracker._trackPageview('clicktrack-head-iphone');" %>
+</div>
+<% end %>

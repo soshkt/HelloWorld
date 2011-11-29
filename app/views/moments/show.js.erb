@@ -1,0 +1,3 @@
+$("#thumbnails").html( '<%= j render :partial => "activities/thumbnail_lite", :collection => @moment['data']['items'], :as => "activity" %> ');
+$("#pagination").html( ' <%= j render :partial => "activities/pagination", :locals => {:moment => @moment} %> ');
+activities = <%= raw @moment['data']['items'].to_json %>;

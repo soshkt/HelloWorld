@@ -1,0 +1,5 @@
+<div class="comment_item">
+	<%= image_tag comment["user"]["avatar_file"], "data-user-id" => comment["user"]["id"] %>
+	<div class="commentor_name" "data-user-id"=<%= comment["user"]["id"] %>><%= comment["user"]['name'] %></div>
+	<div class="comment_content"><%= comment["content"] %></div>
+</div>
