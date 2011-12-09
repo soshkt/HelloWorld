@@ -1,13 +1,53 @@
+
+
+
+<div id="bg_white"> </div>
 <div id="bg_black"> </div>
 <div id="left_bar"> 
+	<%=image_tag("moments/logo_vida.png")%>
+	<div id="photo_layout">
+		<div id="photo"></div>
+		<div id="like_icon"></div>
+		<%=image_tag "moments/user.png", :class=>"user like_user" %>
+		<%=image_tag "moments/user.png", :class=>"user like_user" %>
+		<div id="like_number">12</div>
+	</div>
+	
+	<%=image_tag "moments/user.png", :class=>"user" %>
+
 
 
 </div>
 <div id="right_bar"> 
 	<div id="login_bar"> 
-		<div style="position:relative;right:0px;">
-			<p style="float: right;">dasfdasfdsa</p>
+		<div id="qq_icon" class="bar"></div>
+		<div id="renren_icon" class="bar"></div>
+		<div id="douban_icon" class="bar"></div>
+		<div id="weibo_icon" class="bar"></div>
+		<div id="login">
+			<%=image_tag("moments/login.png")%>
 		</div>
+	</div>
+	<div id="center_bar">
+		<div id="moment_name">
+			 <%= @moment['data']['name'] %>
+		</div>
+		<div id="moment_address">
+			<%= @moment["data"]["location"] || "未知地点" %>  |  <%= Time.parse(@moment["data"]["modified_at"]).strftime("%Y.%m.%d") %>
+		</div>
+		<div id="photo_list">
+			<div class="photo_box">
+				<%=image_tag "moments/user.png", :class=>"img_show" %>
+			</div>
+			<div class="photo_box">
+				<%=image_tag "moments/user.png", :class=>"img_show" %>
+			</div>
+		</div>
+	</div>
+	<div id="download_bar">
+		<div id="download_icon"><%=image_tag("moments/download_icon.png")%></div>
+		<div id="download_iphone"></div>
+		<div id="download_android"></div>
 	</div>
 
 
