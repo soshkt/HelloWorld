@@ -7,3 +7,4 @@ config/database.yml
 Gemfile
 Gemfile.lock
 .rvmrc
+db/development.sqlite3
