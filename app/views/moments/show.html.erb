@@ -1,29 +1,78 @@
-
+<%= content_for :title do %>
+  <%= @moment["data"]["name"] %> - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
 
 
 <div id="bg_white"> </div>
 <div id="bg_black"> </div>
+
 <div id="left_bar"> 
 	<%=image_tag("moments/logo_vida.png")%>
 	<div id="photo_layout">
+    <div id="next_page"></div>
+    <div id="last_page"></div>
 		<div id="photo"></div>
 		<div id="like_icon"></div>
-		<%=image_tag "moments/user.png", :class=>"user like_user" %>
-		<%=image_tag "moments/user.png", :class=>"user like_user" %>
+		<%=image_tag "moments/user.png", :class=>"like_user user" %>
+		
 		<div id="like_number">12</div>
 	</div>
+
+  <div id="comment_input"></div>
 	
+  <div class="comment_layout">
+    <%=image_tag "moments/user.png", :class=>"user_photo user" %>
+    <div class="content_layout">
+      <div class="arrow_bar">
+        <div class="arrow_icon"></div>
+      </div>
+      <div class="massage_bar">
+        <div class="user_massage">
+          <div class="user_name">  da哈 </div>
+          <div class="content_date"> 2011.11.11</div>
+        </div>
+        <div class="content">
+        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+        </div>
+        <div class="reply"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comment_layout">
+    <%=image_tag "moments/user.png", :class=>"user_photo user" %>
+    <div class="content_layout">
+      <div class="arrow_bar">
+        <div class="arrow_icon"></div>
+      </div>
+      <div class="massage_bar">
+        <div class="user_massage">
+          <div class="user_name">  da哈 </div>
+          <div class="content_date"> 2011.11.11</div>
+        </div>
+        <div class="content">
+        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+        </div>
+        <div class="reply"></div>
+      </div>
+    </div>
+
+  </div>
+
+
 	<%=image_tag "moments/user.png", :class=>"user" %>
 
 
-
 </div>
+
 <div id="right_bar"> 
 	<div id="login_bar"> 
 		<div id="qq_icon" class="bar"></div>
 		<div id="renren_icon" class="bar"></div>
 		<div id="douban_icon" class="bar"></div>
-		<div id="weibo_icon" class="bar"></div>
+		<%= link_to "", "/auth/tsina", :class => "bar", :id => "weibo_icon" %>
 		<div id="login">
 			<%=image_tag("moments/login.png")%>
 		</div>
@@ -43,6 +92,33 @@
 				<%=image_tag "moments/user.png", :class=>"img_show" %>
 			</div>
 		</div>
+		<div style="clear:both"></div>
+		<div id="page">
+				<div class="page_item"></div>
+				<div class="page_item"></div>
+		</div>
+		<div id="photo_massage">
+		  <div id="angle_bar">
+        <div id="angle_icon"></div>
+      </div>
+      <div id="massage_bar">
+        <%=image_tag "moments/user.png", :id=>"user_photo", :class=>"user" %>
+        <div id="content_layout">
+          <div id="user_massage">
+            <div id="user_name">自动男 </div>
+            <div id="photo_data">2011-11-11</div>
+          </div>
+          <div id="content">
+            一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+
+            一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+
+            一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+          </div>
+        </div>
+
+      </div>
+		</div>
 	</div>
 	<div id="download_bar">
 		<div id="download_icon"><%=image_tag("moments/download_icon.png")%></div>
@@ -54,4 +130,22 @@
 </div>
 
 
+
 <p id="copyright" >沪ICP备10216111号-2</p>
+
+<script type="text/javascript">
+  $(function() {
+    // 把当前页地址放到cookies里边，以便登陆后返回本页。
+    $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
+
+    // 页面载入时先载缩略图，并放置照片。
+    var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
+    $.get("/moments/" + moment_id + ".js?activity_id=" + activity_id, function() {
+    });
+
+  });
+</script>
+
+
+
+
