@@ -1,6 +1,3 @@
-<%= form_tag activity_comments_path(activity_id), :id => "new_comment", :class => "form-stacked", :remote => true do %>
-	<%= label_tag :content, "回复" %>   <br />
-	<%= text_area_tag :content, nil, :rows => 5, :cols => 60 %>  <br />
-
-	<%= submit_tag "提交", :class => "btn" %>
+<%= form_tag activity_comments_path(activity_id), :id => "new_comment", :remote => true do %>
+	<%= text_field_tag(:content) %>
 <% end -%>

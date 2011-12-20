@@ -8,63 +8,9 @@
 
 <div id="left_bar"> 
 	<%=image_tag("moments/logo_vida.png")%>
-	<div id="photo_layout">
-    <div id="next_page"></div>
-    <div id="last_page"></div>
-		<div id="photo"></div>
-		<div id="like_icon"></div>
-		<%=image_tag "moments/user.png", :class=>"like_user user" %>
-		
-		<div id="like_number">12</div>
-	</div>
-
+	<div id="photo_layout"></div>
   <div id="comment_input"></div>
-	
-  <div class="comment_layout">
-    <%=image_tag "moments/user.png", :class=>"user_photo user" %>
-    <div class="content_layout">
-      <div class="arrow_bar">
-        <div class="arrow_icon"></div>
-      </div>
-      <div class="massage_bar">
-        <div class="user_massage">
-          <div class="user_name">  da哈 </div>
-          <div class="content_date"> 2011.11.11</div>
-        </div>
-        <div class="content">
-        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-        </div>
-        <div class="reply"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="comment_layout">
-    <%=image_tag "moments/user.png", :class=>"user_photo user" %>
-    <div class="content_layout">
-      <div class="arrow_bar">
-        <div class="arrow_icon"></div>
-      </div>
-      <div class="massage_bar">
-        <div class="user_massage">
-          <div class="user_name">  da哈 </div>
-          <div class="content_date"> 2011.11.11</div>
-        </div>
-        <div class="content">
-        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-        一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-        </div>
-        <div class="reply"></div>
-      </div>
-    </div>
-
-  </div>
-
-
-	<%=image_tag "moments/user.png", :class=>"user" %>
-
-
+	<div id="comment"></div>
 </div>
 
 <div id="right_bar"> 
@@ -82,7 +28,7 @@
 			 <%= @moment['data']['name'] %>
 		</div>
 		<div id="moment_address">
-			<%= @moment["data"]["location"] || "未知地点" %>  |  <%= Time.parse(@moment["data"]["modified_at"]).strftime("%Y.%m.%d") %>
+			<%= @moment["data"]["location"] || "未知地点" %>  |  <%= Time.parse(@moment["data"]["created_at"]).strftime("%Y.%m.%d") %>
 		</div>
 		<div id="photo_list">
 			<div class="photo_box">
@@ -101,23 +47,7 @@
 		  <div id="angle_bar">
         <div id="angle_icon"></div>
       </div>
-      <div id="massage_bar">
-        <%=image_tag "moments/user.png", :id=>"user_photo", :class=>"user" %>
-        <div id="content_layout">
-          <div id="user_massage">
-            <div id="user_name">自动男 </div>
-            <div id="photo_data">2011-11-11</div>
-          </div>
-          <div id="content">
-            一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-
-            一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-
-            一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
-          </div>
-        </div>
-
-      </div>
+      <div id="massage_bar"></div>
 		</div>
 	</div>
 	<div id="download_bar">
@@ -125,23 +55,91 @@
 		<div id="download_iphone"></div>
 		<div id="download_android"></div>
 	</div>
-
-
 </div>
 
+<p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">About VIDA</a> | 沪ICP备10216111号-2</p>
+
+<script type="text/template" id="activity-template">
+  <div id="next_page"></div>
+  <div id="last_page"></div>
+  <!-- 放置图片 -->
+  <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
+  <!-- 喜欢 -->
+  <a href="/activities/{{ id }}/like" data-method="put" data-remote="true" id="like_icon" class="{{ liked? 'liked' : ''}}">
+  </a>
+  {- if (likes_count > 0){ -} 
+  {- for (r in likes_users) { -}
+    <a href="/people/{{ likes_users[r].id }}" data-user-id="{{ likes_users[r].id}}"><img alt="{{ likes_users[r].name }}" src="{{ likes_users[r].avatar_file }}" class="like_user user"></a> 
+  {- } -}
+  {- } -}
+  <div id="like_number">{{likes_count}}</div>
+</script>
 
 
-<p id="copyright" >沪ICP备10216111号-2</p>
+<script type="text/template" id="info-template">
+  <!-- 图片信息 -->
+  <a href="/people/{{ user.id }}"><img id="user_photo" class="user" alt="{{ user.name }}" src="{{ user.avatar_file }}" data-user-id="{{ user.id }}" /></a>
+  <div id="content_layout">
+    <div id="user_massage">
+      <a href="/people/{{ user.id }}" id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</a>
+      <div id="photo_data"> {{ new Date(created_at).format("yyyy.m.d") }} </div>
+    </div>
+    <div id="content">
+      {{ description }} 
+    </div>
+  </div>
+</script>
+
+
 
 <script type="text/javascript">
   $(function() {
     // 把当前页地址放到cookies里边，以便登陆后返回本页。
     $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
+    
+    // 获取并放置评论
+    fetchAndSetComment = function (activity_id) {
+      $.get("/activities/" + activity_id + "/comments.js", function() {
+        
+      });
+
+    }
+
+    //载入模版  
+    setActivity = function(id){
+      var el = $("#photo_layout"),
+          tpl = _.template($("#activity-template").html()),
+          infotpl = _.template($("#info-template").html()),
+          activity = _.find(activities, function(i){
+            return i.id == id;
+          });
+      if (typeof activity == "undefined"){
+        activity = activities[0];
+      }
+      
+      //el.hide(100);
+
+      $("#photo_layout").html( tpl( activity) );
+      $("#massage_bar").html( infotpl( activity) );
+
+      fetchAndSetComment(activity.id);
+
+      //el.show(500);
+    };
+    
     // 页面载入时先载缩略图，并放置照片。
     var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
     $.get("/moments/" + moment_id + ".js?activity_id=" + activity_id, function() {
+        setActivity(activity_id);
     });
+        
+    // hash改变(点击或者历史记录后退)时，放置对应照片。
+    $(window).bind("hashchange", function() {
+      var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
+      setActivity(activity_id);
+    });    
+
 
   });
 </script>

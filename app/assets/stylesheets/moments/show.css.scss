@@ -78,6 +78,9 @@ $bar_length: 500px;
         margin-left:4px;
         margin-right:5px;
         background-image:url(like_icon.png);
+        background-position: 0px 0px;
+      }
+      #like_icon:hover{
         background-position: -21px 0px;
       }
 
@@ -111,107 +114,115 @@ $bar_length: 500px;
       line-height:20px;
       overflow:scroll;
       background-image:url(comment_input.png);
-      font-size:12px;
-      color:#B3B3B3;
-      line-height:31px;
+      #content{
+        width:370px;
+        background:none;
+        border:none;
+        font-size:12px;
+        color:#B3B3B3;
+        line-height:23px;
+      }
     }
 
-    .comment_layout{
+    #comment{
       position: relative;
       float:left;
-      margin-top:16px;
-      width: 410px;
-      .user_photo{
+      margin-bottom:30px;
+      .comment_layout{
+        position: relative;
         float:left;
-      }
-      .content_layout{
-        float:left;
-        width:384px;
-
-        .arrow_bar{
-          position:relative;
-          top:0px;
-          left:0px;
+        margin-top:16px;
+        width: 410px;
+        .user_photo{
           float:left;
-          margin-left:3px;
-          width:7px;
-          .arrow_icon{
-            height:11px;
-            width:7px;
-            margin-top:9px;
-            background: url(arrow_icon.png);
-          }
-          z-index:2;
         }
-
-        .massage_bar{
-          position:relative;
-          top:0px;
-          left:0px;
+        .content_layout{
           float:left;
-          width:374px;  
-          background: rgb(255,255,255);
-          background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255,255,255)), to(rgb(204,204,204)));
-          background: -webkit-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-          background: -moz-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-          background: -ms-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-          background: -o-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-          background: linear-gradient(rgb(255,255,255), rgb(242,242,242));
-          -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-          -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-          box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px;
-          z-index: 1;
-          
-          .user_massage{
-            width:347px;
-            height:34px;
-            margin-left:14px;
-            .user_name{
+          width:384px;
+
+          .arrow_bar{
+            position:relative;
+            top:0px;
+            left:0px;
+            float:left;
+            margin-left:3px;
+            width:7px;
+            .arrow_icon{
+              height:11px;
+              width:7px;
+              margin-top:9px;
+              background: url(arrow_icon.png);
+            }
+            z-index:2;
+          }
+
+          .massage_bar{
+            position:relative;
+            top:0px;
+            left:0px;
+            float:left;
+            width:374px;  
+            background: rgb(255,255,255);
+            background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255,255,255)), to(rgb(204,204,204)));
+            background: -webkit-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+            background: -moz-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+            background: -ms-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+            background: -o-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+            background: linear-gradient(rgb(255,255,255), rgb(242,242,242));
+            -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+            -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            z-index: 1;
+            
+            .user_massage{
+              width:347px;
+              height:34px;
+              margin-left:14px;
+              .user_name{
+                float:left;
+                font:{
+                  size: 14px;
+                }
+                color:#4D4D4D;
+                line-height:40px;  
+              }
+              .content_date{
+                float:right;
+                font:{
+                  size: 12px;
+                }
+                color:#4D4D4D;
+                line-height:40px;
+              }
+            } 
+            .content{
               float:left;
+              margin-bottom:12px;
+              margin-left:14px;
+              width:316px;
               font:{
-                size: 14px;
+                size:12px;
               }
               color:#4D4D4D;
-              line-height:40px;  
+              line-hieght:30px;
+              display:inline-block;
+              word-wrap: break-word;
             }
-            .content_date{
-              float:right;
-              font:{
-                size: 12px;
-              }
-              color:#4D4D4D;
-              line-height:40px;
+            .reply{
+              float:left;
+              margin-left:15px;
+              width:12px;
+              height:12px;
+              background:url(reply_icon.png);
             }
-          } 
-          .content{
-            float:left;
-            margin-bottom:12px;
-            margin-left:14px;
-            width:316px;
-            font:{
-              size:12px;
-            }
-            color:#4D4D4D;
-            line-hieght:30px;
-            display:inline-block;
-          }
-          .reply{
-            float:left;
-            margin-left:15px;
-            width:12px;
-            height:12px;
-            background:url(reply_icon.png);
-          }
-        }  
+          }  
+        }
       }
     }
 
-    .comment_show{
-      
-    }
   }
 
   #right_bar {
@@ -411,6 +422,7 @@ $bar_length: 500px;
               color:#4D4D4D;
               line-hieght:30px;
               display:inline-block;
+              word-wrap: break-word;
             }
           }
 
@@ -473,5 +485,8 @@ $bar_length: 500px;
       size: 11px;
     }
     color: #808080;
+  }
+  a{
+    text-decoration:none;
   }
 }
