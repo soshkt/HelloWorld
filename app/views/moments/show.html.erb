@@ -15,6 +15,7 @@
 
 <div id="right_bar"> 
 	<div id="login_bar"> 
+  <% if @current_user.nil? %>
 		<div id="qq_icon" class="bar"></div>
 		<div id="renren_icon" class="bar"></div>
 		<div id="douban_icon" class="bar"></div>
@@ -22,6 +23,11 @@
 		<div id="login">
 			<%=image_tag("moments/login.png")%>
 		</div>
+  <% else %>
+    <%= link_to("退出", "/auth/logout", :id => "current_user_logout")  %>
+    <div id="current_user_name"><%=@current_user['name']%></div>
+    <%=image_tag(@current_user['avatar_file'],:id => "current_user_photo") %>
+  <% end %>
 	</div>
 	<div id="center_bar">
 		<div id="moment_name">
@@ -31,12 +37,7 @@
 			<%= @moment["data"]["location"] || "未知地点" %>  |  <%= Time.parse(@moment["data"]["created_at"]).strftime("%Y.%m.%d") %>
 		</div>
 		<div id="photo_list">
-			<div class="photo_box">
-				<%=image_tag "moments/user.png", :class=>"img_show" %>
-			</div>
-			<div class="photo_box">
-				<%=image_tag "moments/user.png", :class=>"img_show" %>
-			</div>
+			
 		</div>
 		<div style="clear:both"></div>
 		<div id="page">
@@ -65,11 +66,14 @@
   <!-- 放置图片 -->
   <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
   <!-- 喜欢 -->
-  <a href="/activities/{{ id }}/like" data-method="put" data-remote="true" id="like_icon" class="{{ liked? 'liked' : ''}}">
-  </a>
+  {- if (liked==true) { -}
+    <div id="liked_icon"></div>
+  {- }else{ -}
+    <a href="/activities/{{ id }}/like" data-method="put" data-remote="true" id="like_icon"></a>
+  {- } -}
   {- if (likes_count > 0){ -} 
   {- for (r in likes_users) { -}
-    <a href="/people/{{ likes_users[r].id }}" data-user-id="{{ likes_users[r].id}}"><img alt="{{ likes_users[r].name }}" src="{{ likes_users[r].avatar_file }}" class="like_user user"></a> 
+    <img alt="{{ likes_users[r].name }}" src="{{ likes_users[r].avatar_file }}" class="like_user user">
   {- } -}
   {- } -}
   <div id="like_number">{{likes_count}}</div>
@@ -78,7 +82,7 @@
 
 <script type="text/template" id="info-template">
   <!-- 图片信息 -->
-  <a href="/people/{{ user.id }}"><img id="user_photo" class="user" alt="{{ user.name }}" src="{{ user.avatar_file }}" data-user-id="{{ user.id }}" /></a>
+  <img id="user_photo" class="user" alt="{{ user.name }}" src="{{ user.avatar_file }}" data-user-id="{{ user.id }}" />
   <div id="content_layout">
     <div id="user_massage">
       <a href="/people/{{ user.id }}" id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</a>
@@ -94,17 +98,68 @@
 
 <script type="text/javascript">
   $(function() {
+    //当前用户
+    current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
     // 把当前页地址放到cookies里边，以便登陆后返回本页。
     $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
-    
+    var now_photo_number=null;
+
     // 获取并放置评论
     fetchAndSetComment = function (activity_id) {
       $.get("/activities/" + activity_id + "/comments.js", function() {
-        
-      });
+        //如果没有登入，触发提醒登入
+        if ((typeof(current_user) == "undefined") || _.isEmpty(current_user)) {
+          $("#new_comment").submit(function(e) {
+            e.preventDefault();
+            $.cookie('comment-content', $("#new_comment #content").val(), { expires: null, path: '/' });
+            alert("请登陆");
+          })
+          $("#like_icon").click(function(e) {
+            e.preventDefault();
+            alert("请登入");
+          });
+        }
+        //输入框默认值
+        $("#new_comment #content").focus(function(e){
+          if ($("#new_comment #content").val()=="写评论...") {
+            $("#new_comment #content").val("");
+            $("#new_comment #content").css("color","#4D4D4D");
+          }
+        });
+        $("#new_comment #content").blur(function(e){
+          if ($("#new_comment #content").val()=="") {
+            $("#new_comment #content").val("写评论...");
+            $("#new_comment #content").css("color","#B3B3B3");
+          }
+        });
 
+        //回复按钮
+        $('.content_layout').mouseenter(function() {
+          $('.reply',this).css("visibility", "visible");
+        });
+        $('.content_layout').mouseleave(function() {
+          $('.reply',this).css("visibility", "hidden");
+        });
+        $('.reply').click(function(){
+          $("#new_comment #content").val('@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
+          $("#new_comment #content").css("color","#4D4D4D"); 
+        });
+        // 如果登陆之前有评论，这里可以保留下来。
+        if ($.cookie('comment-content')) {
+          $("#new_comment #content").val($.cookie('comment-content'));
+          $.cookie("comment-content", null, { expires: null, path: '/' });
+        }
+      });
     }
+
+    // hack喜欢过
+    setLiked = function(activity, current_user) {
+      var user = _.find(activity.likes_users, function(user) { return user.id == current_user.id });
+      if (!_.isUndefined(user)) {
+        activity.liked = true;
+      }
+    };
 
     //载入模版  
     setActivity = function(id){
@@ -117,16 +172,23 @@
       if (typeof activity == "undefined"){
         activity = activities[0];
       }
+      if (typeof current_user != "undefined")
+        setLiked(activity, current_user);
       
-      //el.hide(100);
-
+      for(i=0;i<activities.length;i++){
+        if (activity == activities[i]) {
+          now_photo_number = i;
+          console.log(i);
+        }
+      }  
+      
+      
       $("#photo_layout").html( tpl( activity) );
       $("#massage_bar").html( infotpl( activity) );
 
       fetchAndSetComment(activity.id);
 
-      //el.show(500);
-    };
+     };
     
     // 页面载入时先载缩略图，并放置照片。
     var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
