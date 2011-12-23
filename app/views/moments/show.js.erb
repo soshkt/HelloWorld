@@ -8,3 +8,6 @@ window.activities = <%= raw @moment['data']['items'].to_json %>;
 window.current_page = <%= @moment['current_page'] %>;
 window.page_count = <%= @moment['page_count'] %>;
 
+//点击下一页出现spin
+$(".page_item").click(add_photo_list_spin);
+

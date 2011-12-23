@@ -107,12 +107,17 @@
   <img id="user_photo" class="user" alt="{{ user.name }}" src="{{ user.avatar_file }}" data-user-id="{{ user.id }}" />
   <div id="content_layout">
     <div id="user_massage">
-      <a href="/people/{{ user.id }}" id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</a>
+      <div id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</div>
       <div id="photo_data"> {{ new Date(created_at).format("yyyy.m.d") }} </div>
     </div>
     {- if (description != "" ) { -}
     <div id="content">
       {{ description }} 
+    </div>
+    {- } else { -}
+    <div id="content">
+      正在使用VIDA分享生活<br/>
+      点击 ❤ 支持一下  
     </div>
     {- } -}
   </div>
@@ -128,6 +133,7 @@
     $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
     var now_photo_number=0, now_photo_page=0;
+    var is_first_photo = false, is_last_photo = false;
 
     // 获取并放置评论
     fetchAndSetComment = function (activity_id) {
@@ -175,7 +181,9 @@
         });
         $('.reply').click(function(){
           $("#new_comment #content").val('@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
-          $("#new_comment #content").css("color","#4D4D4D"); 
+          $("#new_comment #content").css("color","#4D4D4D").focus(); 
+          scrollTo(0,200);
+        
         });
         // 如果登陆之前有评论，这里可以保留下来。
         if ($.cookie('comment-content')) {
@@ -219,6 +227,14 @@
         if (activity == activities[i]) 
           now_photo_number = i;
       now_photo_page = current_page;
+      //判断是不是最后一张或第一图片
+      is_first_page = (now_photo_page == 0) && (now_photo_number == 0);
+      is_last_page = (now_photo_page == page_count) && (now_photo_number == activities.length-1);
+      if (is_first_page == true) $("#last_page").hide();
+        else $("#last_page").show();
+      if (is_last_page == true) $("#next_page").hide();
+        else $("#next_page").show(); 
+
       //在图片的对应位置放上标志 
       $("#now_photo").css("top",3 + 41*Math.floor( now_photo_number / 8));
       $("#now_photo").css("left",3 + 41*Math.floor( now_photo_number % 8));
@@ -242,54 +258,93 @@
       setActivity(activity_id);
     });    
 
-    //处理下一张图片
-    $("#last_page").click(function(){
+    //图片的spin
+    var add_photo_spin = function(){
+      var opts = {
+        lines: 12, // The number of lines to draw
+        length: 10, // The length of each line
+        width: 4, // The line thickness
+        radius: 11, // The radius of the inner circle
+        color: "#cccccc", // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 58, // Afterglow percentage
+        shadow: true // Whether to render a shadow
+      };
+      $("#photo_layout").append("<div id=\"photo_spin\"></div>");
+      var spinner = new Spinner(opts).spin();
+      $("#photo_spin").html(spinner.el);
+    }
+
+
+    //处理上一张图片
+    var last_page = function(){
+      if (is_first_page == true) return;
+      add_photo_spin();
       var number = now_photo_number - 1;
       var page = now_photo_page;
       if (number < 0) {
         page -= 1;
         number = 15;
       }
-      if (page < 0) {
-        alert("已经是第一张了哦");
-        return;
-      }
       if (page != current_page) {
+        add_photo_list_spin();
         $.get("/moments/"+moment_id + ".js?page="+ page,function(){
           window.location.href = "#id="+activities[number].id;
         });
       } else {
         window.location.href = "#id="+activities[number].id;
       }
-    });
-    $("#next_page").click(function(){
+    };
+    $("#last_page").click(last_page);
+    //处理下一张图片
+    var next_page = function(){
+      if (is_last_page == true) return;
+      add_photo_spin();
       var number = now_photo_number + 1;
       var page = now_photo_page;
       if (number == 16) {
         page+=1;
         number = 0;
       }
-      if (page > page_count) {
-        alert("已经是最后一张了哦");
-        return;
-      }
       if (page != current_page) {
+        add_photo_list_spin();
         $.get("/moments/"+moment_id + ".js?page="+ page,function(){
-          if (activities.length <= number){
-            alert("已经是最后一张了哦");
-            return;
-          }
           window.location.href = "#id="+activities[number].id;
         });
       } else {
-        if (activities.length <= number){
-          alert("已经是最后一张了哦");
-          return;
-        }
         window.location.href = "#id="+activities[number].id;
+      }
+    }
+    $("#next_page").click(next_page);
+
+    //按键
+    $("*").keydown(function(e){
+      if (e.target.nodeName == "INPUT") return;
+      switch (e.which) {
+        case 37: last_page();
+                    break;
+        case 39: next_page();
+                    break;
       }
     });
 
+
+    //spin
+    add_photo_list_spin = function() {
+      var opts = {
+        lines: 12, // The number of lines to draw
+        length: 4, // The length of each line
+        width: 2, // The line thickness
+        radius: 5, // The radius of the inner circle
+        color: '#ffffff', // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 57, // Afterglow percentage
+        shadow: true // Whether to render a shadow
+      };
+      var spinner = new Spinner(opts).spin();
+      $("#photo_list").append('<div id="photo_list_spin"></div>');
+      $("#photo_list_spin").html(spinner.el);
+    }
 
   });
 </script>

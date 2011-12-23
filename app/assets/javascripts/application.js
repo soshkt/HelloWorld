@@ -18,6 +18,8 @@
 //= require jquery.cookie
 //= require bootstrap-popover
 //= require date.format
+//= require spin.min
+//= require jquery.spin
 //= require_tree .
 
 // underscore 模版的插值标识符
