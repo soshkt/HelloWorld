@@ -6,15 +6,17 @@
 <div id="bg_white"> </div>
 <div id="bg_black"> </div>
 
-<div id="left_bar"> 
-	<%=image_tag("moments/logo_vida.png")%>
-  <div id="photo_and_page_layout">
-    <div id="next_page"></div>
-    <div id="last_page"></div>
-  	<div id="photo_layout"></div>
-  </div>
-  <div id="comment_input"></div>
-	<div id="comment"></div>
+<div id="left_outline">
+    <div id="left_bar"> 
+      <%=image_tag("moments/logo_vida.png")%>
+      <div id="photo_and_page_layout">
+        <div id="next_page"></div>
+        <div id="last_page"></div>
+        <div id="photo_layout"></div>
+      </div>
+      <div id="comment_input"></div>
+      <div id="comment"></div>
+    </div>
 </div>
 
 <div id="right_bar"> 
@@ -59,7 +61,7 @@
 		<div id="download_icon"><%=image_tag("moments/download_icon.png")%></div>
 		<div id="download_iphone"></div>
 		<div id="download_android"></div>
-	</div>
+	</div>  
 </div>
 
 <p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">About VIDA</a> | 沪ICP备10216111号-2</p>
@@ -126,6 +128,14 @@
 
 
 <script type="text/javascript">
+  //IE6
+  if( ! window.XMLHttpRequest) {
+    $("#left_outline").css("width",$(window).width());
+    $("#left_outline").css("height",$(window).width());
+    $("#right_bar").css("position","absolute");
+    $("#copyright").css("position","absolute");
+  } 
+
   $(function() {
     //当前用户
     current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
@@ -182,7 +192,7 @@
         $('.reply').click(function(){
           $("#new_comment #content").val('@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
           $("#new_comment #content").css("color","#4D4D4D").focus(); 
-          scrollTo(0,200);
+          $("#left_outline").scrollTo(0,200);
         
         });
         // 如果登陆之前有评论，这里可以保留下来。
@@ -336,7 +346,7 @@
         length: 4, // The length of each line
         width: 2, // The line thickness
         radius: 5, // The radius of the inner circle
-        color: '#ffffff', // #rgb or #rrggbb
+        color: '#cccccc', // #rgb or #rrggbb
         speed: 1, // Rounds per second
         trail: 57, // Afterglow percentage
         shadow: true // Whether to render a shadow

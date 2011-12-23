@@ -7,7 +7,7 @@ $bar_length: 500px;
 
 #moment_show {
   #bg_white{
-    position:fixed;
+    position:absolute;
     background-image: url(bg.png);
     left:0px;
     top:0px;
@@ -19,7 +19,7 @@ $bar_length: 500px;
   
 
   #bg_black {
-    position:fixed;
+    position:absolute;
     left: 0px;
     top: 118px;
     width: 100%;
@@ -28,232 +28,241 @@ $bar_length: 500px;
     background-image: url(bg_black.png);
   }
 
-  #left_bar {
-    position: absolute;
-    top: 0px;
-    right: 50%;
-    width: 430px;
+  #left_outline{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    #left_bar {
+      position: absolute;
+      top: 0px;
+      right: 50%;
+      width: 430px;
 
-    #photo_and_page_layout{
-      position: relative;
-      width:410px;
-      height: 434px;
-
-
-      #last_page{
-        position:absolute;
-        top:180px;
-        left:13px;
-        width:40px;
-        height:53px;
-        background:url(last_page_icon.png);   
-        visibility:hidden;
-        z-index:2;
-      }
-
-      #next_page{
-        position:absolute;
-        top:180px;
-        right:13px;
-        width:40px;
-        height:53px;
-        background:url(next_page_icon.png);
-        visibility:hidden;
-        z-index:2;
-      }
-
-
-      #photo_layout{
+      #photo_and_page_layout{
         position: relative;
-        width:400px;
+        width:410px;
         height: 434px;
-        padding: 5px;
-        background: #ffffff;
-        -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
-        -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
-        box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
 
-        #photo_spin{
+
+        #last_page{
           position:absolute;
-          top:205px;
-          left:205px;
+          top:180px;
+          left:13px;
+          width:40px;
+          height:53px;
+          background:url(last_page_icon.png);   
+          visibility:hidden;
+          z-index:2;
         }
 
-        #photo{
-          width: 400px;
-          height: 400px;
-          background: #000000;
-
+        #next_page{
+          position:absolute;
+          top:180px;
+          right:13px;
+          width:40px;
+          height:53px;
+          background:url(next_page_icon.png);
+          visibility:hidden;
+          z-index:2;
         }
 
-        #like_icon{
-          float:left;
-          width: 18px;
-          height:17px;
-          margin-top:11px;
-          margin-left:4px;
-          margin-right:5px;
-          background-image:url(like_icon.png);
-          background-position: 0px 0px;
-        }
-        #like_icon:hover{
-          background-position: -21px 0px;
-        }
 
-        #liked_icon{
-          float:left;
-          width: 18px;
-          height:17px;
-          margin-top:11px;
-          margin-left:4px;
-          margin-right:5px;
-          background-image:url(like_icon.png);
-          background-position: -21px 0px;
-        }
+        #photo_layout{
+          position: relative;
+          width:400px;
+          height: 434px;
+          padding: 5px;
+          background: #ffffff;
+          -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+          -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+          box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
 
-        .like_user{
-          float:left;
-          margin-top:7px;
-          margin-left:10px;
-        }
-
-        #like_number{
-          float:right;
-          margin-top:11px;
-          width:30px;
-          height:17px;
-          text-align:center;
-          line-height:19px;
-
-          font: {
-            size: 12px;
+          #photo_spin{
+            position:absolute;
+            top:205px;
+            left:205px;
           }
-          color: #999999;  
-          background-image:url(like_number.png);
+
+          #photo{
+            width: 400px;
+            height: 400px;
+            background: #000000;
+
+          }
+
+          #like_icon{
+            float:left;
+            width: 18px;
+            height:17px;
+            margin-top:11px;
+            margin-left:4px;
+            margin-right:5px;
+            background-image:url(like_icon.png);
+            background-position: 0px 0px;
+          }
+          #like_icon:hover{
+            background-position: -21px 0px;
+          }
+
+          #liked_icon{
+            float:left;
+            width: 18px;
+            height:17px;
+            margin-top:11px;
+            margin-left:4px;
+            margin-right:5px;
+            background-image:url(like_icon.png);
+            background-position: -21px 0px;
+          }
+
+          .like_user{
+            float:left;
+            margin-top:7px;
+            margin-left:10px;
+          }
+
+          #like_number{
+            float:right;
+            margin-top:11px;
+            width:30px;
+            height:17px;
+            text-align:center;
+            line-height:19px;
+
+            font: {
+              size: 12px;
+            }
+            color: #999999;  
+            background-image:url(like_number.png);
+          }
         }
       }
-    }
-    #comment_input{
-      position:relative;
-      margin-top:16px;
-      height:31px; 
-      width:379px;
-      padding-left:31px;
-      line-height:20px;
-      overflow-x:hidden;
-      overflow-y:hidden;
-      background-image:url(comment_input.png);
-      #content{
-        padding-top:6px;
-        width:370px;
-        background:none;
-        border:none;
-        font-size:12px;
-        color:#B3B3B3;
-        outline:none;
+      #comment_input{
+        position:relative;
+        margin-top:16px;
+        height:31px; 
+        width:379px;
+        padding-left:31px;
+        line-height:20px;
+        overflow-x:hidden;
+        overflow-y:hidden;
+        background-image:url(comment_input.png);
+        #content{
+          padding-top:6px;
+          width:370px;
+          background:none;
+          border:none;
+          font-size:12px;
+          color:#B3B3B3;
+          outline:none;
+        }
       }
-    }
 
-    #comment{
-      position: relative;
-      float:left;
-      margin-bottom:30px;
-      .comment_layout{
+      #comment{
         position: relative;
         float:left;
-        margin-top:16px;
-        width: 410px;
-        .user_photo{
+        margin-bottom:30px;
+        .comment_layout{
+          position: relative;
           float:left;
-        }
-        .content_layout{
-          float:left;
-          width:384px;
-
-          .arrow_bar{
-            position:relative;
-            top:0px;
-            left:0px;
+          margin-top:16px;
+          width: 410px;
+          .user_photo{
             float:left;
-            margin-left:3px;
-            width:7px;
-            .arrow_icon{
-              height:11px;
-              width:7px;
-              margin-top:9px;
-              background: url(arrow_icon.png);
-            }
-            z-index:2;
           }
-
-          .massage_bar{
-            position:relative;
-            top:0px;
-            left:0px;
+          .content_layout{
             float:left;
-            width:374px;  
-            background: rgb(255,255,255);
-            background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255,255,255)), to(rgb(204,204,204)));
-            background: -webkit-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-            background: -moz-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-            background: -ms-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-            background: -o-linear-gradient(rgb(255,255,255), rgb(242,242,242));
-            background: linear-gradient(rgb(255,255,255), rgb(242,242,242));
-            -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-            -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-            box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            z-index: 1;
-            
-            .user_massage{
-              width:347px;
-              height:34px;
-              margin-left:14px;
-              .user_name{
+            width:384px;
+
+            .arrow_bar{
+              position:relative;
+              top:0px;
+              left:0px;
+              float:left;
+              margin-left:3px;
+              width:7px;
+              .arrow_icon{
+                height:11px;
+                width:7px;
+                margin-top:9px;
+                background: url(arrow_icon.png);
+              }
+              z-index:2;
+            }
+
+            .massage_bar{
+              position:relative;
+              top:0px;
+              left:0px;
+              float:left;
+              width:374px;  
+              background: rgb(255,255,255);
+              background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255,255,255)), to(rgb(204,204,204)));
+              background: -webkit-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+              background: -moz-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+              background: -ms-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+              background: -o-linear-gradient(rgb(255,255,255), rgb(242,242,242));
+              background: linear-gradient(rgb(255,255,255), rgb(242,242,242));
+              -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+              -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+              box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              border-radius: 3px;
+              z-index: 1;
+              
+              .user_massage{
+                width:347px;
+                height:34px;
+                margin-left:14px;
+                .user_name{
+                  float:left;
+                  font:{
+                    size: 14px;
+                  }
+                  color:#4D4D4D;
+                  line-height:40px;  
+                }
+                .content_date{
+                  float:right;
+                  font:{
+                    size: 12px;
+                  }
+                  color:#4D4D4D;
+                  line-height:40px;
+                }
+              } 
+              .content{
                 float:left;
+                margin-bottom:12px;
+                margin-left:14px;
+                width:316px;
                 font:{
-                  size: 14px;
+                  size:12px;
                 }
                 color:#4D4D4D;
-                line-height:40px;  
+                line-hieght:30px;
+                display:inline-block;
+                word-wrap: break-word;
               }
-              .content_date{
-                float:right;
-                font:{
-                  size: 12px;
-                }
-                color:#4D4D4D;
-                line-height:40px;
+              .reply{
+                float:left;
+                margin-left:15px;
+                width:12px;
+                height:12px;
+                background:url(reply_icon.png);
+                visibility:hidden;
               }
-            } 
-            .content{
-              float:left;
-              margin-bottom:12px;
-              margin-left:14px;
-              width:316px;
-              font:{
-                size:12px;
-              }
-              color:#4D4D4D;
-              line-hieght:30px;
-              display:inline-block;
-              word-wrap: break-word;
-            }
-            .reply{
-              float:left;
-              margin-left:15px;
-              width:12px;
-              height:12px;
-              background:url(reply_icon.png);
-              visibility:hidden;
-            }
-          }  
+            }  
+          }
         }
       }
-    }
 
+    }
   }
 
   #right_bar {
