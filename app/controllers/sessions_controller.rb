@@ -17,7 +17,12 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:current_user] = nil
-    redirect_to :root
+    if cookies[:refer_url]
+      href = cookies.delete(:refer_url)
+      redirect_to href
+    else
+      redirect_to :root
+    end
   end
 
   private

@@ -1,3 +1,10 @@
-$("#photo_list").html( '<%= j render :partial => "activities/thumbnail_lite", :collection => @moment['data']['items'], :as => "activity" %> ');
+$("#photo_list").html( '<%= j render :partial => "activities/thumbnail_lite", :collection => @moment['data']['items'], :as => "activity" %> '
+	+ '<div id="now_photo" ></div>'
+);
 $("#page").html( ' <%= j render :partial => "activities/pagination", :locals => {:moment => @moment} %> ');
-activities = <%= raw @moment['data']['items'].to_json %>;
+
+$("#now_photo").hide();
+window.activities = <%= raw @moment['data']['items'].to_json %>;
+window.current_page = <%= @moment['current_page'] %>;
+window.page_count = <%= @moment['page_count'] %>;
+

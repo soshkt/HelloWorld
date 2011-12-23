@@ -5,9 +5,9 @@
 
 
 $(document).ready ->
-  $('#photo_layout').mouseenter ->
+  $('#photo_and_page_layout').mouseenter ->
     $('#last_page').css "visibility","visible"
     $('#next_page').css "visibility","visible"
-  $('#photo_layout').mouseleave ->
+  $('#photo_and_page_layout').mouseleave ->
     $('#last_page').css "visibility","hidden"
     $('#next_page').css "visibility","hidden"

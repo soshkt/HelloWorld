@@ -8,7 +8,11 @@
 
 <div id="left_bar"> 
 	<%=image_tag("moments/logo_vida.png")%>
-	<div id="photo_layout"></div>
+  <div id="photo_and_page_layout">
+    <div id="next_page"></div>
+    <div id="last_page"></div>
+  	<div id="photo_layout"></div>
+  </div>
   <div id="comment_input"></div>
 	<div id="comment"></div>
 </div>
@@ -61,10 +65,28 @@
 <p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">About VIDA</a> | 沪ICP备10216111号-2</p>
 
 <script type="text/template" id="activity-template">
-  <div id="next_page"></div>
-  <div id="last_page"></div>
+  {- if (activity_type == 3) { -}
+      <!-- 放视频 -->
+  <div class="video-js-box" id="photo">
+    <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
+    <video class="video-js" width="400" height="400" controls preload poster="{{ photo.url_l }}" alt="{{ description }}">
+      <source src="{{ video.url_iphone }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+      <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
+      <object class="vjs-flash-fallback" width="400" height="400" type="application/x-shockwave-flash"
+        data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+        <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+        <param name="allowfullscreen" value="true" />
+        <param name="flashvars" value='config={"playlist":["{{ photo.url_l }}", {"url": "{{ video.url_iphone }}","autoPlay":false,"autoBuffering":true}]}' />
+        <!-- Image Fallback. Typically the same as the poster image. -->
+        <img src="{{ photo.url_l }}" width="400" height="400" alt="Poster Image"
+          title="No video playback capabilities." />
+      </object>
+    </video>
+  </div>
+  {- } else { -}
   <!-- 放置图片 -->
   <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
+  {- } -}
   <!-- 喜欢 -->
   {- if (liked==true) { -}
     <div id="liked_icon"></div>
@@ -88,9 +110,11 @@
       <a href="/people/{{ user.id }}" id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</a>
       <div id="photo_data"> {{ new Date(created_at).format("yyyy.m.d") }} </div>
     </div>
+    {- if (description != "" ) { -}
     <div id="content">
       {{ description }} 
     </div>
+    {- } -}
   </div>
 </script>
 
@@ -103,21 +127,29 @@
     // 把当前页地址放到cookies里边，以便登陆后返回本页。
     $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
-    var now_photo_number=null;
+    var now_photo_number=0, now_photo_page=0;
 
     // 获取并放置评论
     fetchAndSetComment = function (activity_id) {
       $.get("/activities/" + activity_id + "/comments.js", function() {
+        //判断是否为IE，如果是，那么把箭头去掉
+        if(document.all){
+            //IE代码
+            $(".arrow_bar").hide();
+            $(".massage_bar").css("border","1px dotted gray");
+            $(".massage_bar").css("margin-left","8px");
+        }
+
         //如果没有登入，触发提醒登入
         if ((typeof(current_user) == "undefined") || _.isEmpty(current_user)) {
           $("#new_comment").submit(function(e) {
             e.preventDefault();
             $.cookie('comment-content', $("#new_comment #content").val(), { expires: null, path: '/' });
-            alert("请登陆");
+            alert("请从右上角登陆");
           })
           $("#like_icon").click(function(e) {
             e.preventDefault();
-            alert("请登入");
+            alert("请从右上角登入");
           });
         }
         //输入框默认值
@@ -169,38 +201,94 @@
           activity = _.find(activities, function(i){
             return i.id == id;
           });
+      //找到对应的activity    
       if (typeof activity == "undefined"){
+        $.get("/moments/"+moment_id + ".js?activity_id="+ id,function(){
+          activity = _.find(activities, function(i){
+            return i.id == id;
+          });   
+        });
+      }
+      if (typeof activity == "undefined") {
         activity = activities[0];
       }
       if (typeof current_user != "undefined")
         setLiked(activity, current_user);
-      
-      for(i=0;i<activities.length;i++){
-        if (activity == activities[i]) {
+      //找到当前图片的位置
+      for(i=0;i<activities.length;i++)
+        if (activity == activities[i]) 
           now_photo_number = i;
-          console.log(i);
-        }
-      }  
-      
-      
+      now_photo_page = current_page;
+      //在图片的对应位置放上标志 
+      $("#now_photo").css("top",3 + 41*Math.floor( now_photo_number / 8));
+      $("#now_photo").css("left",3 + 41*Math.floor( now_photo_number % 8));
+      $("#now_photo").show();
+      $("#comment").html("");
       $("#photo_layout").html( tpl( activity) );
-      $("#massage_bar").html( infotpl( activity) );
-
+      $("#massage_bar").html( infotpl( activity) );      
       fetchAndSetComment(activity.id);
-
+      // 如果是视频，就用video-js激活之
+      $("video").VideoJS()
      };
     
     // 页面载入时先载缩略图，并放置照片。
     var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
     $.get("/moments/" + moment_id + ".js?activity_id=" + activity_id, function() {
         setActivity(activity_id);
-    });
-        
+    });    
     // hash改变(点击或者历史记录后退)时，放置对应照片。
     $(window).bind("hashchange", function() {
       var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
       setActivity(activity_id);
     });    
+
+    //处理下一张图片
+    $("#last_page").click(function(){
+      var number = now_photo_number - 1;
+      var page = now_photo_page;
+      if (number < 0) {
+        page -= 1;
+        number = 15;
+      }
+      if (page < 0) {
+        alert("已经是第一张了哦");
+        return;
+      }
+      if (page != current_page) {
+        $.get("/moments/"+moment_id + ".js?page="+ page,function(){
+          window.location.href = "#id="+activities[number].id;
+        });
+      } else {
+        window.location.href = "#id="+activities[number].id;
+      }
+    });
+    $("#next_page").click(function(){
+      var number = now_photo_number + 1;
+      var page = now_photo_page;
+      if (number == 16) {
+        page+=1;
+        number = 0;
+      }
+      if (page > page_count) {
+        alert("已经是最后一张了哦");
+        return;
+      }
+      if (page != current_page) {
+        $.get("/moments/"+moment_id + ".js?page="+ page,function(){
+          if (activities.length <= number){
+            alert("已经是最后一张了哦");
+            return;
+          }
+          window.location.href = "#id="+activities[number].id;
+        });
+      } else {
+        if (activities.length <= number){
+          alert("已经是最后一张了哦");
+          return;
+        }
+        window.location.href = "#id="+activities[number].id;
+      }
+    });
 
 
   });
