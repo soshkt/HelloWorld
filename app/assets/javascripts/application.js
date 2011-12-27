@@ -7,7 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cycle.lite 
-//= require best_in_place
 //= require jquery.purr
 //= require jquery.ba-bbq.min
 //= require backbone.js/underscore-min
@@ -21,9 +20,6 @@
 //= require spin.min
 //= require jquery.spin
 //= require_tree .
-
-// underscore 模版的插值标识符
-
 
 _.templateSettings = {
   interpolate : /\{\{(.+?)\}\}/g,

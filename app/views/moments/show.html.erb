@@ -3,361 +3,363 @@
 <% end -%>
 
 
-<div id="bg_white"> </div>
-<div id="bg_black"> </div>
-
-<div id="left_outline">
-    <div id="left_bar"> 
+<div id="moment_show">
+  <div id="bg_white"> </div>
+  <div id="bg_black"> </div>
+  <div id="logo_vida">
       <%=image_tag("moments/logo_vida.png")%>
-      <div id="photo_and_page_layout">
-        <div id="next_page"></div>
-        <div id="last_page"></div>
-        <div id="photo_layout"></div>
-      </div>
-      <div id="comment_input"></div>
-      <div id="comment"></div>
-    </div>
-</div>
-
-<div id="right_bar"> 
-	<div id="login_bar"> 
-  <% if @current_user.nil? %>
-		<div id="qq_icon" class="bar"></div>
-		<div id="renren_icon" class="bar"></div>
-		<div id="douban_icon" class="bar"></div>
-		<%= link_to "", "/auth/tsina", :class => "bar", :id => "weibo_icon" %>
-		<div id="login">
-			<%=image_tag("moments/login.png")%>
-		</div>
-  <% else %>
-    <%= link_to("退出", "/auth/logout", :id => "current_user_logout")  %>
-    <div id="current_user_name"><%=@current_user['name']%></div>
-    <%=image_tag(@current_user['avatar_file'],:id => "current_user_photo") %>
-  <% end %>
-	</div>
-	<div id="center_bar">
-		<div id="moment_name">
-			 <%= @moment['data']['name'] %>
-		</div>
-		<div id="moment_address">
-			<%= @moment["data"]["location"] || "未知地点" %>  |  <%= Time.parse(@moment["data"]["created_at"]).strftime("%Y.%m.%d") %>
-		</div>
-		<div id="photo_list">
-			
-		</div>
-		<div style="clear:both"></div>
-		<div id="page">
-				<div class="page_item"></div>
-				<div class="page_item"></div>
-		</div>
-		<div id="photo_massage">
-		  <div id="angle_bar">
-        <div id="angle_icon"></div>
-      </div>
-      <div id="massage_bar"></div>
-		</div>
-	</div>
-	<div id="download_bar">
-		<div id="download_icon"><%=image_tag("moments/download_icon.png")%></div>
-		<div id="download_iphone"></div>
-		<div id="download_android"></div>
-	</div>  
-</div>
-
-<p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">About VIDA</a> | 沪ICP备10216111号-2</p>
-
-<script type="text/template" id="activity-template">
-  {- if (activity_type == 3) { -}
-      <!-- 放视频 -->
-  <div class="video-js-box" id="photo">
-    <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
-    <video class="video-js" width="400" height="400" controls preload poster="{{ photo.url_l }}" alt="{{ description }}">
-      <source src="{{ video.url_iphone }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-      <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
-      <object class="vjs-flash-fallback" width="400" height="400" type="application/x-shockwave-flash"
-        data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
-        <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
-        <param name="allowfullscreen" value="true" />
-        <param name="flashvars" value='config={"playlist":["{{ photo.url_l }}", {"url": "{{ video.url_iphone }}","autoPlay":false,"autoBuffering":true}]}' />
-        <!-- Image Fallback. Typically the same as the poster image. -->
-        <img src="{{ photo.url_l }}" width="400" height="400" alt="Poster Image"
-          title="No video playback capabilities." />
-      </object>
-    </video>
   </div>
-  {- } else { -}
-  <!-- 放置图片 -->
-  <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
-  {- } -}
-  <!-- 喜欢 -->
-  {- if (liked==true) { -}
-    <div id="liked_icon"></div>
-  {- }else{ -}
-    <a href="/activities/{{ id }}/like" data-method="put" data-remote="true" id="like_icon"></a>
-  {- } -}
-  {- if (likes_count > 0){ -} 
-  {- for (r in likes_users) { -}
-    <img alt="{{ likes_users[r].name }}" src="{{ likes_users[r].avatar_file }}" class="like_user user">
-  {- } -}
-  {- } -}
-  <div id="like_number">{{likes_count}}</div>
-</script>
+  <div id="left_outline">
+      <div id="left_bar"> 
+        <div id="photo_and_page_layout">
+          <div id="next_page"></div>
+          <div id="last_page"></div>
+          <div id="photo_layout"></div>
+        </div>
+        <div id="comment_input"></div>
+        <div id="comment"></div>
+      </div>
+  </div>
 
-
-<script type="text/template" id="info-template">
-  <!-- 图片信息 -->
-  <img id="user_photo" class="user" alt="{{ user.name }}" src="{{ user.avatar_file }}" data-user-id="{{ user.id }}" />
-  <div id="content_layout">
-    <div id="user_massage">
-      <div id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</div>
-      <div id="photo_data"> {{ new Date(created_at).format("yyyy.m.d") }} </div>
+  <div id="right_bar"> 
+    <div id="login_bar"> 
+    <% if @current_user.nil? %>
+      <!--<div id="qq_icon" class="bar"></div>
+      <div id="renren_icon" class="bar"></div>
+      <div id="douban_icon" class="bar"></div>-->
+      <%= link_to "", "/auth/tsina", :class => "bar", :id => "weibo_icon" %>
+      <div id="login">
+        <%=image_tag("moments/login.png")%>
+      </div>
+    <% else %>
+      <%= link_to("退出", "/auth/logout", :id => "current_user_logout")  %>
+      <div id="current_user_name"><%=@current_user['name']%></div>
+      <%=image_tag(@current_user['avatar_file'],:id => "current_user_photo") %>
+    <% end %>
     </div>
-    {- if (description != "" ) { -}
-    <div id="content">
-      {{ description }} 
+    <div id="center_bar">
+      <div id="moment_name">
+         <%= @moment['data']['name'] %>
+      </div>
+      <div id="moment_address">
+        <%= @moment["data"]["location"] || "未知地点" %>  |  <%= Time.parse(@moment["data"]["created_at"]).strftime("%Y.%m.%d") %>
+      </div>
+      <%= link_to "<", moment_url(params["id"], :page => @moment['current_page'].to_i - 1), :remote => true, :id => "prev_page_arrow", :class => "control_arrow" %>
+      <div id="photo_list">
+      </div>
+      <%= link_to ">", moment_url(params["id"], :page => @moment['current_page'].to_i + 1), :remote => true, :id => "next_page_arrow", :class => "control_arrow" %>
+      <div style="clear:both"></div>
+      <div id="photo_massage">
+        <div id="angle_bar">
+          <div id="angle_icon"></div>
+        </div>
+        <div id="massage_bar"></div>
+      </div>
+    </div>
+    <div id="download_bar">
+      <div id="download_icon"><%=image_tag("moments/download_icon.png")%></div>
+      <a id="download_iphone" href="/d/iphone"></a>
+      <a id="download_android" href="/d/android"></a>
+    </div>  
+  </div>
+
+  <p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">About VIDA</a> | 沪ICP备10216111号-2</p>
+
+  <script type="text/template" id="activity-template">
+    {- if (activity_type == 3) { -}
+        <!-- 放视频 -->
+    <div class="video-js-box" id="photo">
+      <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
+      <video class="video-js" width="400" height="400" controls preload poster="{{ photo.url_l }}" alt="{{ description }}">
+        <source src="{{ video.url_iphone }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
+        <object class="vjs-flash-fallback" width="400" height="400" type="application/x-shockwave-flash"
+          data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+          <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+          <param name="allowfullscreen" value="true" />
+          <param name="flashvars" value='config={"playlist":["{{ photo.url_l }}", {"url": "{{ video.url_iphone }}","autoPlay":false,"autoBuffering":true}]}' />
+          <!-- Image Fallback. Typically the same as the poster image. -->
+          <img src="{{ photo.url_l }}" width="400" height="400" alt="Poster Image"
+            title="No video playback capabilities." />
+        </object>
+      </video>
     </div>
     {- } else { -}
-    <div id="content">
-      正在使用VIDA分享生活<br/>
-      点击 ❤ 支持一下  
-    </div>
+    <!-- 放置图片 -->
+    <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
     {- } -}
-  </div>
-</script>
+    <!-- 喜欢 -->
+    {- if (liked==true) { -}
+      <div id="liked_icon"></div>
+    {- }else{ -}
+      <a href="/activities/{{ id }}/like" data-method="put" data-remote="true" id="like_icon"></a>
+    {- } -}
+    {- if (likes_count > 0){ -} 
+    {- for (r in likes_users) { -}
+      <img alt="{{ likes_users[r].name }}" src="{{ likes_users[r].avatar_file }}" class="like_user user">
+    {- } -}
+    {- } -}
+
+    <div id="like_number">{{likes_count}}</div>
+    <div id="like_number_label">喜欢数</div>
+  </script>
+
+
+    
+  <script type="text/template" id="info-template">
+    <!-- 图片信息 -->
+    <img id="user_photo" class="user" alt="{{ user.name }}" src="{{ user.avatar_file }}" data-user-id="{{ user.id }}" />
+    <div id="content_layout">
+      <div id="user_massage">
+        <div id="user_name" data-user-id="{{ user.id }}">{{ user.name }}</div>
+        <div id="photo_data"> {{ new Date(created_at).format("yyyy.m.d") }} </div>
+      </div>
+      {- if (description != "" ) { -}
+      <div id="content">
+        {{ description }} 
+      </div>
+      {- } else { -}
+      <div id="content">
+        正在使用VIDA分享生活<br/>
+        点击 ❤ 支持一下  
+      </div>
+      {- } -}
+    </div>
+  </script>
 
 
 
-<script type="text/javascript">
-  //IE6
-  if( ! window.XMLHttpRequest) {
-    $("#left_outline").css("width",$(window).width());
-    $("#left_outline").css("height",$(window).width());
-    $("#right_bar").css("position","absolute");
-    $("#copyright").css("position","absolute");
-  } 
+  <script type="text/javascript">
+    //IE6
+    if( ! window.XMLHttpRequest) {
+      $("#left_outline").css("width",$(window).width());
+      $("#left_outline").css("height",$(window).width());
+      $("#right_bar").css("position","absolute");
+      $("#copyright").css("position","absolute");
+    } 
 
-  $(function() {
-    //当前用户
-    current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
-    // 把当前页地址放到cookies里边，以便登陆后返回本页。
-    $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
+    $(function() {
+      //当前用户
+      current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
+      // 把当前页地址放到cookies里边，以便登陆后返回本页。
+      $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
-    var now_photo_number=0, now_photo_page=0;
-    var is_first_photo = false, is_last_photo = false;
+      var now_photo_number=0, now_photo_page=0;
+      var is_first_photo = false, is_last_photo = false;
 
-    // 获取并放置评论
-    fetchAndSetComment = function (activity_id) {
-      $.get("/activities/" + activity_id + "/comments.js", function() {
-        //判断是否为IE，如果是，那么把箭头去掉
-        if(document.all){
-            //IE代码
-            $(".arrow_bar").hide();
-            $(".massage_bar").css("border","1px dotted gray");
-            $(".massage_bar").css("margin-left","8px");
+      // 获取并放置评论
+      fetchAndSetComment = function (activity_id) {
+        $.get("/activities/" + activity_id + "/comments.js", function() {
+          //判断是否为IE，如果是，那么把箭头去掉
+          if(document.all){
+              //IE代码
+              $(".arrow_bar").hide();
+              $(".massage_bar").css("border","1px dotted gray");
+              $(".massage_bar").css("margin-left","8px");
+          }
+
+          //如果没有登入，触发提醒登入
+          if ((typeof(current_user) == "undefined") || _.isEmpty(current_user)) {
+            $("#new_comment").submit(function(e) {
+              e.preventDefault();
+              $.cookie('comment-content', $("#new_comment #content").val(), { expires: null, path: '/' });
+              alert("请从右上角登陆");
+            })
+            $("#like_icon").click(function(e) {
+              e.preventDefault();
+              alert("请从右上角登入");
+            });
+          }
+          //输入框默认值
+          $("#new_comment #content").focus(function(e){
+            if ($("#new_comment #content").val()=="写评论...") {
+              $("#new_comment #content").val("").css("color","#4D4D4D");
+            }
+          });
+          $("#new_comment #content").blur(function(e){
+            if ($("#new_comment #content").val()=="") {
+              $("#new_comment #content").val("写评论...").css("color","#B3B3B3");
+            }
+          });
+
+          //回复按钮
+          $('.content_layout').mouseenter(function() {
+            $('.reply',this).css("visibility", "visible");
+          });
+          $('.content_layout').mouseleave(function() {
+            $('.reply',this).css("visibility", "hidden");
+          });
+          $('.reply').click(function(){
+            $("#new_comment #content").val('@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
+            $("#new_comment #content").css("color","#4D4D4D").focus(); 
+            $("#left_outline").scrollTo(0,200);
+          
+          });
+          // 如果登陆之前有评论，这里可以保留下来。
+          if ($.cookie('comment-content')) {
+            $("#new_comment #content").val($.cookie('comment-content'));
+            $.cookie("comment-content", null, { expires: null, path: '/' });
+          }
+        });
+      }
+
+      // hack喜欢过
+      setLiked = function(activity, current_user) {
+        var user = _.find(activity.likes_users, function(user) { return user.id == current_user.id });
+        if (!_.isUndefined(user)) {
+          activity.liked = true;
         }
+      };
 
-        //如果没有登入，触发提醒登入
-        if ((typeof(current_user) == "undefined") || _.isEmpty(current_user)) {
-          $("#new_comment").submit(function(e) {
-            e.preventDefault();
-            $.cookie('comment-content', $("#new_comment #content").val(), { expires: null, path: '/' });
-            alert("请从右上角登陆");
-          })
-          $("#like_icon").click(function(e) {
-            e.preventDefault();
-            alert("请从右上角登入");
+      //载入模版  
+      setActivity = function(id){
+        var el = $("#photo_layout"),
+            tpl = _.template($("#activity-template").html()),
+            infotpl = _.template($("#info-template").html()),
+            activity = _.find(activities, function(i){
+              return i.id == id;
+            });
+        //找到对应的activity    
+        if (typeof activity == "undefined"){
+          $.get("/moments/"+moment_id + ".js?activity_id="+ id,function(){
+            activity = _.find(activities, function(i){
+              return i.id == id;
+            });   
           });
         }
-        //输入框默认值
-        $("#new_comment #content").focus(function(e){
-          if ($("#new_comment #content").val()=="写评论...") {
-            $("#new_comment #content").val("");
-            $("#new_comment #content").css("color","#4D4D4D");
-          }
-        });
-        $("#new_comment #content").blur(function(e){
-          if ($("#new_comment #content").val()=="") {
-            $("#new_comment #content").val("写评论...");
-            $("#new_comment #content").css("color","#B3B3B3");
-          }
-        });
+        if (typeof activity == "undefined") {
+          activity = activities[0];
+        }
+        if (typeof current_user != "undefined")
+          setLiked(activity, current_user);
+        //找到当前图片的位置
+        for(i=0;i<activities.length;i++)
+          if (activity == activities[i]) 
+            now_photo_number = i;
+        now_photo_page = current_page;
+        //判断是不是最后一张或第一图片
+        is_first_page = (now_photo_page == 0) && (now_photo_number == 0);
+        is_last_page = (now_photo_page == page_count) && (now_photo_number == activities.length-1);
+        if (is_first_page == true) $("#last_page").hide();
+          else $("#last_page").show();
+        if (is_last_page == true) $("#next_page").hide();
+          else $("#next_page").show(); 
 
-        //回复按钮
-        $('.content_layout').mouseenter(function() {
-          $('.reply',this).css("visibility", "visible");
-        });
-        $('.content_layout').mouseleave(function() {
-          $('.reply',this).css("visibility", "hidden");
-        });
-        $('.reply').click(function(){
-          $("#new_comment #content").val('@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
-          $("#new_comment #content").css("color","#4D4D4D").focus(); 
-          $("#left_outline").scrollTo(0,200);
-        
-        });
-        // 如果登陆之前有评论，这里可以保留下来。
-        if ($.cookie('comment-content')) {
-          $("#new_comment #content").val($.cookie('comment-content'));
-          $.cookie("comment-content", null, { expires: null, path: '/' });
+        //在图片的对应位置放上标志 
+        $("#now_photo").css("top",2 + 66*Math.floor( now_photo_number / 8));
+        $("#now_photo").css("left",3 + 66*Math.floor( now_photo_number % 8));
+        $("#now_photo").show();
+        $("#comment").html("");
+        $("#photo_layout").html( tpl( activity) );
+        $("#massage_bar").html( infotpl( activity) );      
+        fetchAndSetComment(activity.id);
+        // 如果是视频，就用video-js激活之
+        $("video").VideoJS()
+       };
+      
+      // 页面载入时先载缩略图，并放置照片。
+      var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
+      $.get("/moments/" + moment_id + ".js?activity_id=" + activity_id, function() {
+          setActivity(activity_id);
+      });    
+      // hash改变(点击或者历史记录后退)时，放置对应照片。
+      $(window).bind("hashchange", function() {
+        var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
+        setActivity(activity_id);
+      });    
+
+      //图片的spin
+      var add_photo_spin = function(){
+        var opts = {
+          lines: 12, // The number of lines to draw
+          length: 10, // The length of each line
+          width: 4, // The line thickness
+          radius: 11, // The radius of the inner circle
+          color: "#cccccc", // #rgb or #rrggbb
+          speed: 1, // Rounds per second
+          trail: 58, // Afterglow percentage
+          shadow: true // Whether to render a shadow
+        };
+        $("#photo_layout").append("<div id=\"photo_spin\"></div>");
+        var spinner = new Spinner(opts).spin();
+        $("#photo_spin").html(spinner.el);
+      }
+
+
+      //处理上一张图片
+      var last_page = function(){
+        if (is_first_page == true) return;
+        add_photo_spin();
+        var number = now_photo_number - 1;
+        var page = now_photo_page;
+        if (number < 0) {
+          page -= 1;
+          number = 4;
+        }
+        if (page != current_page) {
+          add_photo_list_spin();
+          $.get("/moments/"+moment_id + ".js?page="+ page,function(){
+            window.location.href = "#id="+activities[number].id;
+          });
+        } else {
+          window.location.href = "#id="+activities[number].id;
+        }
+      };
+      $("#last_page").click(last_page);
+      //处理下一张图片
+      var next_page = function(){
+        if (is_last_page == true) return;
+        add_photo_spin();
+        var number = now_photo_number + 1;
+        var page = now_photo_page;
+        if (number == 5) {
+          page+=1;
+          number = 0;
+        }
+        if (page != current_page) {
+          add_photo_list_spin();
+          $.get("/moments/"+moment_id + ".js?page="+ page,function(){
+            window.location.href = "#id="+activities[number].id;
+          });
+        } else {
+          window.location.href = "#id="+activities[number].id;
+        }
+      }
+      $("#next_page").click(next_page);
+
+      //按键
+      $("*").keydown(function(e){
+        if (e.target.nodeName == "INPUT") return;
+        switch (e.which) {
+          case 37: last_page();
+                      break;
+          case 39: next_page();
+                      break;
         }
       });
-    }
-
-    // hack喜欢过
-    setLiked = function(activity, current_user) {
-      var user = _.find(activity.likes_users, function(user) { return user.id == current_user.id });
-      if (!_.isUndefined(user)) {
-        activity.liked = true;
-      }
-    };
-
-    //载入模版  
-    setActivity = function(id){
-      var el = $("#photo_layout"),
-          tpl = _.template($("#activity-template").html()),
-          infotpl = _.template($("#info-template").html()),
-          activity = _.find(activities, function(i){
-            return i.id == id;
-          });
-      //找到对应的activity    
-      if (typeof activity == "undefined"){
-        $.get("/moments/"+moment_id + ".js?activity_id="+ id,function(){
-          activity = _.find(activities, function(i){
-            return i.id == id;
-          });   
-        });
-      }
-      if (typeof activity == "undefined") {
-        activity = activities[0];
-      }
-      if (typeof current_user != "undefined")
-        setLiked(activity, current_user);
-      //找到当前图片的位置
-      for(i=0;i<activities.length;i++)
-        if (activity == activities[i]) 
-          now_photo_number = i;
-      now_photo_page = current_page;
-      //判断是不是最后一张或第一图片
-      is_first_page = (now_photo_page == 0) && (now_photo_number == 0);
-      is_last_page = (now_photo_page == page_count) && (now_photo_number == activities.length-1);
-      if (is_first_page == true) $("#last_page").hide();
-        else $("#last_page").show();
-      if (is_last_page == true) $("#next_page").hide();
-        else $("#next_page").show(); 
-
-      //在图片的对应位置放上标志 
-      $("#now_photo").css("top",3 + 41*Math.floor( now_photo_number / 8));
-      $("#now_photo").css("left",3 + 41*Math.floor( now_photo_number % 8));
-      $("#now_photo").show();
-      $("#comment").html("");
-      $("#photo_layout").html( tpl( activity) );
-      $("#massage_bar").html( infotpl( activity) );      
-      fetchAndSetComment(activity.id);
-      // 如果是视频，就用video-js激活之
-      $("video").VideoJS()
-     };
-    
-    // 页面载入时先载缩略图，并放置照片。
-    var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
-    $.get("/moments/" + moment_id + ".js?activity_id=" + activity_id, function() {
-        setActivity(activity_id);
-    });    
-    // hash改变(点击或者历史记录后退)时，放置对应照片。
-    $(window).bind("hashchange", function() {
-      var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
-      setActivity(activity_id);
-    });    
-
-    //图片的spin
-    var add_photo_spin = function(){
-      var opts = {
-        lines: 12, // The number of lines to draw
-        length: 10, // The length of each line
-        width: 4, // The line thickness
-        radius: 11, // The radius of the inner circle
-        color: "#cccccc", // #rgb or #rrggbb
-        speed: 1, // Rounds per second
-        trail: 58, // Afterglow percentage
-        shadow: true // Whether to render a shadow
-      };
-      $("#photo_layout").append("<div id=\"photo_spin\"></div>");
-      var spinner = new Spinner(opts).spin();
-      $("#photo_spin").html(spinner.el);
-    }
 
 
-    //处理上一张图片
-    var last_page = function(){
-      if (is_first_page == true) return;
-      add_photo_spin();
-      var number = now_photo_number - 1;
-      var page = now_photo_page;
-      if (number < 0) {
-        page -= 1;
-        number = 15;
+      //spin
+      add_photo_list_spin = function() {
+        var opts = {
+          lines: 12, // The number of lines to draw
+          length: 4, // The length of each line
+          width: 2, // The line thickness
+          radius: 5, // The radius of the inner circle
+          color: '#cccccc', // #rgb or #rrggbb
+          speed: 1, // Rounds per second
+          trail: 57, // Afterglow percentage
+          shadow: true // Whether to render a shadow
+        };
+        var spinner = new Spinner(opts).spin();
+        $("#photo_list").append('<div id="photo_list_spin"></div>');
+        $("#photo_list_spin").html(spinner.el);
       }
-      if (page != current_page) {
-        add_photo_list_spin();
-        $.get("/moments/"+moment_id + ".js?page="+ page,function(){
-          window.location.href = "#id="+activities[number].id;
-        });
-      } else {
-        window.location.href = "#id="+activities[number].id;
-      }
-    };
-    $("#last_page").click(last_page);
-    //处理下一张图片
-    var next_page = function(){
-      if (is_last_page == true) return;
-      add_photo_spin();
-      var number = now_photo_number + 1;
-      var page = now_photo_page;
-      if (number == 16) {
-        page+=1;
-        number = 0;
-      }
-      if (page != current_page) {
-        add_photo_list_spin();
-        $.get("/moments/"+moment_id + ".js?page="+ page,function(){
-          window.location.href = "#id="+activities[number].id;
-        });
-      } else {
-        window.location.href = "#id="+activities[number].id;
-      }
-    }
-    $("#next_page").click(next_page);
 
-    //按键
-    $("*").keydown(function(e){
-      if (e.target.nodeName == "INPUT") return;
-      switch (e.which) {
-        case 37: last_page();
-                    break;
-        case 39: next_page();
-                    break;
-      }
+      $(".control_arrow").click(add_photo_list_spin);
     });
-
-
-    //spin
-    add_photo_list_spin = function() {
-      var opts = {
-        lines: 12, // The number of lines to draw
-        length: 4, // The length of each line
-        width: 2, // The line thickness
-        radius: 5, // The radius of the inner circle
-        color: '#cccccc', // #rgb or #rrggbb
-        speed: 1, // Rounds per second
-        trail: 57, // Afterglow percentage
-        shadow: true // Whether to render a shadow
-      };
-      var spinner = new Spinner(opts).spin();
-      $("#photo_list").append('<div id="photo_list_spin"></div>');
-      $("#photo_list_spin").html(spinner.el);
-    }
-
-  });
-</script>
+  </script>
+</div>
 
 
 

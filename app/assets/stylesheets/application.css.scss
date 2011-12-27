@@ -2,35 +2,14 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require reset
+ *= require css_reset
  *= require misc
- *= require people
- *= require moments
  *= require video-js
  *= require bootstrap.min
  *= require_self
+ *= require moments/show
 */
-
-
-$red: #E5253D;
-@mixin background_once($filename, $top: 0, $left: 0) {
-  background: {
-    image: image-url($filename);
-    position: $left $top;
-    repeat: no-repeat;
-  }
-}
-
 
 body {
     font: 13px/22px 微软雅黑,'Helvetica Neue',Helvetica,Arial,Sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: $red;
-}
-
-.clearfix {
-  clear: both;
 }

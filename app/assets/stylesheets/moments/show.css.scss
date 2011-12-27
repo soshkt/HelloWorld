@@ -1,11 +1,14 @@
-/*
- *= require video-js
-*/
-
-
 $bar_length: 500px;
+$thumbnail_a: 61px;
+
 
 #moment_show {
+  #logo_vida{
+    position: absolute; 
+    right: 50%; 
+    width: 430px;
+  }
+  
   #bg_white{
     position:absolute;
     background-image: url(bg.png);
@@ -38,7 +41,7 @@ $bar_length: 500px;
     overflow-x:hidden;
     #left_bar {
       position: absolute;
-      top: 0px;
+      top: 93px;
       right: 50%;
       width: 430px;
 
@@ -124,8 +127,9 @@ $bar_length: 500px;
             margin-top:7px;
             margin-left:10px;
           }
+          
 
-          #like_number{
+          #like_number, #like_number_label{
             float:right;
             margin-top:11px;
             width:30px;
@@ -138,6 +142,10 @@ $bar_length: 500px;
             }
             color: #999999;  
             background-image:url(like_number.png);
+          }
+          #like_number_label {
+            background: none;
+            width: 50px;
           }
         }
       }
@@ -373,23 +381,42 @@ $bar_length: 500px;
       #moment_address{
         margin-left:24px;
         margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         font: {
           size: 11px;
         }
         color: #999999;  
       }
 
+      .control_arrow {
+        text-align: center;
+        display: block;
+        width: 16px;
+        height: 65px;
+        line-height: 65px;
+        float: left;  
+        margin: 0 1px;
+        color: #fff;
+        visibility: hidden;  // 还没有照片载入的时候隐藏
+
+        &:hover {
+          background-color: #fff;
+          color: #333;
+        }
+        &#prev_page_arrow {
+          margin-left: 6px;
+        }
+      }
+
       #photo_list{
+        float: left;
         position:relative;
-        margin-top:12px;
-        margin-left:24px;
         height:82px;
-        width:330px;
+        // width:330px;
 
         #photo_list_spin{
           position:absolute;
-          top:41px;
+          top:30px;
           left:165px;
         }
         
@@ -397,64 +424,30 @@ $bar_length: 500px;
           position:absolute;
           top:0px;
           left:0px;
-          width:36px;
-          height:36px;
+          width:$thumbnail_a;
+          height:$thumbnail_a;
           background:url(now_photo.png);
         }
         .photo_box{
           position: relative;
           float:left;
 
-          margin-top:1px;
+          // margin-top:1px;
           margin-left:1px;
           padding:2px;
-          height:36px;
-          width:36px;
+          height:$thumbnail_a;
+          width:$thumbnail_a;
           background:#FFFFFF;
           .img_show{
             position:absolute;
             top:2px;
             left:2px;
-            height:36px;
-            width:36px;
+            height:$thumbnail_a;
+            width:$thumbnail_a;
           }
         }    
       }
       
-      #page{
-        position:relative;
-        width:330px;
-        height:8px;
-        margin-left:24px;
-        margin-top:8px;
-        text-align:center; 
-        line-height:7px;
-        .page_item{
-          position:relative;
-          width:7px;
-          height:7px;
-          padding:0px;
-          margin-top:0px;
-          margin-left:3px;
-          background: url(page_icon.png);
-          background-position:0px 0px;
-          display:inline-block;
-        }:hover{
-          background-position:-13px 0px;
-        };
-        #current_page{
-          position:relative;
-          width:7px;
-          height:7px;
-          padding:0px;
-          margin-top:0px;
-          margin-left:3px;
-          background: url(page_icon.png);
-          background-position:-13px 0px;
-          display:inline-block;
-        }
-        
-      }
       #photo_massage{
         position:absolute;
         top:190px;
@@ -559,6 +552,7 @@ $bar_length: 500px;
       }
 
       #download_iphone{
+        display: block;
         position:absolute;
         top:25px;
         left: 0px;
@@ -572,6 +566,7 @@ $bar_length: 500px;
       }
 
       #download_android{
+        display: block;
         position:absolute;
         top:25px;
         left: 220px;

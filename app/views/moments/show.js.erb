@@ -1,13 +1,21 @@
-$("#photo_list").html( '<%= j render :partial => "activities/thumbnail_lite", :collection => @moment['data']['items'], :as => "activity" %> '
+$("#photo_list").html('<%= j render :partial => "activities/thumbnail_lite", :collection => @moment['data']['items'], :as => "activity" %>'
 	+ '<div id="now_photo" ></div>'
 );
-$("#page").html( ' <%= j render :partial => "activities/pagination", :locals => {:moment => @moment} %> ');
 
 $("#now_photo").hide();
 window.activities = <%= raw @moment['data']['items'].to_json %>;
 window.current_page = <%= @moment['current_page'] %>;
 window.page_count = <%= @moment['page_count'] %>;
 
-//点击下一页出现spin
-$(".page_item").click(add_photo_list_spin);
 
+// 当前是第一页时
+if (current_page == 0)
+	$("#prev_page_arrow").css('visibility', 'hidden');
+else
+	$("#prev_page_arrow").attr('href', ' <%= moment_url(params["id"], :page => @moment["current_page"].to_i - 1) %>').css('visibility', 'initial');
+
+// 当前是最后一页时
+if ( parseInt(<%= @moment['is_last_page'] %>) == 1 )
+	$("#next_page_arrow").css('visibility', 'hidden');
+else
+	$("#next_page_arrow").attr('href', ' <%= moment_url(params["id"], :page => @moment["current_page"].to_i + 1) %>').css('visibility', 'initial');

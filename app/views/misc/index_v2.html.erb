@@ -756,55 +756,14 @@ pageTracker._trackPageview();
   </div> 
   <% end %>
 
-
-
-  <% cache (@current_user.nil? ? 'default-index-footer' : "#{@current_user['id']}-index-footer") do %>
-
-
   <div id="footer" class="container">
 
-  <div class="row" id="footer-nav">
-  <%= link_to timeline_person_path(@current_user["id"]), :class => "span first nav-item", :id => "nav-mine" do %>
-    <div class="icon"></div>
-    我的生活轨迹
-  <% end if @current_user -%>
-  <%= link_to explore_moments_path, :class => "span last nav-item" + (" first" unless @current_user).to_s , :id => "nav-explore" do %>
-    <div class="icon"></div>
-    发现
-  <% end -%>
-
-
-  <div class="pull-right">
-    <% if @current_user -%>
-      <div class="span first nav-item" id="nav-profile">
-        <div class="icon">
-          <%= image_tag @current_user["avatar_file"], :id => "profile-avatar" %>
-        </div>
-        <%= @current_user["name"] %></div>
-      <%= link_to "/auth/logout", :class => "span last nav-item", :id => "nav-signout", :method => "delete" do %>
-        <div class="icon"></div>
-        登出
-      <% end -%>
-    <% else -%>
-      <%= link_to "/auth/tsina", :id => "nav-weibo", :class => "span nav-item first" do %>
-        <div class="icon"></div>
-        微博登入
-      <% end -%>
-      <%= link_to "/auth/douban", :id => "nav-douban", :class => "span nav-item last" do %>
-        <div class="icon"></div>
-        豆瓣登入
-      <% end -%>
-    <% end -%>
-  </div>
-</div>
 <div class="row" id="footer-copyright">
   <div class="span">Copyright © 2011VIDA.fm</div>
   <div class="pull-right">
     <div class="span">沪ICP备10216111号-2</div>
   </div>
 </div>
-</div>
-  <% end %>
 </body>
 
 <script type="text/javascript">

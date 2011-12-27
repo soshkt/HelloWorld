@@ -13,24 +13,21 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
   <%= yield :page_specific_asset %>
 
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try{ 
-var pageTracker = _gat._getTracker("UA-19458693-4");
-pageTracker._trackPageview();
-} catch(err) {} 
-</script>
-
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try{ 
+  var pageTracker = _gat._getTracker("UA-19458693-4");
+  pageTracker._trackPageview();
+  } catch(err) {} 
+  </script>
 </head>
 <body>
   <script type="text/javascript">
       current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
   </script>
-  <%= render :partial => 'misc/header' %>
   <%= yield %>
-  <%= render :partial => "misc/footer" %>
 </body>
 </html>

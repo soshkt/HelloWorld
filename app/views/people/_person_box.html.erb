@@ -1,8 +1,0 @@
-<div class="sec_0">
-  <%= image_tag @user["avatar_file"] %>
-  <div class="theme_color"><%= "#{@user["name"]}的生活轨迹" %></div>
-  <div class="theme_color"> 
-    <%= link_to '时间线', timeline_person_path(@user["id"]), :id => 'tl_btn', :class => (('in' unless @v == 'mapview').to_s + " theme_color theme_bgcolor") %>
-    <%= link_to '位置', mapview_person_path(@user["id"]), :id => 'mp_btn', :class => ('in' unless @v == 'timeline') %>
-  </div>
-</div>
