@@ -11,7 +11,7 @@ $thumbnail_a: 61px;
   
   #bg_white{
     position:absolute;
-    background-image: url(bg.png);
+    background-image: image-url(bg.png);
     left:0px;
     top:0px;
     height:100%;
@@ -28,7 +28,7 @@ $thumbnail_a: 61px;
     width: 100%;
     height: 380px;
     z-index: -1;
-    background-image: url(bg_black.png);
+    background-image: image-url(bg_black.png);
   }
 
   #left_outline{
@@ -57,7 +57,7 @@ $thumbnail_a: 61px;
           left:13px;
           width:40px;
           height:53px;
-          background:url(last_page_icon.png);   
+          background:image-url(last_page_icon.png);   
           visibility:hidden;
           z-index:2;
         }
@@ -68,7 +68,7 @@ $thumbnail_a: 61px;
           right:13px;
           width:40px;
           height:53px;
-          background:url(next_page_icon.png);
+          background:image-url(next_page_icon.png);
           visibility:hidden;
           z-index:2;
         }
@@ -104,7 +104,7 @@ $thumbnail_a: 61px;
             margin-top:11px;
             margin-left:4px;
             margin-right:5px;
-            background-image:url(like_icon.png);
+            background-image:image-url(like_icon.png);
             background-position: 0px 0px;
           }
           #like_icon:hover{
@@ -118,7 +118,7 @@ $thumbnail_a: 61px;
             margin-top:11px;
             margin-left:4px;
             margin-right:5px;
-            background-image:url(like_icon.png);
+            background-image:image-url(like_icon.png);
             background-position: -21px 0px;
           }
 
@@ -141,7 +141,7 @@ $thumbnail_a: 61px;
               size: 12px;
             }
             color: #999999;  
-            background-image:url(like_number.png);
+            background-image:image-url(like_number.png);
           }
           #like_number_label {
             background: none;
@@ -158,7 +158,7 @@ $thumbnail_a: 61px;
         line-height:20px;
         overflow-x:hidden;
         overflow-y:hidden;
-        background-image:url(comment_input.png);
+        background-image:image-url(comment_input.png);
         #content{
           padding-top:6px;
           width:370px;
@@ -197,7 +197,7 @@ $thumbnail_a: 61px;
                 height:11px;
                 width:7px;
                 margin-top:9px;
-                background: url(arrow_icon.png);
+                background: image-url(arrow_icon.png);
               }
               z-index:2;
             }
@@ -262,7 +262,7 @@ $thumbnail_a: 61px;
                 margin-left:15px;
                 width:12px;
                 height:12px;
-                background:url(reply_icon.png);
+                background:image-url(reply_icon.png);
                 visibility:hidden;
               }
             }  
@@ -328,7 +328,7 @@ $thumbnail_a: 61px;
         height: 31px;
         width: 30px;
         margin-right: 11px;
-        background-image:url(login_icon.png);
+        background-image:image-url(login_icon.png);
       }
       #qq_icon{
         background-position:-123px -36px;
@@ -370,7 +370,7 @@ $thumbnail_a: 61px;
         height:20px;
         margin-top:21px;
         margin-left:22px;
-        background: url(star_icon.png) no-repeat;
+        background: image-url(star_icon.png) no-repeat;
         padding-left: 24px;
         line-height:26px;
         font: {
@@ -426,7 +426,7 @@ $thumbnail_a: 61px;
           left:0px;
           width:$thumbnail_a;
           height:$thumbnail_a;
-          background:url(now_photo.png);
+          background:image-url(now_photo.png);
         }
         .photo_box{
           position: relative;
@@ -465,7 +465,7 @@ $thumbnail_a: 61px;
             height:9px;
             width:5px;
             margin-top:10px;
-            background: url(angle.png);
+            background: image-url(angle.png);
           }
           z-index:2;
         }
@@ -558,7 +558,7 @@ $thumbnail_a: 61px;
         left: 0px;
         height: 61px;
         width:208px;
-        background-image:url(download.png);
+        background-image:image-url(download.png);
         background-position:0px 0px;
       }
       #download_iphone:hover{
@@ -572,7 +572,7 @@ $thumbnail_a: 61px;
         left: 220px;
         height: 61px;
         width:208px;
-        background-image:url(download.png);
+        background-image:image-url(download.png);
         background-position:-220px 0px;
       } 
       #download_android:hover{
@@ -587,7 +587,7 @@ $thumbnail_a: 61px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    behavior:url(http://10.211.55.2:3000/pie.htc);
+    behavior:image-url(http://10.211.55.2:3000/pie.htc);
   }
 
   #copyright{
