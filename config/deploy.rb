@@ -22,7 +22,6 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 
-require 'rubygems'
 require 'cap_recipes/tasks/rails'
 
 after 'deploy:update_code', 'rails:symlink_db_config'
