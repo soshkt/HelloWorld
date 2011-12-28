@@ -22,9 +22,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 
-require 'cap_recipes/tasks/rails'
-
-after 'deploy:update_code', 'rails:symlink_db_config'
+after 'deploy:update_code', 'deploy:symlink_db'
 after "deploy", "rvm:trust_rvmrc"
 
 namespace :deploy do
@@ -44,3 +42,6 @@ namespace :rvm do
     run "rvm rvmrc trust #{release_path}"
   end
 end
+
+        require './config/boot'
+        require 'airbrake/capistrano'
