@@ -16,9 +16,10 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 set :rvm_ruby_string, 'ruby-1.8.7-p352@rails3.1'
-set :rvm_path, "/home/vidafm/.rvm/bin/rvm"
-set :rvm_bin_path,      "/home/vidafm/.rvm/bin/"
-set :rvm_lib_path,      "/home/vidafm/.rvm/lib/"
+set :rvm_type, :user
+# set :rvm_path, "/home/vidafm/.rvm/bin/rvm"
+# set :rvm_bin_path,      "/home/vidafm/.rvm/bin/"
+# set :rvm_lib_path,      "/home/vidafm/.rvm/lib/"
 
 
 role :web, "api.vida.fm:33356"                         # Your HTTP server, Apache/etc
@@ -28,11 +29,17 @@ role :db,  "api.vida.fm:33356", :primary => true # This is where Rails migration
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
-# If you are using Passenger mod_rails uncomment this:
+
+after 'deploy:update_code', 'deploy:symlink_db'
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  desc "Symlinks the database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
 end
+

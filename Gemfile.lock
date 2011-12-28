@@ -37,6 +37,7 @@ GIT
       oa-openid (= 0.3.0.rc1)
 
 GEM
+  remote: http://ruby.taobao.org/
   specs:
     actionmailer (3.1.0)
       actionpack (= 3.1.0)
