@@ -11,26 +11,23 @@ set :user, 'vidafm'
 set :ssh_options, { :forward_agent => true }
 default_run_options[:pty] = true
 
-
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require 'rvm/capistrano'
-require 'bundler/capistrano'
 set :rvm_ruby_string, 'ruby-1.8.7-p352@rails3.1'
 set :rvm_type, :user
-# set :rvm_path, "/home/vidafm/.rvm/bin/rvm"
-# set :rvm_bin_path,      "/home/vidafm/.rvm/bin/"
-# set :rvm_lib_path,      "/home/vidafm/.rvm/lib/"
-
 
 role :web, "api.vida.fm:33356"                         # Your HTTP server, Apache/etc
 role :app, "api.vida.fm:33356"                          # This may be the same as your `Web` server
 role :db,  "api.vida.fm:33356", :primary => true # This is where Rails migrations will run
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 
+require 'rubygems'
+require 'cap_recipes/tasks/rails'
 
-after 'deploy:update_code', 'deploy:symlink_db'
+after 'deploy:update_code', 'rails:symlink_db_config'
+after "deploy", "rvm:trust_rvmrc"
+
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
@@ -43,3 +40,8 @@ namespace :deploy do
   end
 end
 
+namespace :rvm do
+  task :trust_rvmrc do
+    run "rvm rvmrc trust #{release_path}"
+  end
+end

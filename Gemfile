@@ -18,4 +18,5 @@ gem 'anemone'
 gem "therubyracer"
 
 gem 'capistrano'
-gem "railsless-deploy", :require => nil
+
+gem 'airbrake'

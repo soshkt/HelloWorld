@@ -147,7 +147,6 @@ GEM
       activesupport (= 3.1.0)
       bundler (~> 1.0)
       railties (= 3.1.0)
-    railsless-deploy (1.0.2)
     railties (3.1.0)
       actionpack (= 3.1.0)
       activesupport (= 3.1.0)
@@ -200,7 +199,6 @@ DEPENDENCIES
   mysql2
   omniauth!
   rails (= 3.1.0)
-  railsless-deploy
   sass-rails (~> 3.1.0)
   therubyracer
   uglifier
