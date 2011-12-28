@@ -15,6 +15,13 @@
     p {
       color: white;
       padding-right: 100px;
+      a {
+        color: #e5253d;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
   .right_box {
@@ -53,9 +60,16 @@
 #footer {
   position: fixed;
   bottom: 0px;
-  color: #333;
+  color: #808080;
   width: 99%;
   padding: 5px;
+  a {
+    text-decoration: none;
+    color: #808080;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   .f_l {
     float: left;
   }
