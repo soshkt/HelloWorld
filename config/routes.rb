@@ -2,7 +2,7 @@ Bluerain::Application.routes.draw do
   root :to => "misc#index_v2"
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086")
-  match "/d/android" => redirect("http://vida.fm/download/a1.2.1.apk")
+  match "/d/android" => redirect("http://vida.fm/download/a.apk")
 
   match "/v1" => redirect("http://itunes.apple.com/cn/app/id454984086")
   match "/v2" => redirect("http://itunes.apple.com/cn/app/id454984086")
@@ -16,12 +16,12 @@ Bluerain::Application.routes.draw do
   get "android_download" => "misc#android_download"
 
 
-  resources :activities, :only => [:show] do
+  resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments
     put "like", :on => :member
   end
 
-  resources :moments, :only => [:show]
+  resources :moments, :only => [:show], :constraints => {:id => /[0-9]+/}
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'
