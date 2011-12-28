@@ -416,11 +416,11 @@ a:hover {
 /* line 34, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
 #index-wrapper .leftbox p {
   padding-left: 10px;
-  line-height: 14px;
+  line-height: 17px;
 }
 /* line 38, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
 #index-wrapper .leftbox .download {
-  margin-top: 34px;
+  margin-top: 16px;
   color: #333;
 }
 /* line 41, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
@@ -445,7 +445,7 @@ a:hover {
 /* line 56, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
 #index-wrapper .leftbox .download .download-botton#android {
   background: url(/assets/android_30x30.png) white 8px 3px no-repeat scroll;
-  width: 62px;
+  width: 89px;
 }
 /* line 58, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/misc.css.scss */
 #index-wrapper .leftbox .download .download-botton#android:hover {
@@ -723,17 +723,19 @@ pageTracker._trackPageview();
       <div id="margin-wrapper">
         <div class="leftbox">
           <div class="tagline"><%= image_tag "tagline_275x75.png" %></div>
-          <div class="intro">
-            <p>Vida 在西班牙语中是“生活”的意思, 用照片和视频记录分享生活即景，形成生活轨迹</p>
+          <div class="intro" style="font-size: 13px;">
+            <p style="line-height: 14px;">Vida 是“生活”的意思.用照片和视频捕捉精彩瞬间,分享生活,串起生活轨迹</p>
             <p>&nbsp;</p>
-            <p>- 实时照片和视频特效镜头，所见即所拍</p>
-            <p>- 独有群拍分享，自动汇聚精彩瞬间</p>
-            <p>- 离线批量上传，节省流量</p>
+            <p>- 以活动形式组织照片和视频,串起生活轨迹时间线</p>
+            <p>- 群拍聚合,自动生成共享活动相册,汇聚精彩时刻</p>
+            <p>- "Insta-Render"极速渲染引擎,拍摄零等待,抓住每一瞬间</p>
+            <p>- 上百种实时DIY镜头效果,实时特效视频和照片拍摄</p>
+            <p>- 离线批量上传省流量,同步分享微博,人人,腾讯,开心,豆瓣</p>
           </div>
 
           <div class="download">
-            <a href="http://goo.gl/OJhJU" id="ios" class="download-botton" onClick="javascript: pageTracker._trackPageview('clicktrack-home-iphone');">iPhone客户端</a>
-            <a id="android" class="download-botton">即将登场</a>
+            <a href="http://vida.fm/d/iphone" id="ios" class="download-botton" onClick="javascript: pageTracker._trackPageview('clicktrack-home-iphone');">iPhone客户端</a>
+            <a id="android" class="download-botton" href="/android_download" onClick="javascript: pageTracker._trackPageview('clicktrack-home-android');">Android客户端</a>
           </div>
         </div>
         <div class="rightbox">
@@ -744,10 +746,10 @@ pageTracker._trackPageview();
           <div class="layout">
             <div class="shine"></div>
             <div class="screenshots">
-              <%= image_tag "screenshot1.jpg" %>
+              <%= image_tag "screenshot4.jpg" %>
               <%= image_tag "screenshot2.jpg" %>
               <%= image_tag "screenshot3.jpg" %>
-              <%= image_tag "screenshot4.jpg" %>
+              <%= image_tag "screenshot1.jpg" %>
             </div>
           </div>
         </div>     
@@ -757,12 +759,12 @@ pageTracker._trackPageview();
   <% end %>
 
   <div id="footer" class="container">
-
 <div class="row" id="footer-copyright">
   <div class="span">Copyright © 2011VIDA.fm</div>
   <div class="pull-right">
     <div class="span">沪ICP备10216111号-2</div>
   </div>
+</div>
 </div>
 </body>
 

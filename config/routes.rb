@@ -13,6 +13,7 @@ Bluerain::Application.routes.draw do
   match "/r/:link" => redirect("http://goo.gl/%{link}")
   match "/v/weibo-signin" => redirect("http://3g.sina.com.cn/prog/wapsite/sso/register.php")
   match "/v/kaixin001-signin" => redirect("http://iphone.kaixin001.com/reg/prepare.php")
+  get "android_download" => "misc#android_download"
 
 
   resources :activities, :only => [:show] do
