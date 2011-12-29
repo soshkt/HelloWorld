@@ -6,8 +6,7 @@ $("#now_photo").hide();
 window.activities = <%= raw @moment['data']['items'].to_json %>;
 window.current_page = <%= @moment['current_page'] %>;
 window.page_count = <%= @moment['page_count'] %>;
-
-
+moment = <%= raw @moment.to_json %>;
 // 当前是第一页时
 if (current_page == 0)
 	$("#prev_page_arrow").css('visibility', 'hidden');

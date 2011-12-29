@@ -9,10 +9,10 @@
 
   <div id="left_outline">
     <div id="logo_vida">
-    <a href="/">
-    <%=image_tag("moments/logo_vida.png")%>
-    </a>
-  </div>
+      <a href="/">
+        <%=image_tag("moments/logo_vida.png")%>
+      </a>
+    </div>
       <div id="left_bar"> 
         <div id="photo_and_page_layout">
           <div id="next_page" class="page_control"></div>
@@ -141,6 +141,8 @@
       $("#copyright").css("position","absolute");
     } 
 
+
+
     $(function() {
       //当前用户
       current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
@@ -149,6 +151,7 @@
 
       var now_photo_number=0, now_photo_page=0;
       var is_first_photo = false, is_last_photo = false;
+      var photo_refresh = false;
 
       // 获取并放置评论
       fetchAndSetComment = function (activity_id) {
@@ -242,15 +245,15 @@
         now_photo_page = current_page;
         //判断是不是最后一张或第一图片
         is_first_page = (now_photo_page == 0) && (now_photo_number == 0);
-        is_last_page = (now_photo_page == page_count) && (now_photo_number == activities.length-1);
+        is_last_page = (now_photo_page == page_count-1) && (now_photo_number == activities.length-1);
         if (is_first_page == true) $("#last_page").hide();
           else $("#last_page").show();
         if (is_last_page == true) $("#next_page").hide();
           else $("#next_page").show(); 
 
         //在图片的对应位置放上标志 
-        $("#now_photo").css("top",2 + 66*Math.floor( now_photo_number / 8));
-        $("#now_photo").css("left",3 + 66*Math.floor( now_photo_number % 8));
+        $("#now_photo").css("top",2 );
+        $("#now_photo").css("left",3 + 66* now_photo_number);
         $("#now_photo").show();
         $("#comment").html("");
         $("#photo_layout").html( tpl( activity) );
@@ -292,6 +295,8 @@
       //处理上一张图片
       var last_page = function(){
         if (is_first_page == true) return;
+        if (photo_refresh == true) return;
+        photo_refresh = true;
         add_photo_spin();
         var number = now_photo_number - 1;
         var page = now_photo_page;
@@ -303,15 +308,20 @@
           add_photo_list_spin();
           $.get("/moments/"+moment_id + ".js?page="+ page,function(){
             window.location.href = "#id="+activities[number].id;
+            photo_refresh = false;
           });
         } else {
           window.location.href = "#id="+activities[number].id;
+          photo_refresh = false;
         }
+        
       };
       $("#last_page").click(last_page);
       //处理下一张图片
       var next_page = function(){
         if (is_last_page == true) return;
+        if (photo_refresh == true) return;
+        photo_refresh = true;
         add_photo_spin();
         var number = now_photo_number + 1;
         var page = now_photo_page;
@@ -323,9 +333,11 @@
           add_photo_list_spin();
           $.get("/moments/"+moment_id + ".js?page="+ page,function(){
             window.location.href = "#id="+activities[number].id;
+            photo_refresh = false;
           });
         } else {
           window.location.href = "#id="+activities[number].id;
+          photo_refresh = false;
         }
       }
       $("#next_page").click(next_page);

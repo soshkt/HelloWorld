@@ -7,7 +7,6 @@ class VIDA
 		cmd += "-s "
 		cmd += "-u #{user[:token]}:#{user[:secret]} " if user
 		cmd += resource
-
 		`#{cmd}`
 	end
 
