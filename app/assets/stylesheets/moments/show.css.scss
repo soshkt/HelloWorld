@@ -3,11 +3,7 @@ $thumbnail_a: 61px;
 
 
 #moment_show {
-  #logo_vida{
-    position: absolute; 
-    right: 50%; 
-    width: 430px;
-  }
+
   
   #bg_white{
     position:absolute;
@@ -39,6 +35,13 @@ $thumbnail_a: 61px;
     height:100%;
     overflow-y:scroll;
     overflow-x:hidden;
+
+    #logo_vida{
+      position: fixed;
+      right: 50%; 
+      width: 430px;
+    }
+
     #left_bar {
       position: absolute;
       top: 93px;
