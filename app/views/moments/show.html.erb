@@ -89,7 +89,9 @@
     </div>
     {- } else { -}
     <!-- 放置图片 -->
-    <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
+      <a href="{{ photo.url_l }}" id="lightbox" title="{{ description }}" >
+        <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
+      </a>
     {- } -}
     <!-- 喜欢 -->
     {- if (liked==true) { -}
@@ -101,6 +103,9 @@
     {- for (r in likes_users) { -}
       <img alt="{{ likes_users[r].name }}" src="{{ likes_users[r].avatar_file }}" class="like_user user">
     {- } -}
+    {- } -}
+    {- if (likes_count > 6){ -} 
+      <div id="like_dots" class="like_user"> ... </div>
     {- } -}
 
     <div id="like_number">{{likes_count}}</div>
@@ -139,6 +144,8 @@
       $("#left_outline").css("height",$(window).width());
       $("#right_bar").css("position","absolute");
       $("#copyright").css("position","absolute");
+      $("#bg_white").css("position","absolute");
+      $("#bg_black").css("position","absolute");
     } 
 
 
@@ -196,8 +203,11 @@
             $('.reply',this).css("visibility", "hidden");
           });
           $('.reply').click(function(){
-            $("#new_comment #content").val('@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
-            $("#new_comment #content").css("color","#4D4D4D").focus(); 
+            if ($("#new_comment #content").val()=="写评论...") {
+              $("#new_comment #content").val("").css("color","#4D4D4D");
+            }
+            $("#new_comment #content").val($("#new_comment #content").val()+'@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
+            $("#new_comment #content").focus(); 
             $("#left_outline").scrollTo(0,200);
           
           });
@@ -259,6 +269,7 @@
         $("#photo_layout").html( tpl( activity) );
         $("#massage_bar").html( infotpl( activity) );      
         fetchAndSetComment(activity.id);
+        $("#lightbox").lightBox();
         // 如果是视频，就用video-js激活之
         $("video").VideoJS()
        };

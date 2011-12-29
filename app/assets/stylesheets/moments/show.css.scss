@@ -6,7 +6,7 @@ $thumbnail_a: 61px;
 
   
   #bg_white{
-    position:absolute;
+    position:fixed;
     background-image: image-url("moments/bg.png");
     left:0px;
     top:0px;
@@ -18,7 +18,7 @@ $thumbnail_a: 61px;
   
 
   #bg_black {
-    position:absolute;
+    position:fixed;
     left: 0px;
     top: 118px;
     width: 100%;
@@ -135,6 +135,10 @@ $thumbnail_a: 61px;
             margin-left:10px;
           }
           
+          #like_dots{
+            font-size:18px;
+            font-weight:900;
+          }
 
           #like_number, #like_number_label{
             float:right;
@@ -458,7 +462,7 @@ $thumbnail_a: 61px;
       
       #photo_massage{
         position:absolute;
-        top:190px;
+        top:185px;
         left:0px;
         height:100%;
         width:354px;
@@ -507,7 +511,7 @@ $thumbnail_a: 61px;
             width:266px;
             #user_massage{
               width:256px;
-              height:42px;
+              height:40px;
               #user_name{
                 float:left;
                 font:{

@@ -19,6 +19,7 @@
 //= require date.format
 //= require spin.min
 //= require jquery.spin
+//= require jquery.lightbox
 //= require_tree .
 
 _.templateSettings = {
