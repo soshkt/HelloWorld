@@ -241,10 +241,12 @@
             activity = _.find(activities, function(i){
               return i.id == id;
             });   
+            if (typeof activity == "undefined") {
+              activity = activities[0];
+            }
+            setActivity(activity.id);
           });
-        }
-        if (typeof activity == "undefined") {
-          activity = activities[0];
+          return;
         }
         if (typeof current_user != "undefined")
           setLiked(activity, current_user);
