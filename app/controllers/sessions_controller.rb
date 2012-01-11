@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
 
   def auth_provider
     return "weibo" if auth_info['provider'] == 'tsina'
+    return "qq" if auth_info['provider'] == 'tqq'
     auth_info['provider']
   end
 
