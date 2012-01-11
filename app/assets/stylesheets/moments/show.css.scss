@@ -622,6 +622,17 @@ $thumbnail_a: 61px;
     text-decoration:none;
   }
 
+  #dialog_background{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background-color:#000;
+    opacity:0.8;
+    z-index:-89;
+  }
+
   #dialog{
     position:fixed;
     top:0px;
@@ -629,11 +640,10 @@ $thumbnail_a: 61px;
     width:100%;
     height:100%;
     overflow:scroll;
-    background-color:#000;
-    opacity:0.8;
-    z-index:90;
+    z-index:-90;
     text-align: center;
     .show_layout{
+      z-index:100;
       background: rgb(255,255,255);
       background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255,255,255)), to(rgb(204,204,204)));
       background: -webkit-linear-gradient(rgb(255,255,255), rgb(204,204,204));
@@ -654,6 +664,7 @@ $thumbnail_a: 61px;
         height:42px;
         top:-21px;
         right:-21px;
+        z-index:100;
       }  
     }
     #show_center{
@@ -724,6 +735,18 @@ $thumbnail_a: 61px;
       padding:5px;
       width:600px;
       height:600px;  
+      #photo_show_spin{
+        position:absolute;
+        top:305px;
+        left:305px;
+      }
+      #photo_show{
+        position:absolute;
+        top:0px;
+        left:0px;
+        width: 600px;
+        height: 600px;
+      }
     }
 
     #like_show{

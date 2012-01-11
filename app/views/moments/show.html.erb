@@ -70,6 +70,7 @@
   </div>
 
   <p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">关于我们</a> | 沪ICP备10216111号-2</p>
+  <div id="dialog_background"></div>
   <div id="dialog"></div>
 
   <script type="text/template" id="activity-template">
@@ -93,9 +94,7 @@
     </div>
     {- } else { -}
     <!-- 放置图片 -->
-      <a href="{{ photo.url_l }}" id="lightbox" title="{{ description }}" >
         <img id="photo" src="{{ photo.url_l }}" alt="{{ description }}" />
-      </a>
     {- } -}
     <!-- 喜欢 -->
     {- if (liked==true) { -}
@@ -139,6 +138,56 @@
     </div>
   </script>
 
+  <!-- 大图 -->
+  <script type="text/temlate" id="largePhoto-template">
+    <div id="show_center">
+    <div id="photo_show" class="show_layout">
+      <div id="close_button"></div>
+      {- if (activity_type == 3) { -}
+        <!-- 放视频 -->
+        <div class="video-js-box" id="photo_show">
+          <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
+          <video class="video-js" width="600" height="600" controls preload poster="{{ photo.url_l }}" alt="{{ description }}">
+            <source src="{{ video.url_iphone }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+            <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
+            <object class="vjs-flash-fallback" width="600" height="600" type="application/x-shockwave-flash"
+              data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+              <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+              <param name="allowfullscreen" value="true" />
+              <param name="flashvars" value='config={"playlist":["{{ photo.url_l }}", {"url": "{{ video.url_iphone }}","autoPlay":false,"autoBuffering":true}]}' />
+              <!-- Image Fallback. Typically the same as the poster image. -->
+              <img src="{{ photo.url_l }}" width="600" height="600" alt="Poster Image"
+                title="No video playback capabilities." />
+            </object>
+          </video>
+        </div>
+      {- } else { -}
+        <!-- 放置图片 -->
+            <img id="photo_show" src="{{ photo.url_l }}" alt="{{ description }}" />
+      {- } -}
+    </div>
+    </div>
+  </script>
+
+  <!-- 提醒登入-->
+  <script type="text/template" id="enterInfo-template">
+    <div id="show_center"> 
+    <div id="login_show" class="show_layout">
+      <div id="close_button"></div>
+      <div id="login" class="bar"></div>
+      <div id="icon_bar">
+        <!--
+        <div id="weibo_icon" class="bar"></div>
+        <div id="douban_icon" class="bar"></div>
+        <div id="renren_icon" class="bar"></div>
+        <div id="qq_icon" class="bar"></div>
+        -->
+        <%= link_to "", "/auth/tsina", :class => "bar", :id => "weibo_icon" %>
+        <%= link_to "", "/auth/douban", :class => "bar", :id => "douban_icon" %>
+        <%= link_to "", "/auth/tqq", :class => "bar", :id => "qq_icon" %>
+    </div>
+    </div>
+  </script>
 
 
   <script type="text/javascript">
@@ -161,8 +210,38 @@
       $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
       var now_photo_number=0, now_photo_page=0;
-      var is_first_photo = false, is_last_photo = false;
+      var is_first_page = false, is_last_page = false;
       var photo_refresh = false;
+
+      
+      //处理弹出窗
+      
+      var closeDialog = function(){
+        $("#dialog").html("");
+        $("#dialog").css("z-index","-90");
+        $("#dialog_background").css("z-index","-89");
+      };
+
+      showDialog = function(addhtml){
+        addhtml();
+        $("#dialog").css("z-index","90");
+        $("#dialog_background").css("z-index","89");
+        $("#dialog").click(closeDialog);
+        $("#close_button").click(closeDialog);
+        $(".show_layout").click(function(event){
+          event.stopPropagation();
+        });
+      }
+
+      //提醒登入
+      var enterDialog = function(){
+        var tpl = _.template($("#enterInfo-template").html());
+        $("#dialog").html(tpl());
+      };
+
+      
+
+
 
       // 获取并放置评论
       fetchAndSetComment = function (activity_id) {
@@ -180,12 +259,14 @@
             $("#new_comment").submit(function(e) {
               e.preventDefault();
               $.cookie('comment-content', $("#new_comment #content").val(), { expires: null, path: '/' });
-              alert("请从右上角登陆");
+              //alert("请从右上角登陆");
+              showDialog(enterDialog);
               return false;
             })
             $("#like_icon").click(function(e) {
               e.preventDefault();
-              alert("请从右上角登入");
+              //alert("请从右上角登入");
+              showDialog(enterDialog);
               return false;
             });
           }
@@ -238,6 +319,7 @@
         var el = $("#photo_layout"),
             tpl = _.template($("#activity-template").html()),
             infotpl = _.template($("#info-template").html()),
+            largertpl = _.template($("#largePhoto-template").html()),
             activity = _.find(activities, function(i){
               return i.id == id;
             });
@@ -275,11 +357,31 @@
         $("#now_photo").show();
         $("#comment").html("");
         $("#photo_layout").html( tpl( activity) );
-        $("#massage_bar").html( infotpl( activity) );      
+        $("#massage_bar").html( infotpl( activity) );  
         fetchAndSetComment(activity.id);
-        $("#lightbox").lightBox();
+        //$("#lightbox").lightBox();
         // 如果是视频，就用video-js激活之
         $("video").VideoJS()
+
+        //弹出大图片
+        var showLargePhoto = function(){
+          $("#dialog").html(largertpl(activity));
+          console.log($("#dialog").html());
+          $("#photo_show").click(function(){
+            event.stopPropagation();
+            if (is_last_page == true) {
+              closeDialog();
+            } else {
+              next_page();
+            }
+          });
+          $("#close_button").click(closeDialog);
+        }
+        showLargePhoto();
+        $("#photo").click(function(){
+          showDialog(showLargePhoto);
+        });
+
        };
       
       // 页面载入时先载缩略图，并放置照片。
@@ -387,7 +489,9 @@
         };
         var spinner = new Spinner(opts).spin();
         $("#photo_list").append('<div id="photo_list_spin"></div>');
+        $("#photo_show").append('<div id="photo_show_spin"></div>');
         $("#photo_list_spin").html(spinner.el);
+        $("#photo_show_spin").html(spinner.el);
       }
 
       $(".control_arrow").click(add_photo_list_spin);
