@@ -621,4 +621,166 @@ $thumbnail_a: 61px;
   a{
     text-decoration:none;
   }
+
+  #dialog{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    overflow:scroll;
+    background-color:#000;
+    opacity:0.8;
+    z-index:90;
+    text-align: center;
+    .show_layout{
+      background: rgb(255,255,255);
+      background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255,255,255)), to(rgb(204,204,204)));
+      background: -webkit-linear-gradient(rgb(255,255,255), rgb(204,204,204));
+      background: -moz-linear-gradient(rgb(255,255,255), rgb(204,204,204));
+      background: -ms-linear-gradient(rgb(255,255,255), rgb(204,204,204));
+      background: -o-linear-gradient(rgb(255,255,255), rgb(204,204,204));
+      background: linear-gradient(rgb(255,255,255), rgb(204,204,204));
+      -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+      -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      #close_button{
+        background-image:image-url("moments/close_button.png");
+        position:absolute;
+        width:42px;
+        height:42px;
+        top:-21px;
+        right:-21px;
+      }  
+    }
+    #show_center{
+      position:absolute;
+      left:50%;
+    }
+    #login_show{
+      position: absolute;
+      left:-110px;
+      top:100px;
+      margin-top:100px;
+      height: 110px;
+      width: 217px;
+
+      #icon_bar{
+        position:absolute;
+        top:52px;
+        left:11px;
+        .bar{
+          float: left;
+          height: 31px;
+          width: 30px;
+          margin-right: 11px;
+          background-image:image-url("moments/login_icon.png");
+        }
+        #qq_icon{
+          background-position:-123px -36px;
+        }
+        #qq_icon:hover{
+          background-position:-123px 0px;
+        }
+        #renren_icon{
+          background-position:-82px -36px;
+        }
+        #renren_icon:hover{
+          background-position:-82px 0px;
+        }
+        #douban_icon{
+          background-position:-41px -36px;
+        }
+        #douban_icon:hover{
+          background-position:-41px 0px;
+        }
+        #weibo_icon{
+          background-position:0px -36px;
+        }
+        #weibo_icon:hover{
+          background-position:0px 0px;
+        }
+      }
+      #login{
+        position:absolute;
+        margin-left:10px;
+        margin-top:11px;
+        margin-bottom:11px;
+        margin-right: 10px;
+        width:135px;
+        height:30px;
+        background-image:image-url("moments/login.png");
+      }
+       
+    }
+
+    #photo_show{
+      position:absolute;
+      top:50px;
+      left:-300px;
+      padding:5px;
+      width:600px;
+      height:600px;  
+    }
+
+    #like_show{
+      position:absolute;
+      top:100px;
+      left:-166px;
+      width:333px;
+      height:auto;
+      margin:auto;
+      padding-bottom:13px;
+
+      .massage_bar{
+        position:relative;
+        height:30px;
+        width:313px;
+        margin-left:9px;
+        padding-top:9px;
+        padding-bottom:9px;
+        .user_photo{
+          float:left;
+          height:30px;
+          width:30px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          behavior:url("/pie.htc");
+        }
+
+        .user_name{
+          float:left;
+          margin-left:13px;
+          margin-top:7px;
+          font-size:14px;
+          color:#4D4D4D;
+        }
+        .show_like{
+          float:left;
+          margin-left:7px;
+          margin-top:7px;
+          width:77px;
+          height:15px;
+          background-image:image-url("moments/like_showlike.png");
+        }
+      }
+      .underline{
+        position:relative;
+        margin-left:9px;
+        height:3px;
+        width:313px;
+        background-image:image-url("moments/like_underline.png");
+      }
+
+
+
+    }
+
+
+  }
+
 }

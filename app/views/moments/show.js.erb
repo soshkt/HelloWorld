@@ -10,11 +10,12 @@ moment = <%= raw @moment.to_json %>;
 // 当前是第一页时
 if (current_page == 0)
 	$("#prev_page_arrow").css('visibility', 'hidden');
-else
-	$("#prev_page_arrow").attr('href', ' <%= moment_url(params["id"], :page => @moment["current_page"].to_i - 1) %>').css('visibility', 'initial');
+else {
+	$("#prev_page_arrow").attr('href', ' <%= moment_url(params["id"], :page => @moment["current_page"].to_i - 1) %>').css('visibility', 'visible');
+}
 
 // 当前是最后一页时
 if ( parseInt(<%= @moment['is_last_page'] %>) == 1 )
 	$("#next_page_arrow").css('visibility', 'hidden');
 else
-	$("#next_page_arrow").attr('href', ' <%= moment_url(params["id"], :page => @moment["current_page"].to_i + 1) %>').css('visibility', 'initial');
+	$("#next_page_arrow").attr('href', ' <%= moment_url(params["id"], :page => @moment["current_page"].to_i + 1) %>').css('visibility', 'visible');
