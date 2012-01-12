@@ -301,6 +301,12 @@
           // 如果登陆之前有评论，这里可以保留下来。
           if ($.cookie('comment-content')) {
             $("#new_comment #content").val($.cookie('comment-content'));
+            if ($("#new_comment #content").val() != "写评论...") {
+              $("#new_comment #content").css("color","#4D4D4D");
+              $("#new_comment #content").focus(); 
+              $("#left_outline").scrollTo(0,200);
+              
+            }
             $.cookie("comment-content", null, { expires: null, path: '/' });
           }
         });
