@@ -145,7 +145,7 @@
       <div id="close_button"></div>
       {- if (activity_type == 3) { -}
         <!-- 放视频 -->
-        <div class="video-js-box" id="photo_show">
+        <div class="video-js-box" id="photo_size">
           <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
           <video class="video-js" width="600" height="600" controls preload poster="{{ photo.url_l }}" alt="{{ description }}">
             <source src="{{ video.url_iphone }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
@@ -163,7 +163,7 @@
         </div>
       {- } else { -}
         <!-- 放置图片 -->
-            <img id="photo_show" src="{{ photo.url_l }}" alt="{{ description }}" />
+            <img id="photo_size" src="{{ photo.url_l }}" alt="{{ description }}" />
       {- } -}
     </div>
     </div>
@@ -295,7 +295,6 @@
             }
             $("#new_comment #content").val($("#new_comment #content").val()+'@'+$(this).parent().children('.user_massage').children('.user_name').html()+' '); 
             $("#new_comment #content").focus(); 
-            $("#left_outline").scrollTo(0,200);
           
           });
           // 如果登陆之前有评论，这里可以保留下来。
@@ -304,8 +303,6 @@
             if ($("#new_comment #content").val() != "写评论...") {
               $("#new_comment #content").css("color","#4D4D4D");
               $("#new_comment #content").focus(); 
-              $("#left_outline").scrollTo(0,200);
-              
             }
             $.cookie("comment-content", null, { expires: null, path: '/' });
           }
@@ -372,7 +369,6 @@
         //弹出大图片
         var showLargePhoto = function(){
           $("#dialog").html(largertpl(activity));
-          console.log($("#dialog").html());
           $("#photo_show").click(function(){
             event.stopPropagation();
             if (is_last_page == true) {
@@ -382,6 +378,10 @@
             }
           });
           $("#close_button").click(closeDialog);
+         // $("#photo_show").animate({height:"600px"});
+         // $("#photo_size").animate({height:"600px"});
+         // $("#photo_show").animate({width:"600px"});
+         // $("#photo_size").animate({width:"600px"});
         }
         showLargePhoto();
         $("#photo").click(function(){

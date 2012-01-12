@@ -734,14 +734,13 @@ $thumbnail_a: 61px;
       left:-300px;
       padding:5px;
       width:600px;
-      height:600px;  
+      height:600px; 
       #photo_show_spin{
         position:absolute;
         top:305px;
         left:305px;
       }
-      #photo_show{
-        position:absolute;
+      #photo_size{
         top:0px;
         left:0px;
         width: 600px;
@@ -772,7 +771,6 @@ $thumbnail_a: 61px;
           -webkit-border-radius: 3px;
           -moz-border-radius: 3px;
           border-radius: 3px;
-          behavior:url("/pie.htc");
         }
 
         .user_name{
@@ -798,12 +796,7 @@ $thumbnail_a: 61px;
         width:313px;
         background-image:image-url("moments/like_underline.png");
       }
-
-
-
     }
-
-
   }
 
 }
