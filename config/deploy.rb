@@ -24,6 +24,7 @@ require 'bundler/capistrano'
 
 after 'deploy:update_code', 'deploy:symlink_db'
 after "deploy", "rvm:trust_rvmrc"
+after "deploy", "bundler:set_server_gems"
 
 namespace :deploy do
   task :start do ; end
@@ -43,5 +44,13 @@ namespace :rvm do
   end
 end
 
-        require './config/boot'
-        require 'airbrake/capistrano'
+namespace :bundler do
+  task :set_server_gems do
+    ["Gemfile", "Gemfile.lock"].each do |f|
+      run "cp #{release_path}/#{f}.server #{release_path}/#{f}"
+    end
+  end
+end
+
+require './config/boot'
+require 'airbrake/capistrano'
