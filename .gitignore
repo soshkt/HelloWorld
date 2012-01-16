@@ -6,5 +6,3 @@ public/assets/*
 config/database.yml
 .rvmrc
 db/development.sqlite3
-Gemfile
-Gemfile.lock
