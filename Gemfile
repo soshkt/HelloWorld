@@ -6,7 +6,7 @@ gem 'json'
 group :development do
   gem 'sqlite3'
 end
-gem 'mysql2'
+#gem 'mysql2'
 
 group :assets do
   gem 'sass-rails', "~> 3.1.0"

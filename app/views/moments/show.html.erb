@@ -143,7 +143,7 @@
     <div id="show_center">
     <div id="photo_show" class="show_layout">
       <div id="close_button"></div>
-      {- if (activity_type == 3) { -}
+      {- if (activity_type == 3 && false) { -}
         <!-- 放视频 -->
         <div class="video-js-box" id="photo_size">
           <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
@@ -206,8 +206,6 @@
     $(function() {
       //当前用户
       current_user =  <%= raw (@current_user || {}).slice("avatar_file", "name", "id").to_json %>;
-      // 把当前页地址放到cookies里边，以便登陆后返回本页。
-      $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
 
       var now_photo_number=0, now_photo_page=0;
       var is_first_page = false, is_last_page = false;
@@ -238,9 +236,6 @@
         var tpl = _.template($("#enterInfo-template").html());
         $("#dialog").html(tpl());
       };
-
-      
-
 
 
       // 获取并放置评论
@@ -319,6 +314,8 @@
 
       //载入模版  
       setActivity = function(id){
+        // 把当前页地址放到cookies里边，以便登陆后返回本页。
+        $.cookie('refer_url', window.location.href, { expires: null, path: '/' });
         var el = $("#photo_layout"),
             tpl = _.template($("#activity-template").html()),
             infotpl = _.template($("#info-template").html()),
@@ -362,7 +359,6 @@
         $("#photo_layout").html( tpl( activity) );
         $("#massage_bar").html( infotpl( activity) );  
         fetchAndSetComment(activity.id);
-        //$("#lightbox").lightBox();
         // 如果是视频，就用video-js激活之
         $("video").VideoJS()
 
@@ -384,7 +380,7 @@
          // $("#photo_size").animate({width:"600px"});
         }
         showLargePhoto();
-        $("#photo").click(function(){
+        $("img#photo").click(function(){
           showDialog(showLargePhoto);
         });
 
