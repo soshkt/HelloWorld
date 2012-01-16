@@ -15,10 +15,12 @@ Bluerain::Application.routes.draw do
   match "/v/kaixin001-signin" => redirect("http://iphone.kaixin001.com/reg/prepare.php")
   get "android_download" => "misc#android_download"
 
+  #get "activities/likelist.js" => "activities#likelist.js"
 
   resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments
     put "like", :on => :member
+    get "likelist", :on => :member
   end
 
   resources :moments, :only => [:show], :constraints => {:id => /[0-9]+/}

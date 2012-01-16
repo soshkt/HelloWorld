@@ -384,7 +384,11 @@
           showDialog(showLargePhoto);
         });
 
-       };
+        $("#like_dots").click(function(){
+          $.get("/activities/"+id+"/likelist.js");
+        })
+
+      };
       
       // 页面载入时先载缩略图，并放置照片。
       var activity_id = $.bbq.getState("id"), moment_id = <%= @moment["data"]['id'] %>;
