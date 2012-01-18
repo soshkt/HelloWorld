@@ -1,0 +1,6 @@
+var showLikeList = function(){
+	$("#dialog").html('<div id="show_center"><div id="like_show" class="show_layout"></div></div>');
+	$("#like_show").html('<div id="close_button"></div>'+'<%= j render :partial => "activities/likelist", :collection => @activities, :as => :activity %>');
+}
+
+showDialog(showLikeList);

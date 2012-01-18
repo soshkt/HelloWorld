@@ -108,7 +108,8 @@
     {- } -}
     {- } -}
     {- if (likes_count > 6){ -} 
-      <div id="like_dots" class="like_user"> ... </div>
+      <a href="/activities/{{ id }}/likelist.js" data-method="get" data-remote="true" id="like_dots" class ="like_user"> ... </a>
+      <!-- <div id="like_dots" class="like_user"> ... </div> -->
     {- } -}
 
     <div id="like_number">{{likes_count}}</div>
@@ -384,9 +385,9 @@
           showDialog(showLargePhoto);
         });
 
-        $("#like_dots").click(function(){
-          $.get("/activities/"+id+"/likelist.js");
-        })
+        //$("#like_dots").click(function(){
+          //$.get("/activities/"+id+"/likelist.js");
+        //})
 
       };
       

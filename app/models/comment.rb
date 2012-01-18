@@ -5,7 +5,6 @@ class Comment < ActiveRecord::Base
   		:type => 'Activity',
   		:type_id => options[:activity_id], 
   	}
-
   	JSON.parse VIDA.new.call("comment/list?#{o.to_param}")
   end
 

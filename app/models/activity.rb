@@ -5,6 +5,8 @@ class Activity < ActiveRecord::Base
   end
 
   def self.fetchLikeList(activity_id)
-  	JSON.parse(VIDA.new.call("activities/#{activity_id}/likes"))
+  	cmd = "curl http://api.vida.fm/activities/#{activity_id}/likes"
+  	data = `#{cmd}`
+  	JSON.parse data
   end
 end
