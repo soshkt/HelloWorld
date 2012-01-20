@@ -12,14 +12,14 @@
     float: left;
     width: 424px;
     height: 650px;
-    margin-top: 60px;
+    margin-top: 10px;
     position: relative;
     .arrow-pane {
       background: image-url("frontpage/arrow_panel.png") no-repeat scroll;
       width: 437px;
       height: 108px;
       position: absolute;
-      top: 320px;
+      top: 290px;
       left: 37px;
       z-index: 1;
       #arrow-left {
@@ -48,8 +48,9 @@
       height: 700px;
       background: url(/assets/frontpage/iphone_341x658.png) no-repeat;
       position: absolute;
-      left: 76px;
+      left: 104px;
       z-index: 2;
+      zoom: 0.9;
       .shine {
         background: image-url("frontpage/shine.png") no-repeat;
         position: absolute;
@@ -62,7 +63,7 @@
       .screenshots {
         position: absolute;
         top: 105px;
-        left: 39px;
+        left: 37px;
         z-index: 3;
         img {
           width: 283px;
@@ -76,18 +77,19 @@
   #intro-col {
     float: left;
     width: 428px;
-    margin-top: 209px;
+    margin-top: 115px;
     margin-left: 90px;
 
 
     #intro-summary {
-      margin-top: 25px;
+      margin-top: 15px;
     }
 
     #intro-features {
+      margin-top: 20px;
       img {
         display: block;
-        margin-top: 20px;
+        margin-top: 15px;
       }
     }
 
@@ -104,7 +106,7 @@
       #download_iphone{
         display: block;
         position:absolute;
-        top:25px;
+        top:20px;
         left: 0px;
         height: 61px;
         width:208px;
@@ -118,7 +120,7 @@
       #download_android{
         display: block;
         position:absolute;
-        top:25px;
+        top:20px;
         left: 220px;
         height: 61px;
         width:208px;
