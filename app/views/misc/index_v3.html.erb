@@ -1,0 +1,51 @@
+<%= content_for :title do %>
+  VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<div id="frontpage">
+  <div id="container">
+    <div id="preview-col">
+      <div class="arrow-pane">
+        <a href="#left" id="arrow-left"></a>
+        <a href="#right" id="arrow-right"></a>
+      </div>
+      <div class="layout">
+        <div class="shine"></div>
+        <div class="screenshots">
+          <% 1.upto(5) do |e| %>
+            <%= image_tag "screenshot#{e}.jpg" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="intro-col">
+     <div id="vida-logo">
+        <%= image_tag "frontpage/vida-logo.png" %>
+     </div>
+
+      <%= render :partial => "widgets/download_bar", :locals => {:hide_title => true} %>
+
+      <div id="intro-summary">
+        <%= image_tag "frontpage/index-summary.png" %>
+      </div>
+
+      <div id="intro-features">
+        <% %w{filter insta offline}.each do |e| %>
+          <%= image_tag "frontpage/feature-#{e}.png" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <%= link_to "联系我们", about_url %>
+    <span>沪ICP备10216111号-2</span>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(".screenshots").cycle({
+      prev: '#arrow-left',
+      next: '#arrow-right'
+    });
+</script>

@@ -8,8 +8,13 @@
  *= require bootstrap.min
  *= require_self
  *= require moments/show
+ *= require frontpage
 */
 
 body {
     font: 13px/22px 微软雅黑,'Helvetica Neue',Helvetica,Arial,Sans-serif;
+}
+
+html {
+	background-color: #fdfdfd;
 }

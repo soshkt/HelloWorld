@@ -9,6 +9,13 @@ class MiscController < ApplicationController
     render :layout => false
   end
 
+  def index_v3
+    if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
+      render :partial => "/misc/redirect", :layout => false 
+      return
+    end
+  end
+
   def about
     @feedback = Feedback.new
   end

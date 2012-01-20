@@ -62,11 +62,7 @@
         <div id="massage_bar"></div>
       </div>
     </div>
-    <div id="download_bar">
-      <div id="download_icon"><%=image_tag("moments/download_icon.png")%></div>
-      <a id="download_iphone" href="/d/iphone"></a>
-      <a id="download_android" href="/android_download"></a>
-    </div>  
+    <%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
   </div>
 
   <p id="copyright">Copyright © 2011 vida.fm | <a href="http://vida.fm/about">关于我们</a> | 沪ICP备10216111号-2</p>

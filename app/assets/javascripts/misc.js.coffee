@@ -4,5 +4,3 @@
 $(document).ready ->
   $("a[data-remote=true]").live 'click', ->
       $(@).text($(@).attr("data-disable-with"))
-
-  $("#iphone_layout").cycle { speed: 1000, prev: "#arrow_l", next: "#arrow_r" }
