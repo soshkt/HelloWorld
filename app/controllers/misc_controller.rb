@@ -26,6 +26,5 @@ class MiscController < ApplicationController
   end
   
   def android_download
-    render :layout => false
   end
 end

@@ -1,59 +1,51 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-	<title>VIDA（Android版）下载 - VIDA（唯达） - 你我的生活轨迹</title>
-	<%= stylesheet_link_tag "android_download" %>
-</head>
-<body>
+<%= content_for :title do %>
+  VIDA（唯达） - 你我的生活轨迹
+<% end -%>
 
-  <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script src="http://wandoujia.com/api/wdapi.js" type="text/javascript"></script>
+<div id="android-download">
+  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');"></a>
+  <div id="container">
+    <div id="preview-col">
+      <div class="arrow-pane">
+        <a href="#left" id="arrow-left"></a>
+        <a href="#right" id="arrow-right"></a>
+      </div>
+      <div class="layout">
+        <div class="shine"></div>
+        <div class="screenshots">
+          <% 1.upto(4) do |e| %>
+            <%= image_tag "screenshots/android/screenshot#{e}.png" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="intro-col">
+     <div id="vida-logo">
+        <%= image_tag "android_logo.png" %>
+        <%= image_tag "vida-tagline.png"  %>
+     </div>
 
+     <div id="version-inst">适用于Android 2.3 以上手机</div>
+     <div id="download-row">
+     	<div id="normal-dl">
+     		<a href="/d/android" id="n_btn"></a>
+				<a href="/d/android" name="VIDA" 
+			    onclick="return wdapi_apkdl(this);" title="通过豌豆荚一键安装 VIDA" id="w_btn"></a>
+     	</div>
+			<%= image_tag "android_b_btn.png", :id => "qr-dl", :class => "col", :style => "height: 157px; margin: 10px;" %>
+     </div>
+    </div>
+  </div>
 
-
-	<div id="index_wrapper">
-<%= image_tag "android_tilt_205x163.png", :id => "droid" %>
-<div id="mask_wrapper"></div>
-<div id="content_wrapper">	
-	<div id="left_col">
-		<h1>Vida 是“生活”的意思. 马上开始用你的安卓手机镜头捕捉瞬间，分享生活吧！</h1>
-		<h3>推荐以下品牌安卓手机使用:</h3>
-		<ul id="">
-			<li>Samsung</li>
-			<li>Motorola</li>
-			<li>Sony Ericsson</li>
-			<li>小米手机</li>
-			<li>魅族</li>
-			      <li>HTC (G7以上)</li>
-		</ul>
-	</div>
-	<div id="right_col">
-		<div class="row" id="recommend">适用于Android 2.3 以上手机</div>
-		<div class="row">
-			<div class="col"><a href="/d/android" id="n_btn"></a>
-						<a href="/d/android" name="VIDA" 
-			    onclick="return wdapi_apkdl(this);" title="通过豌豆荚一键安装 VIDA" id="w_btn"></a></div>
-			<%= image_tag "android_b_btn.png", :id => "b_btn", :class => "col", :style => "height: 157px; margin: 10px;" %>
-		</div>
-	</div></div>
-</div>
-
-
-
-
-  <div id="footer" class="container">
-
-<div class="row" id="footer-copyright">
-  <div class="span">Copyright © 2011VIDA.fm</div>
-  <div class="pull-right">
-    <div class="span">沪ICP备10216111号-2</div>
+  <div id="footer">
+    <%= link_to "联系我们", about_url %>
+    <span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;沪ICP备10216111号-2</span>
   </div>
 </div>
-</div>
-</body>
-</html>
 
+<script type="text/javascript">
+  $(".screenshots").cycle({
+      prev: '#arrow-left',
+      next: '#arrow-right'
+    });
+</script>

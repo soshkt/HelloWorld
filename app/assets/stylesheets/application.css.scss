@@ -9,6 +9,7 @@
  *= require_self
  *= require moments/show
  *= require frontpage
+ *= require android_download
 */
 
 body {
@@ -19,4 +20,17 @@ body {
 html {
 	background-color: #fdfdfd;
 	height:100%;
+}
+
+a#follow-us {
+  display: block;
+  position: fixed;
+  top: 10px;
+  right: 0;
+  width: 69px;
+  height: 98px;
+  background: image-url("frontpage/follow-us-pon.png") no-repeat 0 0;
+  &:hover {
+    background: image-url("frontpage/follow-us-pon.png") no-repeat 0 -98px;
+  }
 }

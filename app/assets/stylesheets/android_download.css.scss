@@ -1,499 +1,142 @@
-html, body {
-	margin: 0;
-	padding: 0;
-	background: url("/assets/p1_bg.jpg");
-	color: white;
-
-
-	#index_wrapper {
-		position: relative;
-		
-		
-
-		#content_wrapper {
-			width: 800px;
-			margin: 0 auto;
-			position: relative;
-			z-index: 3;
-			height: 100%;
-			margin-top: 120px;
-			height: 300px;
-			padding: 30px;
-		}
-
-		#mask_wrapper {
-			background: url('/assets/mask_70.png');
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			z-index: 2;
-		}
-
-		#droid {
-			z-index: 1;
-			position: absolute;
-			left: 200px;
-			top: -65px;
-		}
-
-		#left_col {
-			width: 322px;
-			float: left;
-			margin-right: 40px;
-
-			h1 {
-				font-size: 21px;
-				line-height: 25px;
-			}
-			h3 {
-				font-size: 12px;
-			}
-
-			ul {
-				font-size: 24px;
-				line-height: 30px;
-			}
-		}
-
-		#right_col {
-			float: left;
-			margin-top: 40px;
-			#recommend {
-				font-size: 24px;
-				margin: 13px 0;
-			}
-			#n_btn {
-				width: 230px;
-				height: 82px;
-				background: url('/assets/android_n_btn.png') no-repeat;
-				display: block;
-			}
-
-			#w_btn {
-				width: 230px;
-				height: 82px;
-				background: url('/assets/android_w_btn.png') no-repeat;
-				display: block;
-			}
-
-			.col {
-				float: left;
-			}
-		}
-	}
-}
-
-#footer {
-  position: fixed;
-  bottom: 0px;
-}
-/* line 7, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #timeline {
-  color: #B3B3B3;
-  font: bold 36px helvetica;
-  padding-left: 35px;
-}
-/* line 12, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #timeline .timeline-item {
-  cursor: pointer;
-}
-/* line 14, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #timeline .timeline-item.active {
-  color: #e81e43;
-}
-/* line 21, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav {
-  background-color: #e81e43;
-  border-bottom: 1px solid #c51a39;
-  border-top: 1px solid #fff;
-  font-size: 14px;
-  height: 18px;
-  padding: 11px 0;
-}
-/* line 29, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item {
-  line-height: 18px;
-  padding: 0 13px;
-  margin: 0;
-  color: white;
-  cursor: pointer;
-}
-/* line 35, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item .icon {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin-right: 10px;
-}
-/* line 42, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item #profile-avatar {
-  width: 20px;
-  height: 20px;
-  padding: 2px;
-}
-/* line 48, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item.first {
-  padding-left: 33px;
-}
-/* line 51, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item:not(.first) {
-  border-left: 1px solid #ec425e;
-}
-/* line 54, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item:not(.last) {
-  border-right: 1px solid #c51a39;
-}
-/* line 58, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-mine .icon {
-  background: url(/assets/smile_18x18.png) no-repeat scroll;
-}
-/* line 61, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-explore .icon {
-  background: url(/assets/world_18x18.png) no-repeat scroll;
-}
-/* line 64, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-profile .icon {
-  background: url(/assets/dialog_27x24.png) no-repeat scroll;
-  width: 27px;
-  height: 24px;
-  margin: -2px 5px 0 0;
-}
-/* line 70, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-message .icon {
-  background: url(/assets/message_22x18.png) no-repeat scroll;
-  width: 22px;
-}
-/* line 74, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-signout .icon {
-  background: url(/assets/logout_18x18.png) no-repeat scroll;
-}
-/* line 78, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-weibo .icon {
-  background: url(/assets/weibo_20x20.png) no-repeat;
-  width: 22px;
-  height: 22px;
-  margin-top: -2px;
-}
-/* line 84, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item#nav-douban .icon {
-  background: url(/assets/douban_20x20.png) no-repeat;
-  width: 22px;
-  height: 22px;
-  margin-top: -2px;
-}
-/* line 92, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-nav .nav-item:hover {
-  color: #333;
-}
-/* line 100, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-#footer #footer-copyright {
-  background-color: #e81e43;
-  border-top: 1px solid #ec425e;
-  color: white;
-  font-size: 11px;
-  padding-left: 13px;
-}
-
-/* line 109, /Users/zhuyuanfei/workspace/rbWorks/molitime/frontend_v2/app/assets/stylesheets/_footer.css.scss */
-.pull-right {
-  float: right;
-}
-
-q:before,
-q:after,
-blockquote:before,
-blockquote:after {
-  content: "";
-}
-html {
-  overflow-y: scroll;
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-a:focus {
-  outline: thin dotted;
-}
-a:hover, a:active {
-  outline: 0;
-}
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section {
-  display: block;
-}
-audio, canvas, video {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-audio:not([controls]) {
-  display: none;
-}
-sub, sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sup {
-  top: -0.5em;
-}
-sub {
-  bottom: -0.25em;
-}
-img {
-  border: 0;
-  -ms-interpolation-mode: bicubic;
-}
-button,
-input,
-select,
-textarea {
-  font-size: 100%;
-  margin: 0;
-  vertical-align: baseline;
-  *vertical-align: middle;
-}
-button, input {
-  line-height: normal;
-  *overflow: visible;
-}
-button::-moz-focus-inner, input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  cursor: pointer;
-  -webkit-appearance: button;
-}
-input[type="search"] {
-  -webkit-appearance: textfield;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-textarea {
-  overflow: auto;
-  vertical-align: top;
-}
-html, body {
-  background-color: #ffffff;
-}
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 18px;
-}
-.container {
+#android-download {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  zoom: 1;
-}
-.container:before, .container:after {
-  display: table;
-  content: "";
-  zoom: 1;
-  *display: inline;
-}
-.container:after {
-  clear: both;
-}
-.container-fluid {
+  height: 100%;
   position: relative;
-  min-width: 940px;
-  padding-left: 20px;
-  padding-right: 20px;
-  zoom: 1;
-}
-.container-fluid:before, .container-fluid:after {
-  display: table;
-  content: "";
-  zoom: 1;
-  *display: inline;
-}
-.container-fluid:after {
-  clear: both;
-}
-.container-fluid > .sidebar {
-  float: left;
-  width: 220px;
-}
-.container-fluid > .content {
-  margin-left: 240px;
-}
-a {
-  text-decoration: none;
-  line-height: inherit;
-  font-weight: inherit;
-}
-a:hover {
-  text-decoration: none;
-}
-.pull-right {
-  float: right;
-}
-.pull-left {
-  float: left;
-}
-.hide {
-  display: none;
-}
-.show {
-  display: block;
-}
-.row {
-  zoom: 1;
-  margin-left: -20px;
-}
-.row:before, .row:after {
-  display: table;
-  content: "";
-  zoom: 1;
-  *display: inline;
-}
-.row:after {
-  clear: both;
-}
-[class*="span"] {
-  display: inline;
-  float: left;
-  margin-left: 20px;
-}
-.span1 {
-  width: 40px;
-}
-.span2 {
-  width: 100px;
-}
-.span3 {
-  width: 160px;
-}
-.span4 {
-  width: 220px;
-}
-.span5 {
-  width: 280px;
-}
-.span6 {
-  width: 340px;
-}
-.span7 {
-  width: 400px;
-}
-.span8 {
-  width: 460px;
-}
-.span9 {
-  width: 520px;
-}
-.span10 {
-  width: 580px;
-}
-.span11 {
-  width: 640px;
-}
-.span12 {
-  width: 700px;
-}
-.span13 {
-  width: 760px;
-}
-.span14 {
-  width: 820px;
-}
-.span15 {
-  width: 880px;
-}
-.span16 {
-  width: 940px;
-}
-.span17 {
-  width: 1000px;
-}
-.span18 {
-  width: 1060px;
-}
-.span19 {
-  width: 1120px;
-}
-.span20 {
-  width: 1180px;
-}
-.span21 {
-  width: 1240px;
-}
-.span22 {
-  width: 1300px;
-}
-.span23 {
-  width: 1360px;
-}
-.span24 {
-  width: 1420px;
-}
-.offset1 {
-  margin-left: 80px;
-}
-.offset2 {
-  margin-left: 140px;
-}
-.offset3 {
-  margin-left: 200px;
-}
-.offset4 {
-  margin-left: 260px;
-}
-.offset5 {
-  margin-left: 320px;
-}
-.offset6 {
-  margin-left: 380px;
-}
-.offset7 {
-  margin-left: 440px;
-}
-.offset8 {
-  margin-left: 500px;
-}
-.offset9 {
-  margin-left: 560px;
-}
-.offset10 {
-  margin-left: 620px;
-}
-.offset11 {
-  margin-left: 680px;
-}
-.offset12 {
-  margin-left: 740px;
-}
-.span-one-third {
-  width: 300px;
-}
-.span-two-thirds {
-  width: 620px;
-}
-.offset-one-third {
-  margin-left: 340px;
-}
-.offset-two-thirds {
-  margin-left: 660px;
-}
 
+
+   #container {
+    position:absolute;
+    width: 945px;
+    right: 50%;
+    margin-right: -472.5px;
+    height: 600px;
+    top:50%;
+    margin-top: -300px;
+  }
+  #preview-col {
+    float: left;
+    width: 424px;
+    height: 600px;
+    position: relative;
+    .arrow-pane {
+      background: image-url("frontpage/arrow_panel.png") no-repeat scroll;
+      width: 437px;
+      height: 108px;
+      position: absolute;
+      top: 290px;
+      left: 37px;
+      z-index: 1;
+      #arrow-left {
+        display: block;
+        width: 85px;
+        height: 85px;
+        position: absolute;
+        &:hover {
+          background: image-url("frontpage/arrow_l.png") no-repeat scroll;
+        }
+      }
+      #arrow-right {
+        display: block;
+        width: 75px;
+        height: 85px;
+        right: 0px;
+        position: absolute;
+        &:hover {
+          background: image-url("frontpage/arrow_r.png") no-repeat 34px 0;
+        }
+      }
+    }
+
+    .layout {
+      width: 351px;
+      height: 700px;
+      background: image-url("android_341x658.png") no-repeat;
+      position: absolute;
+      left: 104px;
+      z-index: 2;
+      zoom: 0.9;
+      .shine {
+        // background: image-url("frontpage/shine.png") no-repeat;
+        position: absolute;
+        top: 15px;
+        right: 11px;
+        width: 170px;
+        height: 512px;
+        z-index: 4;
+      }
+      .screenshots {
+        position: absolute;
+        top: 66px;
+        left: 37px;
+        z-index: 3;
+        img {
+          width: 283px;
+          margin-top: 18px;
+        }
+      }
+    }
+
+  }
+
+  #intro-col {
+    float: left;
+    width: 428px;
+    margin-top: 155px;
+    margin-left: 90px;
+
+    #version-inst {
+      font-size: 12px;
+      color: #808080;
+      margin-top: 30px;
+    }
+
+    #download-row {
+      margin-top: -5px;
+      $width: 209px;
+      $height: 62px;
+      #normal-dl {
+        float: left;
+        width: $width;
+        margin-top: 15px;
+
+
+        #n_btn, #w_btn {
+          display: block;
+          width: $width;
+          height: $height;
+          &:hover {
+            background-position-y: -72px;
+          }
+        }
+
+        #n_btn {
+          background: image-url("android_download.png") no-repeat;
+        }
+
+        #w_btn {
+          margin-top: 24px;
+          background: image-url("android_download.png") -219px 0 no-repeat;
+        }
+        
+      }
+
+      #qr-dl {
+        float: left;
+
+      }
+    }
+  }
+
+  #footer {
+    bottom: 0px;
+    color: #b3b3b3;
+    padding: 11px 20px;
+    position: absolute;
+    right: 0px;
+    font-size: 11px;
+    width: initial;
+    a {
+      color: #b3b3b3;
+    }
+  }
+}
