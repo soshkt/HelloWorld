@@ -14,7 +14,7 @@ Vida 在西班牙语和葡萄牙语中是Life的意思，我们以此寓意为�
       <%= image_tag "about/contact_us-logo.png", :id => "logo" %>
     <%  end -%>
     <%= form_for @feedback, :url => {:action => "create_feedback"} do |f| %>
-      <%= f.text_field :from %> <br />
+      <%= f.text_field :from, :placeholder => "you@example.com" %> <br />
       <%= f.text_area :content %> <br />
       <%= f.submit "", :id => "feedback_submit" %>
     <% end -%>
