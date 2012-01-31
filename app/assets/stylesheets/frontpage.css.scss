@@ -50,12 +50,12 @@
       }
       #arrow-right {
         display: block;
-        width: 85px;
+        width: 75px;
         height: 85px;
         right: 0px;
         position: absolute;
         &:hover {
-          background: image-url("frontpage/arrow_r.png") no-repeat 44px 0;
+          background: image-url("frontpage/arrow_r.png") no-repeat 34px 0;
         }
       }
     }
