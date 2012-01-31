@@ -2,8 +2,12 @@
   VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :meta_description do %>
+VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。
+<%  end-%>
+
 <div id="frontpage">
-  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');"></a>
+  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');">关注我们的新浪微博 @vida_唯达</a>
   <div id="container">
     <div id="preview-col">
       <div class="arrow-pane">
@@ -21,19 +25,26 @@
     </div>
     <div id="intro-col">
      <div id="vida-logo">
-        <%= image_tag "frontpage/vida-logo.png" %>
-        <%= image_tag "vida-tagline.png"  %>
+        <%= image_tag "frontpage/vida-logo.png", :alt => "VIDA（唯达）你我的生活轨迹" %>
+        <%= image_tag "vida-tagline.png", :alt => "VIDA即时生活分享，串起你我的生活轨迹。" %>
      </div>
 
       <%= render :partial => "widgets/download_bar", :locals => {:hide_title => true} %>
 
       <div id="intro-summary">
-        <%= image_tag "frontpage/index-summary.png" %>
+        <%= image_tag "frontpage/index-summary.png", :alt => "1. 分享旅行足迹: 照片,视频,位置全方位记录 2. 邀请亲朋好友一起群拍，聚合精彩瞬间 3. 通过实时特效镜头记录和分享每个时刻" %>
       </div>
 
       <div id="intro-features">
+        <% 
+          text = {
+            'filter' => "数十款实时互动式特效镜头 实时特效视频和照片拍摄",
+            'insta' => "\"Insta-Render\"极速渲染引擎 轻松抓住每个瞬间",
+            'offline' => "离线批量上传省流量 同步分享各大微博和社交网络"
+          }
+        %>
         <% %w{filter insta offline}.each do |e| %>
-          <%= image_tag "frontpage/feature-#{e}.png" %>
+          <%= image_tag "frontpage/feature-#{e}.png", :alt => text[e] %>
         <% end %>
       </div>
     </div>

@@ -2,8 +2,12 @@
   VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :meta_description do %>
+VIDA-唯达 Android版下载
+<%  end-%>
+
 <div id="android-download">
-  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');"></a>
+  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');">关注我们的新浪微博 @vida_唯达</a>
   <div id="container">
     <div id="preview-col">
       <div class="arrow-pane">
@@ -21,18 +25,20 @@
     </div>
     <div id="intro-col">
      <div id="vida-logo">
-        <%= image_tag "android_logo.png" %>
-        <%= image_tag "vida-tagline.png"  %>
+        <%= link_to root_url do %>
+          <%= image_tag "android_logo.png", :alt => "VIDA(唯达) for Android." %>
+        <%  end-%>
+        <%= image_tag "vida-tagline.png", :alt => "VIDA即时生活分享，串起你我的生活轨迹。"  %>
      </div>
 
      <div id="version-inst">适用于Android 2.3 以上手机</div>
      <div id="download-row">
      	<div id="normal-dl">
-     		<a href="/d/android" id="n_btn"></a>
+     		<a href="/d/android" id="n_btn">点击直接下载</a>
 				<a href="/d/android" name="VIDA" 
-			    onclick="return wdapi_apkdl(this);" title="通过豌豆荚一键安装 VIDA" id="w_btn"></a>
+			    onclick="return wdapi_apkdl(this);" title="通过豌豆荚一键安装 VIDA" id="w_btn">通过豌豆荚一键安装 VIDA</a>
      	</div>
-			<%= image_tag "android_b_btn.png", :id => "qr-dl", :class => "col", :style => "height: 157px; margin: 10px;" %>
+			<%= image_tag "android_b_btn.png", :id => "qr-dl", :class => "col", :style => "height: 157px; margin: 10px;", :alt => "扫描二维码下载" %>
      </div>
     </div>
   </div>

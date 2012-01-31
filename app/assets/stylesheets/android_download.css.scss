@@ -104,6 +104,7 @@
           display: block;
           width: $width;
           height: $height;
+          text-indent: -99999px;
           &:hover {
             background-position-y: -72px;
           }
