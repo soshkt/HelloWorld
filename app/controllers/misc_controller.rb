@@ -22,7 +22,7 @@ class MiscController < ApplicationController
 
   def create_feedback
     Feedback.create(params[:feedback])
-    redirect_to :about, :notice => "您的反馈已经如银铃般在我们的耳畔响起，谢谢您对我们的支持和帮助。我们会努力做得更好的！"
+    redirect_to :about, :notice => "感谢你的建议,我们将会尽快和你联系"
   end
   
   def android_download

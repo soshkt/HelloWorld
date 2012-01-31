@@ -2,79 +2,87 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#about_page {
-  width: 800px;
-  margin: 0 auto;
-  clear: both;
-  padding-top: 120px;
-
-  .left_box {
-    width: 551px;
-    float: left;
-
-    p {
-      color: white;
-      padding-right: 100px;
-      a {
-        color: #e5253d;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+#contact {
+  width: 100%;
+  height: 100%;
+  #bg {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
   }
-  .right_box {
-    width: 249px;
-    float: left;
-    h1 {
-      font-size: 18px;
-      color: white;
-      padding: 10px 0px;
-      line-height: 1.2em;
-    }
-    input[type="submit"] {
+
+  $width: 372px;
+  $height: 480px;
+
+  #container {
+    width: $width;
+    height: $height;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: $height / -2;
+    margin-left: $width / -2;
+
+    input, textarea {
       border: 0;
-      padding: 5px;
-      width: 100px;
-      color: white;
-      background-color: #E5253D;
+      padding: 0;
+      margin-top: 20px;
+
+      $padding : 50px;
+
+      &#feedback_from {
+        height: 70px;
+        width: $width - $padding;
+        padding-left: $padding;
+        font-size: 28px;
+        font: Helvetica;
+        color: #666;
+        background: image-url("about/email-form.png") no-repeat;
+      }
+
+      &#feedback_content {
+        resize:none;
+        height: 203px;
+        width: $width - $padding;
+        padding-left: $padding;
+        color: #666;
+        font-size: 28px;
+        font: Helvetica;
+        padding-top: 6px;
+        background: image-url("about/contact-form.png") no-repeat;
+      }
+
+      &#feedback_submit {
+        cursor: pointer;
+        height: 60px;
+        width: $width;
+        background: image-url("about/form-button.png") no-repeat;
+      }
+
     }
-    #feedback_from {
-      padding: 5px 5px 5px 40px;
-      font-size: 14px;
-      line-height: 1em;
-      background: white image-url("about/mail.png") 6px -2px no-repeat;
-      width: 249px - 40px;
-    }
-    #feedback_content {
-      padding: 5px 5px 5px 42px;
-      font-size: 14px;
-      line-height: 1.2em;
-      background: white image-url("about/mail.png") 8px -2px no-repeat;
-      width: 209px;
+
+    #success-info {
+      width: $width;
+      text-align: center;
     }
   }
+
 }
 
 #footer {
-  position: fixed;
   bottom: 0px;
-  color: #808080;
-  width: 99%;
-  padding: 5px;
+  color: #b3b3b3;
+  padding: 11px 20px;
+  position: absolute;
+  right: 0px;
+  font-size: 11px;
+  width: initial;
   a {
+    color: #b3b3b3;
     text-decoration: none;
-    color: #808080;
     &:hover {
       text-decoration: underline;
     }
   }
-  .f_l {
-    float: left;
-  }
-  .f_r {
-    float: right;
-  }
-
 }
