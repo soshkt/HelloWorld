@@ -8,7 +8,9 @@ Bluerain::Application.routes.draw do
   match "/v2" => redirect("http://itunes.apple.com/cn/app/id454984086")
   match "/v3" => redirect("http://goo.gl/qWeJx")
   match "/v4" => redirect("http://goo.gl/qWeJx")
-  match "/v5" => redirect("http://goo.gl/CKRnH")
+   match "/v5" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
+  #match "/v5" => redirect("http://goo.gl/CKRnH")
+  
   match "/v6" => redirect("http://goo.gl/FfF5V")
   match "/r/:link" => redirect("http://goo.gl/%{link}")
   match "/v/weibo-signin" => redirect("http://3g.sina.com.cn/prog/wapsite/sso/register.php")
