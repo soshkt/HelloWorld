@@ -1,0 +1,183 @@
+<%= content_for :title do %>
+  <%= @moment["data"]["name"] %>的地图 - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<%= content_for :page_specific_asset do %>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<%  end -%>
+
+<div id="moment_map">
+  <div id="bg_white"> </div>
+  <div id="left_outline">
+    <div id="logo_vida">
+      <a href="/">
+        <%=image_tag("moments/logo_vida.png")%>
+      </a>
+    </div>
+  </div>
+
+  <div id="right_bar"> 
+    <div id="login_bar"> 
+    <% if @current_user.nil? %>
+			<%= link_to "", "/auth/tqq", :class => "bar", :id => "qq_icon" %>
+      <%= link_to "", "/auth/douban", :class => "bar", :id => "douban_icon" %>
+      <%= link_to "", "/auth/tsina", :class => "bar", :id => "weibo_icon" %>
+      <div id="login">
+        <%=image_tag("moments/login.png")%>
+      </div>
+    <% else %>
+      <%= link_to("退出", "/auth/logout", :id => "current_user_logout")  %>
+      <div id="current_user_name"><%=@current_user['name']%></div>
+      <%=image_tag(@current_user['avatar_file'],:id => "current_user_photo") %>
+    <% end %>
+    </div>
+  </div>
+
+  <div id="container">
+	  <div id="map-col">
+    	<div id="map-canvas"></div>
+    </div>
+    <div id="info-col">
+    	
+    	<div class="side-row">
+    		<div class="side-row-title" id="info-title-name">活动名称
+    			<%= link_to "查看详情>>", moment_path(@moment['data']['id']), :id => "view-detail" %>
+    		</div>
+    		<div class="side-row-box" id="moment-name">
+    			<%= @moment["data"]["name"] %>
+    			<span class="indicator"></span>
+    		</div>
+    	</div>
+    	<div class="side-row">
+    		<div class="side-row-title" id="info-title-info">活动信息</div>
+    		<div class="side-row-box  multi-col-box">
+    			<div class="box-col right-border">
+    				<h1><%= @moment['data']['items'].size %></h1>
+    				<h2>照片/视频</h2>
+    			</div>
+    			<div class="box-col right-border">
+    				<h1><%= @moment['data']['participators_count']  %></h1>
+    				<h2>参与人数</h2>
+    			</div>
+    			<div class="box-col">
+    				<h1> <%= @moment['data']['likes_count'] %> </h1>
+    				<h2>喜欢数</h2>
+    			</div>
+    			<div class="clearfix"></div>
+    		</div>
+    	</div>
+
+    	<%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
+
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+  		window.moment = <%= raw @moment['data'].to_json %>;
+
+  		var map;
+      function initialize() {
+        var myOptions = {
+          zoom: 8,
+          center: new google.maps.LatLng(-34.397, 150.644),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map-col'),
+            myOptions);
+
+        setMarkers(map, activities);
+
+
+        var bounds = new google.maps.LatLngBounds();
+        
+        _.each(activities, function(e) { 
+        	point = new google.maps.LatLng(e.lat, e.lng);
+        	console.log(point);
+	        bounds = bounds.extend(point);
+	      });
+
+	      google.maps.event.addListener(map, 'zoom_changed', function() {
+	          zoomChangeBoundsListener = 
+	              google.maps.event.addListener(map, 'bounds_changed', function(event) {
+	                  if (this.getZoom() > 15 && this.initialZoom == true) {
+	                      // Change max/min zoom here
+	                      this.setZoom(15);
+	                      this.initialZoom = false;
+	                  }
+	              google.maps.event.removeListener(zoomChangeBoundsListener);
+	          });
+	      });
+	      map.initialZoom = true;
+	      map.fitBounds(bounds);
+      }
+
+
+      /**
+       * Data for the markers consisting of a name, a LatLng and a zIndex for
+       * the order in which these markers should display on top of each
+       * other.
+       */
+      var activities = moment.items;
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+      function setMarkers(map, locations) {
+        // Add markers to the map
+        var shape = {
+            coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+            type: 'poly'
+        };
+        for (var i = 0; i < locations.length; i++) {
+
+        	var beach = locations[i];
+        	// Marker sizes are expressed as a Size of X,Y
+	        // where the origin of the image (0,0) is located
+	        // in the top left of the image.
+
+	        // Origins, anchor positions and coordinates of the marker
+	        // increase in the X direction to the right and in
+	        // the Y direction down.
+	        var image = new google.maps.MarkerImage(beach.photo.url_s,
+	            // This marker is 20 pixels wide by 32 pixels tall.
+	            new google.maps.Size(32, 32),
+	            // The origin for this image is 0,0.
+	            new google.maps.Point(0,0),
+	            // The anchor for this image is the base of the flagpole at 0,32.
+	            new google.maps.Point(0, 32));
+	        var shadow = new google.maps.MarkerImage(beach.photo.url_s,
+	            // The shadow image is larger in the horizontal dimension
+	            // while the position and offset are the same as for the main image.
+	            new google.maps.Size(37, 37),
+	            new google.maps.Point(0,0),
+	            new google.maps.Point(0, 32));
+	            // Shapes define the clickable region of the icon.
+	            // The type defines an HTML &lt;area&gt; element 'poly' which
+	            // traces out a polygon as a series of X,Y points. The final
+	            // coordinate closes the poly by connecting to the first
+	            // coordinate.
+
+          var myLatLng = new google.maps.LatLng(beach.lat, beach.lng);
+          var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              shadow: shadow,
+              icon: image,
+              shape: shape,
+              title: beach.description,
+              zIndex: beach[3]
+          });
+        }
+      }
+  	</script>
+  </div>
+
+  <div id="footer">
+    <%= link_to "联系我们", about_url %>
+    <span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;沪ICP备10216111号-2</span>
+  </div>
+
+</div>

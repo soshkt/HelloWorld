@@ -11,4 +11,4 @@ $(document).ready ->
   $('#photo_and_page_layout').mouseleave ->
     $('#last_page').css "visibility","hidden"
     $('#next_page').css "visibility","hidden"
-    
+

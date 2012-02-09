@@ -23,7 +23,10 @@ Bluerain::Application.routes.draw do
     get "likelist", :on => :member
   end
 
-  resources :moments, :only => [:show], :constraints => {:id => /[0-9]+/}
+  resources :moments, :only => [:show], :constraints => {:id => /[0-9]+/} do
+    get "map", :on => :member
+    get "detail", :on => :member
+  end
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'

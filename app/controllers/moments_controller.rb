@@ -5,6 +5,14 @@ class MomentsController < ApplicationController
        return
     end
     @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page])
-    @moment['current_page'] = 0 if @moment['current_page'].to_i == -1 # 如果没有找到activity，后台返回当前页数是-1  
+    @moment['current_page'] = 0 if @moment['current_page'].to_i == -1 # 如果没有找到activity，后台返回当前页数是-1 
+  end
+
+  def map
+    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => 999)
+  end
+
+  def detail
+  	
   end
 end
