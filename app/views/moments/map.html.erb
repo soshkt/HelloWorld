@@ -4,6 +4,7 @@
 
 <%= content_for :page_specific_asset do %>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag :richmarker %>
 <%  end -%>
 
 <div id="moment_map">
@@ -95,7 +96,6 @@
         
         _.each(activities, function(e) { 
         	point = new google.maps.LatLng(e.lat, e.lng);
-        	console.log(point);
 	        bounds = bounds.extend(point);
 	      });
 
@@ -134,42 +134,44 @@
         for (var i = 0; i < locations.length; i++) {
 
         	var beach = locations[i];
-        	// Marker sizes are expressed as a Size of X,Y
-	        // where the origin of the image (0,0) is located
-	        // in the top left of the image.
+        	// // Marker sizes are expressed as a Size of X,Y
+	        // // where the origin of the image (0,0) is located
+	        // // in the top left of the image.
 
-	        // Origins, anchor positions and coordinates of the marker
-	        // increase in the X direction to the right and in
-	        // the Y direction down.
-	        var image = new google.maps.MarkerImage(beach.photo.url_s,
-	            // This marker is 20 pixels wide by 32 pixels tall.
-	            new google.maps.Size(32, 32),
-	            // The origin for this image is 0,0.
-	            new google.maps.Point(0,0),
-	            // The anchor for this image is the base of the flagpole at 0,32.
-	            new google.maps.Point(0, 32));
-	        var shadow = new google.maps.MarkerImage(beach.photo.url_s,
-	            // The shadow image is larger in the horizontal dimension
-	            // while the position and offset are the same as for the main image.
-	            new google.maps.Size(37, 37),
-	            new google.maps.Point(0,0),
-	            new google.maps.Point(0, 32));
-	            // Shapes define the clickable region of the icon.
-	            // The type defines an HTML &lt;area&gt; element 'poly' which
-	            // traces out a polygon as a series of X,Y points. The final
-	            // coordinate closes the poly by connecting to the first
-	            // coordinate.
+
+          var markerImageSize = 40;
+	        // // // Origins, anchor positions and coordinates of the marker
+	        // // // increase in the X direction to the right and in
+	        // // // the Y direction down.
+	        // var image = new google.maps.MarkerImage(beach.photo.url_s,
+	        //     new google.maps.Size(markerImageSize, markerImageSize),
+	        //     // The origin for this image is 0,0.
+	        //     new google.maps.Point(0,0),
+	        //     // The anchor for this image is the base of the flagpole at 0,32.
+	        //     new google.maps.Point(0, markerImageSize),
+         //      new google.maps.Size(markerImageSize, markerImageSize));
+	        // var shadow = new google.maps.MarkerImage("<%= asset_path 'whiteRect-44x44.png' %>",
+	        //     new google.maps.Size(44, 44),
+	        //     new google.maps.Point(0, 0),
+	        //     new google.maps.Point(2, 42));
 
           var myLatLng = new google.maps.LatLng(beach.lat, beach.lng);
-          var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              shadow: shadow,
-              icon: image,
-              shape: shape,
-              title: beach.description,
-              zIndex: beach[3]
-          });
+         //  var marker = new google.maps.Marker({
+         //      position: myLatLng,
+         //      map: map,
+         //      // shadow: shadow,
+         //      icon: image,
+         //      // icon: beach.photo.url_s,
+         //      // shape: shape,
+         //      title: beach.description,
+         //      zIndex: beach[3]
+         //  });
+
+         marker = new RichMarker({
+           position: myLatLng,
+           map: map,
+           content: '<img src="' + beach.photo.url_s + '" class="map-marker" />' 
+         });
         }
       }
   	</script>

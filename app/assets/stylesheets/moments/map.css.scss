@@ -225,3 +225,10 @@ $bar_length: 500px;
 .clearfix {
 	clear: both;
 }
+img.map-marker {
+  width: 40px;
+  border:2px solid white;
+  // -moz-box-shadow:0px 0px 10px #000;
+  // -webkit-box-shadow:0px 0px 10px #000;
+  // box-shadow:0px 0px 10px #000;
+}
