@@ -96,7 +96,8 @@
         
         _.each(activities, function(e) { 
         	point = new google.maps.LatLng(e.lat, e.lng);
-	        bounds = bounds.extend(point);
+          if (point.lat() > 0 && point.lng() > 0)
+            bounds = bounds.extend(point);
 	      });
 
 	      google.maps.event.addListener(map, 'zoom_changed', function() {
@@ -156,6 +157,10 @@
 	        //     new google.maps.Point(2, 42));
 
           var myLatLng = new google.maps.LatLng(beach.lat, beach.lng);
+          // console.log(myLatLng.lat());
+          // console.log(myLatLng.lng());
+          if (!(myLatLng.lat() > 0.1) && !(myLatLng.lng() > 0.1))
+            continue;
          //  var marker = new google.maps.Marker({
          //      position: myLatLng,
          //      map: map,
