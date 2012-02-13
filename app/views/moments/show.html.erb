@@ -48,7 +48,7 @@
          <%= @moment['data']['name'] %>
       </div>
       <div id="moment_address">
-        <%= @moment["data"]["location"].blank? ? "未知地点" : @moment["data"]["location"] %> <%= link_to "查看地图", map_moment_url(@moment['data']['id']), :style => "color:#999;" %> |  <%= Time.parse(@moment["data"]["created_at"]).strftime("%Y.%m.%d") %>
+        <%= @moment["data"]["location"].blank? ? "未知地点" : @moment["data"]["location"] %> <%= link_to "查看地图", map_moment_url(@moment['data']['id']), :style => "color:#999;", :target => "_blank" %> |  <%= Time.parse(@moment["data"]["created_at"]).strftime("%Y.%m.%d") %>
       </div>
       <%= link_to "<", moment_url(params["id"], :page => @moment['current_page'].to_i - 1), :remote => true, :id => "prev_page_arrow", :class => "control_arrow" %>
       <div id="photo_list">
